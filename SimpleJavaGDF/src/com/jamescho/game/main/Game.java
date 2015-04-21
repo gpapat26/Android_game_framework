@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import java .awt.Image;
 
 @SuppressWarnings("serial")
-public class Game extends JPanel{
+public class Game extends JPanel implements Runnable{
 	
 	private int gameWidth;
 	private int gameHeight;
@@ -42,6 +42,22 @@ public class Game extends JPanel{
 	public void addNotify(){
 		super.addNotify();
 		setCurrentState(new LoadState());
+		initGame();
+	}
+
+	private void initGame() {
+		running  = true;
+		gameThread = new Thread(this,"Game Thread");
+		gameThread.start();
+		
+	}
+
+	@Override
+	public void run() {
+		while(running){
+			
+		}
+		System.exit(0);
 	}
 	
 	
