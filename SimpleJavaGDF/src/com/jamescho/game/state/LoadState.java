@@ -29,19 +29,22 @@ public class LoadState extends State {
 
 	@Override
 	public void onClick(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void onKeyPress(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void onKeyRelease(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+		
 
 	}
 
