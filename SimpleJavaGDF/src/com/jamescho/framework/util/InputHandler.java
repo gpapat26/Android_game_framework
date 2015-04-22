@@ -5,11 +5,20 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import com.jamescho.game.state.State;
+
 public class InputHandler  implements KeyListener , MouseListener{
 
+	private State currentState;
+	
+	public void setCurrentState(State currentState){
+		this.currentState = currentState;
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		currentState.onClick(e);
 		
 	}
 
@@ -46,12 +55,13 @@ public class InputHandler  implements KeyListener , MouseListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		currentState.onKeyPress(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		currentState.onKeyRelease(e);
 		
 	}
 	

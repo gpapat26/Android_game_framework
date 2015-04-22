@@ -2,6 +2,7 @@ package com.jamescho.game.main;
 
 import javax.swing.JPanel;
 
+import com.jamescho.framework.util.InputHandler;
 import com.jamescho.game.state.LoadState;
 import com.jamescho.game.state.State;
 
@@ -16,6 +17,7 @@ public class Game extends JPanel implements Runnable{
 	private int gameWidth;
 	private int gameHeight;
 	private Image gameImage;
+	private InputHandler inputHandler;
 	
 	private Thread gameThread;
 	
@@ -35,15 +37,22 @@ public class Game extends JPanel implements Runnable{
 	
 	public void setCurrentState(State newState){
 		System.gc();
-		newState.init();
+		
 		currentState = newState;
+		
+		newState.init();
+		
+		inputHandler.setCurrentState(currentState);
+		
 	}
 	
 	@Override
 	public void addNotify(){
 		super.addNotify();
+		initInput();
 		setCurrentState(new LoadState());
 		initGame();
+		
 	}
 
 	private void initGame() {
@@ -92,6 +101,13 @@ public class Game extends JPanel implements Runnable{
 			return;
 		}
 		g.drawImage(gameImage, 0, 0, null);
+	}
+	
+	
+	private void initInput(){
+		inputHandler = new InputHandler();
+		addKeyListener(inputHandler);
+		addMouseListener(inputHandler);		
 	}
 	
 	
