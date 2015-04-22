@@ -7,6 +7,7 @@ import com.jamescho.game.state.State;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java .awt.Image;
 
 @SuppressWarnings("serial")
@@ -55,9 +56,42 @@ public class Game extends JPanel implements Runnable{
 	@Override
 	public void run() {
 		while(running){
+			currentState.update();
+			
+			prepareGameImage();
+			currentState.render(gameImage.getGraphics());
+			repaint(); // calls default paintComponent(Graphics g) of Component  := JPanel
+			try {
+				Thread.sleep(14);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		System.exit(0);
+	}
+
+	private void prepareGameImage() {
+		if(gameImage == null){
+			gameImage = createImage(gameWidth,gameHeight);
+		}
+		Graphics g = gameImage.getGraphics();
+		g.clearRect(0, 0, gameWidth, gameHeight);
+		
+	}
+	
+	public void exit(){
+		running = false;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g){
+		super.paintComponent(g);
+		if(gameImage == null){
+			return;
+		}
+		g.drawImage(gameImage, 0, 0, null);
 	}
 	
 	
