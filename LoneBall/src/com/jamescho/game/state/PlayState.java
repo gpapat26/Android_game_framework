@@ -1,6 +1,7 @@
 package com.jamescho.game.state;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -17,18 +18,23 @@ public class PlayState extends State {
 	
 	private static final int PADDLE_HEIGHT = 60;
 	
+	private int playerScore = 0;
+	
+	private Font scoreFont;
+	
 	
 
 	@Override
 	public void init() {
 		paddleLeft = new Paddle(0, 195, PADDLE_WIDTH, PADDLE_HEIGHT);
 		paddleRight = new Paddle(785, 195, PADDLE_WIDTH, PADDLE_HEIGHT);
-
+		scoreFont = new Font("SansSerif",Font.BOLD,25);
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		paddleLeft.update();
+		paddleRight.update();
 
 	}
 
@@ -44,24 +50,37 @@ public class PlayState extends State {
 		g.setColor(Color.WHITE);
 		g.fillRect(paddleLeft.getX(), paddleLeft.getY(), paddleLeft.getWidth(), paddleLeft.getHeight());
 		g.fillRect(paddleRight.getX(), paddleRight.getY(), paddleRight.getWidth(), paddleRight.getHeight());
-
+		
+		g.setFont(scoreFont);
+		g.drawString(Integer.toString(playerScore), 350, 40);
 	}
 
 	@Override
 	public void onClick(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void onKeyPress(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_UP){
+			paddleLeft.accelUp();
+			paddleRight.accelDown();
+			}
+			else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+				paddleLeft. accelDown();
+				paddleRight.accelUp();
+			}
+		
 
 	}
 
 	@Override
 	public void onKeyRelease(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_UP ||e.getKeyCode()==KeyEvent.VK_DOWN ){
+			paddleLeft.stop();
+			paddleRight.stop();
+		}
 
 	}
 

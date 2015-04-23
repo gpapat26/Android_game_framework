@@ -68,7 +68,9 @@ public class Game extends JPanel implements Runnable{
 			currentState.update();
 			
 			prepareGameImage();
+			
 			currentState.render(gameImage.getGraphics());
+			
 			repaint(); // calls default paintComponent(Graphics g) of Component  := JPanel
 			try {
 				Thread.sleep(14);
