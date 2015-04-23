@@ -43,6 +43,7 @@ public class PlayState extends State {
 		//Draw paddles
 		g.setColor(Color.WHITE);
 		g.fillRect(paddleLeft.getX(), paddleLeft.getY(), paddleLeft.getWidth(), paddleLeft.getHeight());
+		g.fillRect(paddleRight.getX(), paddleRight.getY(), paddleRight.getWidth(), paddleRight.getHeight());
 
 	}
 
