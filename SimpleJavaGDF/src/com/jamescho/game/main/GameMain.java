@@ -21,6 +21,7 @@ public class GameMain {
 		frame.add(sGame);
 		frame.pack();
 		frame.setVisible(true);
+		frame.setIconImage(Resources.iconImage);
 		
 	}
 	
