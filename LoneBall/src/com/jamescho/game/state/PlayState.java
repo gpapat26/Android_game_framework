@@ -46,13 +46,15 @@ public class PlayState extends State {
 		g.fillRect(GameMain.GAME_WIDTH/2, 0, GameMain.GAME_WIDTH/2, GameMain.GAME_HEIGHT);
 		g.drawImage(Resources.line,  (GameMain.GAME_WIDTH/2) -2 , 0, null);
 		
+		g.setFont(scoreFont);
+		g.drawString(Integer.toString(playerScore), 350, 40);
+		
 		//Draw paddles
 		g.setColor(Color.WHITE);
 		g.fillRect(paddleLeft.getX(), paddleLeft.getY(), paddleLeft.getWidth(), paddleLeft.getHeight());
 		g.fillRect(paddleRight.getX(), paddleRight.getY(), paddleRight.getWidth(), paddleRight.getHeight());
 		
-		g.setFont(scoreFont);
-		g.drawString(Integer.toString(playerScore), 350, 40);
+		
 	}
 
 	@Override
