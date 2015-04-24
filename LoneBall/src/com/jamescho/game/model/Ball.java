@@ -13,6 +13,36 @@ public class Ball {
 	
 	private Rectangle rect;
 	
+	
+	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getVelX() {
+		return velX;
+	}
+
+	public int getVelY() {
+		return velY;
+	}
+
+	public Rectangle getRect() {
+		return rect;
+	}
+
 	public Ball(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
