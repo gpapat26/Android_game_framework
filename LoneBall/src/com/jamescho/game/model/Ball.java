@@ -3,6 +3,7 @@ package com.jamescho.game.model;
 import java.awt.Rectangle;
 import java.util.Random;
 
+import com.jamescho.framework.util.RandomNumberGenerator;
 import com.jamescho.game.main.GameMain;
 import com.jamescho.game.main.Resources;
 
@@ -18,8 +19,9 @@ public class Ball {
 		this.width = width;
 		this.height = height;
 		velX = 5;
-		Random r = new Random();
-		velY = r.nextInt(5-(-4)) + (-4);
+		//Random r = new Random();
+		//velY = r.nextInt(5-(-4)) + (-4);
+		velY = RandomNumberGenerator.getRandIntBetween(5,4);
 		this.rect = new Rectangle(x,y,width,height);
 	}
 	
@@ -50,7 +52,26 @@ public class Ball {
 	}
 	
 	public void onCollideWith(Paddle p){
+		if(x<GameMain.GAME_WIDTH /2){
+			x=p.getX()+p.getWidth();
+		}
+		else{
+			x=p.getX()-width;
+		}
+		velX = -velX;
+		velY +=RandomNumberGenerator.getRandIntBetween(-2, 3);
 		
+	}
+	
+	public boolean isDead(){
+		return (x<0||x+width>GameMain.GAME_WIDTH);
+	}
+	
+	public void reset(){
+		x = 300;
+		y = 200;
+		velX = 5;
+		velY =RandomNumberGenerator.getRandIntBetween(-4, 5);
 	}
 	
 
