@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 
 import com.jamescho.game.main.GameMain;
 import com.jamescho.game.main.Resources;
+import com.jamescho.game.model.Ball;
 import com.jamescho.game.model.Paddle;
 
 public class PlayState extends State {
@@ -22,6 +23,10 @@ public class PlayState extends State {
 	
 	private Font scoreFont;
 	
+	private Ball ball;
+	
+	private final int BALL_DIAMETER = 20;
+	
 	
 
 	@Override
@@ -29,12 +34,29 @@ public class PlayState extends State {
 		paddleLeft = new Paddle(0, 195, PADDLE_WIDTH, PADDLE_HEIGHT);
 		paddleRight = new Paddle(785, 195, PADDLE_WIDTH, PADDLE_HEIGHT);
 		scoreFont = new Font("SansSerif",Font.BOLD,25);
+		ball = new Ball(300, 200, BALL_DIAMETER, BALL_DIAMETER);
 	}
 
 	@Override
 	public void update() {
 		paddleLeft.update();
 		paddleRight.update();
+		ball.update();
+		
+		if(ballCollides(paddleLeft)){
+			ball.onCollideWith(paddleLeft);
+			playerScore++;
+				Resources.hit.play();
+		}
+		else if(ballCollides(paddleRight)){
+			ball.onCollideWith(paddleRight);
+			playerScore++;
+			Resources.hit.play();
+		}
+		if(ball.isDead()){
+			playerScore -=3;
+			ball.reset();
+		}
 
 	}
 
@@ -53,6 +75,10 @@ public class PlayState extends State {
 		g.setColor(Color.WHITE);
 		g.fillRect(paddleLeft.getX(), paddleLeft.getY(), paddleLeft.getWidth(), paddleLeft.getHeight());
 		g.fillRect(paddleRight.getX(), paddleRight.getY(), paddleRight.getWidth(), paddleRight.getHeight());
+		
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
+		
 		
 		
 	}
@@ -84,6 +110,10 @@ public class PlayState extends State {
 			paddleRight.stop();
 		}
 
+	}
+	
+	public boolean ballCollides(Paddle p){
+		return ball.getRect().intersects(p.getRect());
 	}
 
 }

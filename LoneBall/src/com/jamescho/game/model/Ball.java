@@ -51,7 +51,7 @@ public class Ball {
 		velX = 5;
 		//Random r = new Random();
 		//velY = r.nextInt(5-(-4)) + (-4);
-		velY = RandomNumberGenerator.getRandIntBetween(5,4);
+		velY = RandomNumberGenerator.getRandIntBetween(4,5);
 		this.rect = new Rectangle(x,y,width,height);
 	}
 	
@@ -63,17 +63,25 @@ public class Ball {
 	}
 
 	private void correctYCollisions() {
+		
 		if(y<0){
-		y=0;
+			y=0;
+			velY = -velY;
+			Resources.bounce.play();
 		}
 		else if(y+ height >GameMain.GAME_HEIGHT){//reach down
 			y=GameMain.GAME_HEIGHT - height;
+			velY = -velY;
+			Resources.bounce.play();
 		}
 		else{
-			return;
+			//do nothing
 		}
-		velY = -velY;
-		Resources.bounce.play();
+//		else{
+//			return;
+//		}
+		
+		
 		
 	}
 
@@ -103,6 +111,8 @@ public class Ball {
 		velX = 5;
 		velY =RandomNumberGenerator.getRandIntBetween(-4, 5);
 	}
+	
+	
 	
 
 	
