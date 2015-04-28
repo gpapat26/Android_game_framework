@@ -2,16 +2,22 @@ package com.jamescho.game.main;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import com.jamescho.framework.animation.Animation;
+import com.jamescho.framework.animation.Frame;
+
 public class Resources {
 	
 	public static BufferedImage welcome , iconImage,block, cloud1,cloud2,duck,grass,jump,run1,run2,run3,run4,run5,selector;
 	public static AudioClip hit,onjump;
+	public static Color skyblue;
+	public static Animation runAnim;
 	
 	public static void load(){
 		 welcome = loadImage("welcome.png");
@@ -30,6 +36,15 @@ public class Resources {
 		 selector = loadImage("selector.png");
 		 hit = loadSound("hit.wav");
 		 onjump = loadSound("onjump.wav");
+		 skyblue = new Color(208,244,247);
+		 
+		 Frame f1 = new Frame(run1,.1f);
+		 Frame f2 = new Frame(run2,.1f);
+		 Frame f3 = new Frame(run3,.1f);
+		 Frame f4 = new Frame(run4,.1f);
+		 Frame f5 = new Frame(run5,.1f);
+		 
+		 runAnim = new Animation (f1,f2,f3,f4,f5,f3,f2);
 		 
 	}
 	
