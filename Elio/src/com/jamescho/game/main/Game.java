@@ -70,12 +70,12 @@ public class Game extends JPanel implements Runnable{
 		while(running){
 			
 			long beforUpdateRender = System.nanoTime();
-			long deltaMilis = updateDurationMillis+ + sleepDurationMillis;
+			long deltaMilis = updateDurationMillis+sleepDurationMillis;
 			
 			updateAndRender(deltaMilis);
 			
 			updateDurationMillis = (System.nanoTime() - beforUpdateRender)/1000000L; 
-			sleepDurationMillis = Math.max(2, 17-updateDurationMillis);
+			sleepDurationMillis = Math.max(2, 17 - updateDurationMillis);
 			
 		
 			try {
@@ -90,10 +90,10 @@ public class Game extends JPanel implements Runnable{
 	}
 
 	private void updateAndRender(long deltaMilis) {
-		currentState.update(deltaMilis/1000f);			
+		currentState.update(deltaMilis/1000F);			
 		prepareGameImage();
 		currentState.render(gameImage.getGraphics());
-		repaint(); // calls default paintComponent(Graphics g) of Component  := JPanel
+		//repaint(); // calls default paintComponent(Graphics g) of Component  := JPanel
 		renderGameImage(getGraphics());
 	}
 

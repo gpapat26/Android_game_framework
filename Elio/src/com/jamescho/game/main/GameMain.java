@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class GameMain {
 	
-	private static final String  GAME_TITLE = "Java game dev chap 3";
+	private static final String  GAME_TITLE = "Ellio (Chapter 6)";
 	public static final int GAME_WIDTH = 800;
 	public static final int GAME_HEIGHT = 450 ;
 	public static Game sGame;
