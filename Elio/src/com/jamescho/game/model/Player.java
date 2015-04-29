@@ -2,6 +2,8 @@ package com.jamescho.game.model;
 
 import java.awt.Rectangle;
 
+import com.jamescho.game.main.Resources;
+
 
 public class Player {
 	
@@ -25,10 +27,7 @@ public class Player {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		
-	
-		
-		
+			
 		this.ground = new Rectangle(0,405,800,45);
 		this.rect = new Rectangle();
 		
@@ -42,8 +41,59 @@ public class Player {
 
 
 	private void updateRects() {
-		// TODO Auto-generated method stub
+		rect.setBounds((int)(x+10), (int)y, width-20, height);
+		duckRect.setBounds((int)x,(int)(y+20),width,height-20);		
+	}
+	
+	public void update(float delta){
 		
+		if(duckDuration > 0 && isDucked){
+			duckDuration -= delta;
+		}else{
+			isDucked = false;
+			duckDuration = .6f;
+		}
+		if(!isGrounded()){ // checks if player is walking
+			velY+=ACCEL_GRAVITY*delta;
+		}else{
+			y=406 - height;
+			velY = 0;
+		}
+		y+= velY*delta;
+		
+		
+	}
+
+	
+	public void jump(){
+		if(isGrounded()){//Are you walking ?
+			Resources.onjump.play();
+			isDucked = false;
+			duckDuration = .6f;
+			y-=10;
+			velY = JUMP_VELOCITY;
+			updateRects();
+		}
+		
+	}
+	
+	public void duck(){
+		if(isGrounded()){
+			isDucked = true;
+		}
+	}
+	
+	public void pushBack(int dX){
+		Resources.hit.play();
+		x-= dX;
+		if(x < -width/2){
+			this.isAlive = false;
+		}
+		rect.setBounds((int)x,(int)y,width,height);
+	}
+	
+	public boolean isGrounded(){
+		return rect.intersects(ground);
 	}
 	
 
