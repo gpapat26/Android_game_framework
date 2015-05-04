@@ -95,6 +95,25 @@ public class Player {
 	public boolean isGrounded(){
 		return rect.intersects(ground);
 	}
+
+
+	public boolean isAlive() {		
+		return isAlive;
+	}
+	
+	public boolean isDucked(){
+		return isDucked;
+	}
+
+
+	public Rectangle getDuckRect() {		
+		return duckRect;
+	}
+
+
+	public Rectangle getRect() {		
+		return rect;
+	}
 	
 
 	
