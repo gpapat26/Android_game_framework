@@ -114,6 +114,30 @@ public class Player {
 	public Rectangle getRect() {		
 		return rect;
 	}
+
+
+	public double getY() {
+		// TODO Auto-generated method stub
+		return y;
+	}
+
+
+	public double getX() {
+		// TODO Auto-generated method stub
+		return x;
+	}
+
+
+	public int getWidth() {
+		// TODO Auto-generated method stub
+		return width;
+	}
+
+
+	public int getHeight() {
+		// TODO Auto-generated method stub
+		return height;
+	}
 	
 
 	

@@ -59,8 +59,10 @@ public class MenuState extends State {
 		}
 		else if(key == KeyEvent.VK_UP){
 			currentSelection = 0;
+			System.out.println(" selection 0");
 		}else if (key == KeyEvent.VK_DOWN){
 			currentSelection = 1;
+			System.out.println(" selection 1");
 		}
 
 	}

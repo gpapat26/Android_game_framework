@@ -1,5 +1,6 @@
 package com.jamescho.game.state;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -82,8 +83,59 @@ public class PlayState extends State {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(Resources.skyblue);
+		g.fillRect(0, 0, GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT);
+		renderPlayer(g);
+		renderBlocks(g);
+		renderSun(g);
+		renderClouds(g);
+		g.drawImage(Resources.grass, 0, 405, null);
+		renderScore(g);
+	}
 
+	private void renderScore(Graphics g) {
+		g.setFont(scoreFont);
+		g.setColor(Color.GRAY);
+		g.drawString(""+playerScore/100, 20, 30);		
+	}
+
+	private void renderClouds(Graphics g) {
+		g.drawImage(Resources.cloud1, (int)cloud.getX(), (int)cloud.getY(), 100,60,null);
+		g.drawImage(Resources.cloud2, (int)cloud2.getX(), (int)cloud2.getY(), 100,60,null);
+		
+	}
+
+	private void renderSun(Graphics g) {
+		g.setColor(Color.orange);
+		g.fillOval(715, -85, 170, 170);
+		
+		g.setColor(Color.yellow);
+		g.fillOval(725, -75, 150, 150);
+		
+	}
+
+	private void renderBlocks(Graphics g) {
+		for(Block b : blocks){
+			if(b.isVisible()){
+				g.drawImage(Resources.block, (int)b.getX(), (int)b.getY(), BLOCK_WIDTH,BLOCK_HEIGHT,null);
+			}
+		}
+		
+	}
+
+	private void renderPlayer(Graphics g) {
+		if(player.isGrounded()){
+			if(player.isDucked()){
+				g.drawImage(Resources.duck, (int)player.getX(),  (int)player.getY(), null);
+			}
+			else{
+				Resources.runAnim.render(g, (int)player.getX(),  (int)player.getY(),player.getWidth(),player.getHeight());
+			
+			}
+		}else{
+			g.drawImage(Resources.jump, (int)player.getX(),  (int)player.getY(), player.getWidth(),player.getHeight(),null);
+		}
+		
 	}
 
 	@Override
