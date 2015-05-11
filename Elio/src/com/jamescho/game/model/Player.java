@@ -53,13 +53,16 @@ public class Player {
 			isDucked = false;
 			duckDuration = .6f;
 		}
-		if(!isGrounded()){ // checks if player is walking
+		if(!isGrounded()){
+			// checks if player is walking
 			velY+=ACCEL_GRAVITY*delta;
 		}else{
-			y=406 - height;
+			y=406-height;
 			velY = 0;
 		}
+		
 		y+= velY*delta;
+		updateRects();
 		
 		
 	}

@@ -27,6 +27,7 @@ public class MenuState extends State {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Resources.welcome, 0, 0, null);
+		
 		if(currentSelection == 0){
 			g.drawImage(Resources.selector, 335, 241, null);
 		}
@@ -46,7 +47,7 @@ public class MenuState extends State {
 	@Override
 	public void onKeyPress(KeyEvent e) {
 		// TODO Auto-generated method stub
-		//System.out.println(" key pressed !");
+		System.out.println(" key pressed !");
 		int key = e.getKeyCode();
 		
 		if (key==KeyEvent.VK_SPACE || key == KeyEvent.VK_ENTER){
@@ -63,6 +64,9 @@ public class MenuState extends State {
 		}else if (key == KeyEvent.VK_DOWN){
 			currentSelection = 1;
 			System.out.println(" selection 1");
+		}
+		else{
+			System.out.println(" some weird key pressed !");
 		}
 
 	}

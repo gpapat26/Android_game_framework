@@ -36,18 +36,14 @@ public class Game extends JPanel implements Runnable{
 	}
 	
 	public void setCurrentState(State newState){
-		System.gc();
-		
-		currentState = newState;
-		
-		newState.init();
-		
-		inputHandler.setCurrentState(currentState);
-		
+		System.gc();		
+		currentState = newState;		
+		newState.init();		
+		inputHandler.setCurrentState(currentState);	
 	}
 	
 	@Override
-	public void addNotify(){
+	public void addNotify(){//(2)
 		super.addNotify();
 		initInput();
 		setCurrentState(new LoadState());
@@ -93,8 +89,8 @@ public class Game extends JPanel implements Runnable{
 		currentState.update(deltaMilis/1000F);			
 		prepareGameImage();
 		currentState.render(gameImage.getGraphics());
-		//repaint(); // calls default paintComponent(Graphics g) of Component  := JPanel
-		renderGameImage(getGraphics());
+		repaint(); // calls default paintComponent(Graphics g) of Component  := JPanel
+		//renderGameImage(getGraphics());
 	}
 
 	private void prepareGameImage() {
@@ -110,14 +106,15 @@ public class Game extends JPanel implements Runnable{
 		running = false;
 	}
 	
-//	@Override
-//	protected void paintComponent(Graphics g){
-//		super.paintComponent(g);
-//		if(gameImage == null){
-//			return;
-//		}
-//		g.drawImage(gameImage, 0, 0, null);
-//	}
+	@Override
+	protected void paintComponent(Graphics g){
+		super.paintComponent(g);
+		if(gameImage == null){
+			return;
+		}
+		g.drawImage(gameImage, 0, 0, null);
+		g.dispose();
+	}
 	
 	private void renderGameImage(Graphics g){
 		if(gameImage != null){
