@@ -46,7 +46,11 @@ public class Painter {
 	public void drawImage(Bitmap bitmap ,int x, int y, int width , int height ){
 		srcRect.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
 		dstRect.set(x,y,x+width,y+height);
-		canvas.drawBitmap(bitmap, srcRect, dstRect,paint);
+		canvas.drawBitmap(bitmap, srcRect, dstRect,paint);		
+	}
+	
+	public void drawImage(Bitmap bitmap ,int x, int y){		
+		canvas.drawBitmap(bitmap, x, y,paint);		
 	}
 	
 	public void fillOval(int x, int y, int width, int height){
