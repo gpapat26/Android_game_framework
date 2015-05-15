@@ -3,6 +3,7 @@ package com.georgeframework.simpleandroidgdf;
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class GameMainActivity extends Activity{
 	
@@ -16,7 +17,8 @@ public class GameMainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		assets=getAssets();
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
-		setContentView(sGame);		
+		setContentView(sGame);	
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
 	
