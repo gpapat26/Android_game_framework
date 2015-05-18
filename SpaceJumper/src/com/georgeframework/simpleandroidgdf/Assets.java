@@ -25,7 +25,7 @@ public class Assets {
 	public static void load(){
 		welcome = loadBitmap("welcome.png",false);
 		
-		block = loadBitmap("welcome.png",false);
+		block = loadBitmap("block.png",false);
 		
 		cloud1 = loadBitmap("cloud1.png",false);
 		
@@ -37,11 +37,11 @@ public class Assets {
 		
 		jump = loadBitmap("jump.png",false);
 		
-		run1 = loadBitmap("run1.png",false);
-		run2 = loadBitmap("run2.png",false);
-		run3 = loadBitmap("run3.png",false);
-		run4 = loadBitmap("run4.png",false);
-		run5 = loadBitmap("run5.png",false);
+		run1 = loadBitmap("run_anim1.png",false);
+		run2 = loadBitmap("run_anim2.png",false);
+		run3 = loadBitmap("run_anim3.png",false);
+		run4 = loadBitmap("run_anim4.png",false);
+		run5 = loadBitmap("run_anim5.png",false);
 		
 		scoreDown = loadBitmap("score_button_down.png",true);
 		

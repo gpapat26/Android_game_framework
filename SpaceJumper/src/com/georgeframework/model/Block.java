@@ -1,5 +1,7 @@
 package com.georgeframework.model;
 
+import com.georgeframework.simpleandroidgdf.Assets;
+import com.georgegramework.util.Painter;
 import com.georgegramework.util.RandomNumberGenerator;
 
 import android.graphics.Rect;
@@ -13,7 +15,7 @@ public class Block {
 	private boolean visible;
 	
 	private static final int UPPER_Y = 275;
-	private static final int LOWER_Y = 335;
+	private static final int LOWER_Y = 355;
 	
 	
 	public Block(float x, float y, int width, int height) {
@@ -22,6 +24,7 @@ public class Block {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		rect = new Rect((int)x,(int)y,(int)(x+width),(int)y+height);
 	}
 	
 	public void update(float delta,float velX){
@@ -102,6 +105,11 @@ public class Block {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+	public void render(Painter g) {
+		g.drawImage(Assets.block, (int)x, (int)y,20,50);
+		
 	}
 	
 	

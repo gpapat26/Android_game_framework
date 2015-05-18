@@ -1,5 +1,9 @@
 package com.georgeframework.model;
 
+import android.graphics.Bitmap;
+
+import com.georgeframework.simpleandroidgdf.Assets;
+import com.georgegramework.util.Painter;
 import com.georgegramework.util.RandomNumberGenerator;
 
 public class Cloud {
@@ -36,6 +40,11 @@ public class Cloud {
 
 	public void setY(float y) {
 		this.y = y;
+	}
+	
+	public void render(Painter g , Bitmap image){		
+		g.drawImage(image, (int)x, (int)y,100,60);
+		//g.drawImage(image, (int)x, (int)y,100,60);
 	}
 	
 	
