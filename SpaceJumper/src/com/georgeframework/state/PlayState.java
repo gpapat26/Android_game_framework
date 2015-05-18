@@ -30,6 +30,7 @@ public class PlayState extends State {
 	
 	private static final int PLAYER_WIDTH = 66;
 	private static final int PLAYER_HEIGHT = 92;
+	private StringBuilder sbScore = new StringBuilder();
 	
 	
 	
@@ -69,16 +70,17 @@ public class PlayState extends State {
 	}
 
 	private void updateBlocks(float delta) {
-		for (Block block : blocks) {
-			block.update(delta, blockSpeed);
+		for(int i =0; i<5;i++){
+		//for (Block block : blocks) {
+			blocks.get(i).update(delta, blockSpeed);
 			
-			if(block.isVisible()){
-				if(player.isDucked() && Rect.intersects(block.getRect(), player.getDuckRect())){
-					block.onCollide(player);
+			if(blocks.get(i).isVisible()){
+				if(player.isDucked() && Rect.intersects(blocks.get(i).getRect(), player.getDuckRect())){
+					blocks.get(i).onCollide(player);
 					
 				}
-				else if(!player.isDucked() && Rect.intersects(block.getRect(), player.getRect())){
-					block.onCollide(player);
+				else if(!player.isDucked() && Rect.intersects(blocks.get(i).getRect(), player.getRect())){
+					blocks.get(i).onCollide(player);
 				}
 			}
 		}
@@ -105,7 +107,9 @@ public class PlayState extends State {
 		//playerScore
 		g.setColor(Color.GREEN);
 		g.setFont(Typeface.SANS_SERIF, 25);
-		g.drawString("Score: " +playerScore/100, 20, 30);
+		sbScore.setLength(0);
+		sbScore.append("Score: " +playerScore/100);
+		g.drawString(sbScore.toString(), 20, 30);
 		
 	}
 
