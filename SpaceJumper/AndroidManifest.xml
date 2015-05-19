@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.georgeframework"
+    package="com.georgepapatheodorou.spacejumper"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:screenOrientation="sensorLandscape"
-            android:name="com.georgeframework.simpleandroidgdf.GameMainActivity"
+            android:name="com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>

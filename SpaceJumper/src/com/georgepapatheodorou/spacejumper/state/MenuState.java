@@ -1,13 +1,13 @@
-package com.georgeframework.state;
+package com.georgepapatheodorou.spacejumper.state;
 
 import android.graphics.Rect;
 import android.media.session.PlaybackState;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import com.georgeframework.simpleandroidgdf.Assets;
-import com.georgegramework.util.Painter;
-import com.georgegramework.util.UIButton;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.Assets;
+import com.georgepapatheodorou.spacejumper.util.Painter;
+import com.georgepapatheodorou.spacejumper.util.UIButton;
 
 public class MenuState extends State {
 	
@@ -78,7 +78,8 @@ public class MenuState extends State {
 				setCurrentState(new PlayState());
 			}else 
 				if(scoreButton.isPressed(scaledx, scaledY)){
-					scoreButton.cancel();
+					//scoreButton.cancel();
+					setCurrentState(new Score());
 					Log.d("Menu state", "score button is presesed!");
 				}
 				else{

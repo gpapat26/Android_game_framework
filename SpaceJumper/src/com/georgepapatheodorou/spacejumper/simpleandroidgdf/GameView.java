@@ -1,4 +1,4 @@
-package com.georgeframework.simpleandroidgdf;
+package com.georgepapatheodorou.spacejumper.simpleandroidgdf;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,9 +9,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-import com.georgeframework.state.*;
-import com.georgegramework.util.InputHandler;
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.state.*;
+import com.georgepapatheodorou.spacejumper.util.InputHandler;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 public class GameView extends SurfaceView implements Runnable{
     

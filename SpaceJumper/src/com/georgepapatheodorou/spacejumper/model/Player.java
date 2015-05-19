@@ -1,7 +1,7 @@
-package com.georgeframework.model;
+package com.georgepapatheodorou.spacejumper.model;
 
-import com.georgeframework.simpleandroidgdf.Assets;
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.Assets;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;

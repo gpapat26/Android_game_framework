@@ -1,4 +1,4 @@
-package com.georgegramework.util;
+package com.georgepapatheodorou.spacejumper.util;
 
 import java.util.Random;
 

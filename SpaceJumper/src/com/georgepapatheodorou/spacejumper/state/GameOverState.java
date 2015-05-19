@@ -1,18 +1,23 @@
-package com.georgeframework.state;
+package com.georgepapatheodorou.spacejumper.state;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
-import com.georgeframework.simpleandroidgdf.GameMainActivity;
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 public class GameOverState extends State {
 
 	private String playerScore;
+	private String gameOverMessage = "GAME OVER";
 
 	public GameOverState(int playerScore) {
 		this.playerScore = playerScore+"";
+		if(playerScore > GameMainActivity.getHighScore()){
+			GameMainActivity.setHighScore(playerScore);
+			gameOverMessage = "HIGH SCORE";
+		}
 	}
 
 	@Override
@@ -33,7 +38,8 @@ public class GameOverState extends State {
 		g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);
 		g.setColor(Color.DKGRAY);
 		g.setFont(Typeface.DEFAULT_BOLD, 50);
-		g.drawString("Game Over", 257, 175);
+		//g.drawString("Game Over", 257, 175);
+		g.drawString(gameOverMessage, 257, 175);
 		g.drawString(playerScore, 385, 250);
 		g.drawString("Touch the screen", 220, 350);
 

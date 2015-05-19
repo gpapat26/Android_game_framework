@@ -1,4 +1,4 @@
-package com.georgegramework.util;
+package com.georgepapatheodorou.spacejumper.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;

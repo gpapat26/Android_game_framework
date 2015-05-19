@@ -1,9 +1,9 @@
-package com.georgeframework.state;
+package com.georgepapatheodorou.spacejumper.state;
 
 import android.view.MotionEvent;
 
-import com.georgeframework.simpleandroidgdf.GameMainActivity;
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 public abstract class State {
 

@@ -1,10 +1,10 @@
-package com.georgeframework.model;
+package com.georgepapatheodorou.spacejumper.model;
 
 import android.graphics.Bitmap;
 
-import com.georgeframework.simpleandroidgdf.Assets;
-import com.georgegramework.util.Painter;
-import com.georgegramework.util.RandomNumberGenerator;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.Assets;
+import com.georgepapatheodorou.spacejumper.util.Painter;
+import com.georgepapatheodorou.spacejumper.util.RandomNumberGenerator;
 
 public class Cloud {
 	

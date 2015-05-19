@@ -1,4 +1,4 @@
-package com.georgeframework.state;
+package com.georgepapatheodorou.spacejumper.state;
 
 import java.util.ArrayList;
 
@@ -7,12 +7,12 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
-import com.georgeframework.model.Block;
-import com.georgeframework.model.Cloud;
-import com.georgeframework.model.Player;
-import com.georgeframework.simpleandroidgdf.Assets;
-import com.georgeframework.simpleandroidgdf.GameMainActivity;
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.model.Block;
+import com.georgepapatheodorou.spacejumper.model.Cloud;
+import com.georgepapatheodorou.spacejumper.model.Player;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.Assets;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 public class PlayState extends State {
 
@@ -110,7 +110,7 @@ public class PlayState extends State {
 		sbScore.setLength(0);
 		sbScore.append("Score: " +playerScore/100);
 		g.drawString(sbScore.toString(), 20, 30);
-		
+		sbScore.setLength(0);
 	}
 
 	private void renderClouds(Painter g) {

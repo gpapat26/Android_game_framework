@@ -1,7 +1,7 @@
-package com.georgegramework.util;
+package com.georgepapatheodorou.spacejumper.util;
 
-import com.georgeframework.simpleandroidgdf.GameMainActivity;
-import com.georgeframework.state.State;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity;
+import com.georgepapatheodorou.spacejumper.state.State;
 
 import android.view.MotionEvent;
 import android.view.View;

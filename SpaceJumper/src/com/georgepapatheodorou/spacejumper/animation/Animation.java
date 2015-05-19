@@ -1,6 +1,6 @@
-package com.georgeframework.animation;
+package com.georgepapatheodorou.spacejumper.animation;
 
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 public class Animation {
 	

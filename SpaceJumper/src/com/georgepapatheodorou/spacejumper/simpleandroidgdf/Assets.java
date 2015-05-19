@@ -1,10 +1,10 @@
-package com.georgeframework.simpleandroidgdf;
+package com.georgepapatheodorou.spacejumper.simpleandroidgdf;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.georgeframework.animation.Animation;
-import com.georgeframework.animation.Frame;
+import com.georgepapatheodorou.spacejumper.animation.Animation;
+import com.georgepapatheodorou.spacejumper.animation.Frame;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

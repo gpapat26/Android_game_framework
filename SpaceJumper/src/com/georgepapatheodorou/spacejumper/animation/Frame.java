@@ -1,4 +1,4 @@
-package com.georgeframework.animation;
+package com.georgepapatheodorou.spacejumper.animation;
 
 import android.graphics.Bitmap;
 

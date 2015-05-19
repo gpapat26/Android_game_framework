@@ -1,9 +1,9 @@
-package com.georgeframework.state;
+package com.georgepapatheodorou.spacejumper.state;
 
 import android.view.MotionEvent;
 
-import com.georgeframework.simpleandroidgdf.Assets;
-import com.georgegramework.util.Painter;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.Assets;
+import com.georgepapatheodorou.spacejumper.util.Painter;
 
 public class LoadState extends State {
 
