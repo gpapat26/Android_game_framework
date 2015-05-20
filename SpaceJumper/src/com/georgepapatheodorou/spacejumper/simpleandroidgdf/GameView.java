@@ -147,5 +147,17 @@ public class GameView extends SurfaceView implements Runnable{
 			getHolder().unlockCanvasAndPost(screen);
 		}
 	}
+	
+	public void onResume(){
+		if(currentState != null){
+			currentState.onResume();
+		}
+	}
+	
+	public void onPause(){
+		if(currentState != null){
+			currentState.onPause();
+		}
+	}
 
 }

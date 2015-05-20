@@ -16,4 +16,7 @@ public abstract class State {
 	public abstract void render(Painter g);
 	public abstract boolean onTouch(MotionEvent e, int scaledx,int scaledY);
 	
+	public void onResume(){};
+	public void onPause(){};
+	
 }

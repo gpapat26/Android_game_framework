@@ -32,6 +32,10 @@ public class PlayState extends State {
 	private static final int PLAYER_HEIGHT = 92;
 	private StringBuilder sbScore = new StringBuilder();
 	
+	//Boolean to keep track of game Pauses.
+	private boolean gamePaused = false;
+	private String pausedString = "Game Paused. Tap to resume.";
+	
 	
 	
 	@Override
@@ -51,6 +55,9 @@ public class PlayState extends State {
 
 	@Override
 	public void update(float delta) {
+		if(gamePaused){
+			return;
+		}
 		if(!player.isAlive()){
 			setCurrentState(new GameOverState(playerScore/100));
 		}
@@ -100,6 +107,13 @@ public class PlayState extends State {
 			renderClouds(g);
 			g.drawImage(Assets.grass, 0, 405);
 			renderScore(g);
+			
+			//If game is paused draw additional UI Elements
+			if(gamePaused){
+				g.setColor(Color.argb(153, 0, 0, 0));
+				g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);
+				g.drawString(pausedString, 235, 240);
+			}
 
 	}
 
@@ -190,6 +204,10 @@ public class PlayState extends State {
 			recentTouchY = scaledY;
 		}
 		else if(e.getAction() == MotionEvent.ACTION_UP){
+			if(gamePaused){
+				gamePaused = false;
+				return true;
+			}
 			if(scaledY - recentTouchY < -50){
 				player.jump();
 			}else if(scaledY - recentTouchY > 50){
@@ -197,5 +215,10 @@ public class PlayState extends State {
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public void onPause(){
+		gamePaused = true;
 	}
 }

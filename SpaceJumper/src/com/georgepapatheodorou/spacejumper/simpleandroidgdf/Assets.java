@@ -6,12 +6,14 @@ import java.io.InputStream;
 import com.georgepapatheodorou.spacejumper.animation.Animation;
 import com.georgepapatheodorou.spacejumper.animation.Frame;
 
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.media.MediaPlayer;
 
 public class Assets {
 	
@@ -21,6 +23,9 @@ public class Assets {
 	public static Bitmap block, cloud1, cloud2,duck,grass,jump,run1,run2,run3,run4,run5,scoreDown,startDown,start,score;
 	public static Animation runAnimation;
 	public static int hitID,onJumpID;
+	
+	private static MediaPlayer mediaPlayer;
+	
 	
 	public static void load(){
 		welcome = loadBitmap("welcome.png",false);
@@ -59,10 +64,30 @@ public class Assets {
 		
 		runAnimation = new Animation(f1,f2,f3,f4,f5);
 		
+		//hitID = loadSound("hit.wav");
+		//onJumpID = loadSound("onjump.wav");
+		
+		
+		
+	}
+	
+	public static void onResume(){
 		hitID = loadSound("hit.wav");
 		onJumpID = loadSound("onjump.wav");
+		playMusic("bgmusic.mp3", true);
+	}
+	
+	public static void onPause(){
+		if(soundPool != null){
+			soundPool.release();
+			soundPool = null;
+		}
 		
-		
+		if(mediaPlayer != null){
+			mediaPlayer.stop();
+			mediaPlayer.release();
+			mediaPlayer = null;
+		}
 		
 	}
 
@@ -100,7 +125,26 @@ public class Assets {
 	}
 	
 	public static void playSound(int soundID){
+		if(soundPool != null)
 		soundPool.play(soundID, 1, 1, 1, 0, 1);
+	}
+	
+	public static void playMusic(String filename, boolean looping){
+		if(mediaPlayer == null){
+			mediaPlayer = new MediaPlayer();
+		}
+		try {
+			AssetFileDescriptor afd = GameMainActivity.assets.openFd(filename);
+			mediaPlayer.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			mediaPlayer.prepare();
+			mediaPlayer.setLooping(looping);
+			mediaPlayer.start();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 	}
 
 }

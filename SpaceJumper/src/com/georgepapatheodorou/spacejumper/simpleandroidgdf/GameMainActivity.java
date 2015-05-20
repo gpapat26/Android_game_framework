@@ -48,6 +48,24 @@ public class GameMainActivity extends Activity{
 		return highScore;
 	}
 	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		if(sGame != null){
+			Assets.onResume();
+			sGame.onResume();
+		}
+	}
+	
+	@Override
+	protected void onPause(){
+		super.onPause();
+		if(sGame != null){
+			Assets.onPause();
+			sGame.onPause();
+		}
+	}
+	
 	
 	
 	
