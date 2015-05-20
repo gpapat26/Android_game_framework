@@ -12,7 +12,7 @@ public class GameOverState extends State {
 	private String playerScore;
 	private String gameOverMessage = "GAME OVER";
 
-	public GameOverState(int playerScore) {
+	public GameOverState(int playerScore) {		
 		this.playerScore = playerScore+"";
 		if(playerScore > GameMainActivity.getHighScore()){
 			GameMainActivity.setHighScore(playerScore);

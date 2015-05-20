@@ -6,8 +6,9 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.content.SharedPreferences.Editor;
+import com.google.example.games.basegameutils.BaseGameActivity;
 
-public class GameMainActivity extends Activity{
+public class GameMainActivity extends BaseGameActivity{
 	
 	public static final int GAME_WIDTH = 800;
 	public static final int GAME_HEIGHT = 450;
@@ -64,6 +65,20 @@ public class GameMainActivity extends Activity{
 			Assets.onPause();
 			sGame.onPause();
 		}
+	}
+
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
