@@ -25,7 +25,7 @@ public class GameMainActivity extends BaseGameActivity {
 
 	// Google Play Games
 	// INSERT YOUR OWN LEADERBOARD_ID HERE! OTHER WISE IT WILL NOT WORK!
-	private static final String LEADERBOARD_ID = "THIS_VALUE_NEEDS_TO_BE_CHANGED";
+	private static final String LEADERBOARD_ID = "CgkIkt6rpcgPEAIQAA";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
