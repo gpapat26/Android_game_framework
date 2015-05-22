@@ -1,5 +1,7 @@
 package com.georgepapatheodorou.spacejumper.util;
 
+
+
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.util.Log;
@@ -18,9 +20,14 @@ public class UIButton {
 		this.buttonDownImage = buttonPressedImage;
 	}
 	
-	public void render(Painter g){
+	public void render(Painter g) {
 		Bitmap currentButtonImage = buttonDown ? buttonDownImage : buttonImage;
-		g.drawImage(currentButtonImage, buttonRect.left, buttonRect.top,buttonRect.width(),buttonRect.height());		
+		g.drawImage(currentButtonImage, buttonRect.left, buttonRect.top, buttonRect.width(), buttonRect.height());
+	}
+	
+	public void render(Painter g, Bitmap alternate, Bitmap alternateDown) {
+		Bitmap currentButtonImage = buttonDown ? alternateDown : alternate;
+		g.drawImage(currentButtonImage, buttonRect.left, buttonRect.top, buttonRect.width(), buttonRect.height());
 	}
 	
 	public void onTouchDown(int touchX, int touchY){

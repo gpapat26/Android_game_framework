@@ -70,7 +70,7 @@ public class PlayState extends State {
 		
 		cloud.update(delta);
 		cloud2.update(delta);
-		Assets.runAnimation.update(delta);
+		Assets.runAnim.update(delta);
 		player.update(delta);
 		updateBlocks(delta);
 
@@ -172,7 +172,7 @@ public class PlayState extends State {
 				g.drawImage(Assets.duck, (int) player.getX(),
 						(int) player.getY());
 			} else {
-				Assets.runAnimation.render(g, (int) player.getX(),
+				Assets.runAnim.render(g, (int) player.getX(),
 						(int) player.getY(), player.getWidth(),
 						player.getHeight());
 			}

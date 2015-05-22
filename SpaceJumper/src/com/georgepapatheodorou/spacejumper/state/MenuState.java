@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.georgepapatheodorou.spacejumper.simpleandroidgdf.Assets;
+import com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity;
 import com.georgepapatheodorou.spacejumper.util.Painter;
 import com.georgepapatheodorou.spacejumper.util.UIButton;
+
 
 public class MenuState extends State {
 	
@@ -18,7 +20,7 @@ public class MenuState extends State {
 	private boolean playDown = false;
 	private boolean scoreDown = false;
 	
-	private UIButton playButton , scoreButton;
+	private UIButton playButton , scoreButton, googleButton;
 
 	@Override
 	public void init() {
@@ -26,108 +28,58 @@ public class MenuState extends State {
 		//scoreRect = new Rect(316,300,484,359);
 		playButton = new UIButton(316, 227, 484, 286, Assets.start, Assets.startDown);
 		scoreButton = new UIButton(316,300,484,359,Assets.score,Assets.scoreDown);
-
+		googleButton = new UIButton(10, 10, 160, 54, Assets.signIn, Assets.signInDown);
 	}
 
 	@Override
 	public void update(float delta) {
-		
-
 	}
 
 	@Override
 	public void render(Painter g) {
-//		g.drawImage(Assets.welcome, 0, 0);
-//		
-//		if(playDown){
-//			g.drawImage(Assets.startDown, playRect.left, playRect.top);
-//		}else{
-//			g.drawImage(Assets.start, playRect.left, playRect.top);
-//		}
-//		
-//		
-//		if(scoreDown){
-//			g.drawImage(Assets.scoreDown, scoreRect.left, scoreRect.top);
-//		}else{
-//			g.drawImage(Assets.score, scoreRect.left, scoreRect.top);
-//		}	
-		
 		g.drawImage(Assets.welcome, 0, 0);
 		playButton.render(g);
-		scoreButton.render(g);
+
+		if (GameMainActivity.isSignedIntoGoogle()) {
+			scoreButton.render(g, Assets.score2, Assets.scoreDown2);
+			googleButton.render(g, Assets.signOut, Assets.signOutDown);
+		} else {
+			scoreButton.render(g);
+			googleButton.render(g);
+		}
 	}
 
 	@Override
-	public boolean onTouch(MotionEvent e, int scaledx, int scaledY) {
-		
-		Log.d("Menu state", "something is presesed!");
-		
-		if(e.getAction() == MotionEvent.ACTION_DOWN){
-			
-			Log.d("Menu state", "ACTION DOWN is presesed!");
-			playButton.onTouchDown(scaledx, scaledY);
-			scoreButton.onTouchDown(scaledx, scaledY);
+	public boolean onTouch(MotionEvent e, int scaledX, int scaledY) {
+
+		if (e.getAction() == MotionEvent.ACTION_DOWN) {
+			playButton.onTouchDown(scaledX, scaledY);
+			scoreButton.onTouchDown(scaledX, scaledY);
+			googleButton.onTouchDown(scaledX, scaledY);
 		}
-		
-		if(e.getAction() == MotionEvent.ACTION_UP){
-			Log.d("Menu state", "ACTION UP is presesed!");
-			
-			if(playButton.isPressed(scaledx, scaledY)){
-				//playButton.cancel();
-				Log.d("Menu state", "play button is presesed!");
+
+		if (e.getAction() == MotionEvent.ACTION_UP) {
+			if (playButton.isPressed(scaledX, scaledY)) {
+				playButton.cancel();
 				setCurrentState(new PlayState());
-			}else 
-				if(scoreButton.isPressed(scaledx, scaledY)){
-					//scoreButton.cancel();
+			} else if (scoreButton.isPressed(scaledX, scaledY)) {
+				scoreButton.cancel();
+				if (GameMainActivity.isSignedIntoGoogle()) {
+					GameMainActivity.showLeaderboard();
+				} else {
 					setCurrentState(new Score());
-					Log.d("Menu state", "score button is presesed!");
 				}
-				else{
-					playButton.cancel();
-					scoreButton.cancel();
-				}
+			} else if (googleButton.isPressed(scaledX, scaledY)) {
+				googleButton.cancel();
+				GameMainActivity.onGoogleButtonPress();
+			} else {
+				playButton.cancel();
+				scoreButton.cancel();
+				googleButton.cancel();
+			}
 		}
+
 		return true;
 	}
-	
-	
-
-//	@Override
-//	public boolean onTouch(MotionEvent e, int scaledx, int scaledY) {	
-//		Log.d("MenuState","Some thing is pressed!");
-//		
-//		if(e.getAction() == MotionEvent.ACTION_DOWN){
-//			Log.d("MenuState","ACTION DOWN");
-//			if(playRect.contains(scaledx,scaledY)){
-//				Log.d("MenuState","ACTION DOWN play Rectangle");
-//				playDown = true;
-//				scoreDown = false;
-//			}else if(scoreRect.contains(scaledx,scaledY)){
-//				Log.d("MenuState","ACTION DOWN score Rectangle");
-//				scoreDown = true;
-//				playDown = false;
-//			}
-//			
-//		}
-//		if(e.getAction() == MotionEvent.ACTION_UP){
-//			Log.d("MenuState","ACTION UP");
-//			if(playDown && playRect.contains(scaledx, scaledx))
-//			{
-//				playDown = false;
-//				Log.d("MenuState","Play button pressed");
-//			}
-//			else if(scoreDown && scoreRect.contains(scaledx, scaledY)){
-//				scoreDown = false;
-//				Log.d("MenuState", "Score Button pressed");
-//			}
-//			else{
-//				Log.d("MenuState","ACTION UP but staying idle");
-//				scoreDown = false;
-//				playDown = false;
-//			}
-//		}
-//		return true;
-//		
-//	}
 
 }

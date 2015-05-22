@@ -3,7 +3,6 @@ package com.georgepapatheodorou.spacejumper.state;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
-
 import com.georgepapatheodorou.spacejumper.simpleandroidgdf.GameMainActivity;
 import com.georgepapatheodorou.spacejumper.util.Painter;
 
@@ -17,6 +16,7 @@ public class GameOverState extends State {
 		if(playerScore > GameMainActivity.getHighScore()){
 			GameMainActivity.setHighScore(playerScore);
 			gameOverMessage = "HIGH SCORE";
+
 		}
 	}
 
