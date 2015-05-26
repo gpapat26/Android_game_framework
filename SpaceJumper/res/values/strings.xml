@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Πηδηχτούλης</string>
-    <string name="test_leaderBoard">CgkIvKPCpKwREAIQAQ</string>
-
+    <string name="leaderBoardTest">CgkIvKPCpKwREAIQAQ</string>
+    <string name="leaderBoardProduction">CgkIkt6rpcgPEAIQAA</string>
+    <string name="testMode">false</string>
 </resources>

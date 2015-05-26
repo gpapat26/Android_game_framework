@@ -1,6 +1,6 @@
 package com.georgepapatheodorou.spacejumper.simpleandroidgdf;
 
-import android.R;
+import com.georgepapatheodorou.spacejumper.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -24,13 +24,27 @@ public class GameMainActivity extends BaseGameActivity{
 	private static int highScore;
 	
 	//private static final String LEADERBOARD_ID = "CgkIvKPCpKwREAIQAQ"; //Test LeaderBoard
-	private static final String LEADERBOARD_ID = "CgkIkt6rpcgPEAIQAA"; //production LeaderBoard
+	//private static  String LEADERBOARD_ID = "CgkIkt6rpcgPEAIQAA"; //production LeaderBoard
+	private static  String LEADERBOARD_ID = null;
 	
 	public static GameMainActivity instance;
+	
+	public static boolean testingMode = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
+		String string = getResources().getString(R.string.testMode); 
+		
+		testingMode =Boolean.valueOf(string);
+		
+		if(testingMode){
+			LEADERBOARD_ID = getResources().getString(R.string.leaderBoardTest);//Test LeaderBoard
+		}
+		else{
+			LEADERBOARD_ID = getResources().getString(R.string.leaderBoardProduction); //production LeaderBoard
+		}
 		instance = this;
 		prefs = getPreferences(Activity.MODE_PRIVATE);
 		highScore = retrieveHighScore(); //Access only on start up.
@@ -69,6 +83,7 @@ public class GameMainActivity extends BaseGameActivity{
 	
 	@Override
 	protected void onPause(){
+		
 		super.onPause();
 		if(sGame != null){
 			Assets.onPause();
@@ -82,9 +97,39 @@ public class GameMainActivity extends BaseGameActivity{
 		Editor editor = prefs.edit();
 		editor.putInt(highScoreKey, highScore);
 		editor.commit();
+	
 
 		if (isSignedIntoGoogle()) {
 			Games.Leaderboards.submitScore(instance.getApiClient(),LEADERBOARD_ID, highScore);
+			
+			if(!testingMode){
+				if (highScore >= 5 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIkt6rpcgPEAIQAg" );
+				}
+				if (highScore >= 10 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIkt6rpcgPEAIQAw" );
+				}
+				if (highScore >= 15 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIkt6rpcgPEAIQBA" );
+				}
+				if (highScore >= 20 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIkt6rpcgPEAIQBQ" );			
+				}
+				if (highScore >= 35 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIkt6rpcgPEAIQBg" );				
+				}
+			}
+			else{//Test Mode for Achievements
+				if (highScore >= 10 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIvKPCpKwREAIQAg" );
+				}
+				if (highScore >= 20 ){
+					Games.Achievements.unlock(instance.getApiClient(), "CgkIvKPCpKwREAIQAw" );
+				}
+				
+				
+			}
+						
 		}
 	}
 
