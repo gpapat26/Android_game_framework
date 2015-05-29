@@ -35,7 +35,7 @@ public class CarouzelState extends State {
 	@Override
 	public void render(Painter g) {
 		//g.drawImage(Assets.galle, 0, 0);
-		Assets.loadGalleryImageResolver(carouzelIndex);
+		//Assets.loadGalleryImageResolver(carouzelIndex);
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		carouzel_prev.render(g);
 		carouzel_next.render(g);		
@@ -54,17 +54,26 @@ public class CarouzelState extends State {
 			if (carouzel_next.isPressed(scaledX, scaledY)) {
 				carouzel_next.cancel();	
 				if (carouzelIndex < Assets.getSizeOfGallery())
-					carouzelIndex++;
+					{
+					carouzelIndex++;	
+					}
+				else{
+					carouzelIndex = 1; //roll - over
+				    }
 			}else if(carouzel_prev.isPressed(scaledX, scaledY)){
 				carouzel_prev.cancel();
-				if (carouzelIndex>1)
-				carouzelIndex--;										
+				if (carouzelIndex>1){
+					carouzelIndex--;
+				}else{
+					carouzelIndex=Assets.getSizeOfGallery();
+				}
+														
 			} else {
 				carouzel_next.cancel();
 				carouzel_prev.cancel();
 			}
 		}
-
+		Assets.loadGalleryImageResolver(carouzelIndex);
 		return true;
 	}
 

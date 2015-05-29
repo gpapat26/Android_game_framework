@@ -21,7 +21,7 @@ public class Assets {
 	
 	private static SoundPool soundPool;
 	public static Bitmap welcome;
-	public static Bitmap galleryBitmap;
+	public static volatile Bitmap galleryBitmap;
 	
 	
 	public static Bitmap start;
@@ -178,16 +178,145 @@ public class Assets {
 	  private static void loadCarouzelMap(){
 		  int tempVariable = 1;
 		  carouzelMap.put(tempVariable++, "ant");
+		  carouzelMap.put(tempVariable++, "baby dear");
+		  carouzelMap.put(tempVariable++, "bear-grizzly");
+		  carouzelMap.put(tempVariable++, "bear-pollar");
+		  
+		  carouzelMap.put(tempVariable++, "bird-bat");
+		  carouzelMap.put(tempVariable++, "bird-canary");
 		  carouzelMap.put(tempVariable++, "bird-nightingale");
+		  
+		  carouzelMap.put(tempVariable++, "bison");
+		  carouzelMap.put(tempVariable++, "Black panther");
+		  
+		  carouzelMap.put(tempVariable++, "Bull");
+		  
+		  carouzelMap.put(tempVariable++, "butterfly");
+		  
+		  carouzelMap.put(tempVariable++, "camel");
+		  
 		  carouzelMap.put(tempVariable++, "cat");
+		  carouzelMap.put(tempVariable++, "cat-face");
+		  carouzelMap.put(tempVariable++, "cat-siam");
+		  
+		  carouzelMap.put(tempVariable++, "chicken");
+		  carouzelMap.put(tempVariable++, "chicks");
+		  carouzelMap.put(tempVariable++, "chipmank");
+		  
 		  carouzelMap.put(tempVariable++, "Cow_female_black_white");
+		  
+		  carouzelMap.put(tempVariable++, "crab");
+		  carouzelMap.put(tempVariable++, "crocodile");
+		  carouzelMap.put(tempVariable++, "crow");
+		  
+		  carouzelMap.put(tempVariable++, "dog-german-shepard");
+		  carouzelMap.put(tempVariable++, "dog-lassie");
 		  carouzelMap.put(tempVariable++, "dog-terrier");
 		  
+		  
+		  carouzelMap.put(tempVariable++, "dolphin");
+		  
+		  carouzelMap.put(tempVariable++, "dove");
+		  
+		  carouzelMap.put(tempVariable++, "dragonfly");
+		  carouzelMap.put(tempVariable++, "duck");
+		  
+		  
+		  carouzelMap.put(tempVariable++, "eagle-bold");
 		  carouzelMap.put(tempVariable++, "elephant");
+		  carouzelMap.put(tempVariable++, "elk");
+		  
+		  
+		  
+		  carouzelMap.put(tempVariable++, "fish-clown");
+		  carouzelMap.put(tempVariable++, "fish-goldfish");
+		  carouzelMap.put(tempVariable++, "fish-scorpion");
+		  
+		  carouzelMap.put(tempVariable++, "fox");
 		  carouzelMap.put(tempVariable++, "frog");
+		  carouzelMap.put(tempVariable++, "giraffe");
+		  
+		  carouzelMap.put(tempVariable++, "goat");
+
+		  carouzelMap.put(tempVariable++, "green-grasshopper-wallpaper");
+		  
+		  carouzelMap.put(tempVariable++, "guinea-pig");
+		  
 		  carouzelMap.put(tempVariable++, "hedgehog");
+		  
+		  carouzelMap.put(tempVariable++, "horse");
+		  carouzelMap.put(tempVariable++, "insect-bee");
+		  
+		  carouzelMap.put(tempVariable++, "Kangaroo");
+		  
+		  carouzelMap.put(tempVariable++, "koala");
+		  
+		  carouzelMap.put(tempVariable++, "ladybug");
 		  carouzelMap.put(tempVariable++, "lamb");
-		  carouzelMap.put(tempVariable++, "monkey");		  	  
+		  carouzelMap.put(tempVariable++, "leopard");
+		  carouzelMap.put(tempVariable++, "lion");
+		  carouzelMap.put(tempVariable++, "lizard-Igouana");
+		  carouzelMap.put(tempVariable++, "lizard");
+		  
+		  carouzelMap.put(tempVariable++, "lobster");
+		  carouzelMap.put(tempVariable++, "monkey");
+		  
+		  carouzelMap.put(tempVariable++, "moose");
+		  
+		  carouzelMap.put(tempVariable++, "mosquito");
+		  
+		  carouzelMap.put(tempVariable++, "mouse-field");
+		  
+		  carouzelMap.put(tempVariable++, "orca");
+		  
+		  carouzelMap.put(tempVariable++, "owl");
+		  
+		  carouzelMap.put(tempVariable++, "panda");
+		  
+		  carouzelMap.put(tempVariable++, "parrot");
+
+		  carouzelMap.put(tempVariable++, "peacoc");
+		  
+		  carouzelMap.put(tempVariable++, "penguin");
+		  
+		  carouzelMap.put(tempVariable++, "pig");
+		  
+		  carouzelMap.put(tempVariable++, "rabbit");
+		  carouzelMap.put(tempVariable++, "rabit");
+		  carouzelMap.put(tempVariable++, "racoon");
+		  
+		  carouzelMap.put(tempVariable++, "rhino");
+		  
+		  carouzelMap.put(tempVariable++, "rooster");
+		  
+		  carouzelMap.put(tempVariable++, "sea lion");
+		  
+		  carouzelMap.put(tempVariable++, "shark");
+		  
+		  carouzelMap.put(tempVariable++, "shrimp");
+		  
+		  carouzelMap.put(tempVariable++, "snail");
+		  
+		  carouzelMap.put(tempVariable++, "snake");
+		  
+		  carouzelMap.put(tempVariable++, "spider");
+		  
+		  carouzelMap.put(tempVariable++, "starfish");
+		  
+		  carouzelMap.put(tempVariable++, "swan");
+		  
+		  carouzelMap.put(tempVariable++, "swordfish");
+		  
+		  carouzelMap.put(tempVariable++, "tiger");
+		  
+		  carouzelMap.put(tempVariable++, "turkey");
+		  
+		  carouzelMap.put(tempVariable++, "turtle");
+		  
+		  carouzelMap.put(tempVariable++, "wolf");
+		  
+		  carouzelMap.put(tempVariable++, "zebra");
+	 
 	  }
 	
 	

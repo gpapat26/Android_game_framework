@@ -3,6 +3,7 @@ package com.animals.simpleandroidgdf;
 import com.animals.state.CarouzelState;
 import com.animals.state.MainMenuState;
 import com.animals.state.StartState;
+import com.animals.state.State;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -22,6 +23,7 @@ public class GameMainActivity extends Activity{
 	public static AssetManager assets;
 	private Boolean exit = false;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class GameMainActivity extends Activity{
 				sGame.setCurrentState(new StartState());
 			}
 		else if(sGame.currentState instanceof CarouzelState){
+			Assets.loadGalleryImage("crab");
 			sGame.setCurrentState(new MainMenuState());
 		}
 		else if(sGame.currentState instanceof StartState){

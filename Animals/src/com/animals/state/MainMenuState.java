@@ -10,15 +10,16 @@ import com.animals.util.UIButton;
 public class MainMenuState extends State {
 
 	
-	private UIButton carouzel;
+	private UIButton carouzelButton;
 
 	public  MainMenuState() {
 		init();
 	}
 	@Override
 	public void init() {
+		//Assets.galleryBitmap = null;	
+		carouzelButton = new UIButton(316, 227, 484, 286, Assets.carouzel_up, Assets.carouzel_down);
 		Assets.loadGalleryImage("crab");
-		carouzel = new UIButton(316, 227, 484, 286, Assets.carouzel_up, Assets.carouzel_down);		
 	}
 
 	@Override
@@ -28,9 +29,12 @@ public class MainMenuState extends State {
 	}
 
 	@Override
-	public void render(Painter g) {		
-		g.drawImage(Assets.galleryBitmap, 0, 0);
-		carouzel.render(g);
+	public void render(Painter g) {
+		if(Assets.galleryBitmap!= null){
+			g.drawImage(Assets.galleryBitmap, 0, 0);
+			carouzelButton.render(g);
+		}
+		
 	}
 
 	@Override
@@ -38,18 +42,18 @@ public class MainMenuState extends State {
 		Log.d("MainMenuState", "button clicked");
 		
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
-			carouzel.onTouchDown(scaledX, scaledY);
+			carouzelButton.onTouchDown(scaledX, scaledY);
 		
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
-			if (carouzel.isPressed(scaledX, scaledY)) {
+			if (carouzelButton.isPressed(scaledX, scaledY)) {
 				
-				carouzel.cancel();				
+				carouzelButton.cancel();				
 				setCurrentState(new CarouzelState());
 				
 			} else {
-				carouzel.cancel();
+				carouzelButton.cancel();
 			}
 		}
 

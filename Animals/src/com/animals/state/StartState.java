@@ -3,6 +3,7 @@ package com.animals.state;
 import android.view.MotionEvent;
 
 import com.animals.simpleandroidgdf.Assets;
+import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.util.Painter;
 import com.animals.util.UIButton;
 
@@ -46,7 +47,8 @@ public class StartState extends State {
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
 			if (playButton.isPressed(scaledX, scaledY)) {
-				playButton.cancel();				
+				playButton.cancel();
+				
 				setCurrentState(new MainMenuState());
 					
 			} else {

@@ -50,7 +50,8 @@ public class Painter {
 		canvas.drawBitmap(bitmap, srcRect, dstRect,paint);		
 	}
 	
-	public void drawImage(Bitmap bitmap ,int x, int y){		
+	public void drawImage(Bitmap bitmap ,int x, int y){
+		if(bitmap != null)
 		canvas.drawBitmap(bitmap, x, y,paint);		
 	}
 	
