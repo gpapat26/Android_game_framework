@@ -20,7 +20,7 @@ public class StartState extends State {
 	@Override
 	public void init() {
 		playButton = new UIButton(316, 227, 484, 286, Assets.start, Assets.startDown);
-		Assets.load("welcome screen");
+		Assets.loadGalleryImage("welcome screen");
 
 	}
 
