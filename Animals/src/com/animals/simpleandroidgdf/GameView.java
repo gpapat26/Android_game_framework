@@ -42,7 +42,7 @@ public class GameView extends SurfaceView implements Runnable{
 		graphics = new Painter(gameCanvas);
 		
 		SurfaceHolder holder = getHolder();
-		
+		Log.d("GameView", "GameView Object is just created");
 		holder.addCallback(new Callback(){
 
 			@Override
@@ -145,6 +145,24 @@ public class GameView extends SurfaceView implements Runnable{
 			screen.drawBitmap(gameImage, gameImageSrc, gameImageDst, null); // scalles the size of Src to Dst
 			
 			getHolder().unlockCanvasAndPost(screen);
+		}
+	}
+	
+	public void onResume(){
+		
+		if(currentState != null){
+			Log.d("GameView", "OnResume is called");
+			currentState.onResume();		
+		}
+		else{
+			Log.d("GameView", "OnResume is called but current state is null ");
+		}
+	}
+	
+	public void onPause(){
+		if(currentState != null){
+			Log.d("GameView", "OnPause is called");
+			currentState.onPause();
 		}
 	}
 
