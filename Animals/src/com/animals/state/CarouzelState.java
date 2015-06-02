@@ -1,9 +1,8 @@
 package com.animals.state;
 
-import android.R.color;
+
 import android.util.Log;
 import android.view.MotionEvent;
-
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.util.Painter;
 import com.animals.util.UIButton;
@@ -20,6 +19,7 @@ public class CarouzelState extends State {
 	}
 	@Override
 	public void init() {
+		Assets.onPause();
 		//Assets.loadGalleryImage("crocodile");
 		Assets.loadGalleryImageResolver(carouzelIndex);
 		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
@@ -77,5 +77,4 @@ public class CarouzelState extends State {
 		Assets.loadGalleryImageResolver(carouzelIndex);
 		return true;
 	}
-
 }
