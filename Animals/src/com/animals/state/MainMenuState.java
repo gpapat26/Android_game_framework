@@ -18,6 +18,7 @@ public class MainMenuState extends State {
 	@Override
 	public void init() {
 		//Assets.galleryBitmap = null;	
+		Assets.onPause();
 		carouzelButton = new UIButton(316, 227, 484, 286, Assets.carouzel_up, Assets.carouzel_down);
 		Assets.loadGalleryImage("crab");
 	}
@@ -58,6 +59,13 @@ public class MainMenuState extends State {
 		}
 
 		return true;
+	}
+
+
+	@Override
+	public void onPause() {
+		Log.d("MainMenuState", "OnPause is called");
+		Assets.onPause();	
 	}
 
 }
