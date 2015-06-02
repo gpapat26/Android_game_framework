@@ -5,12 +5,16 @@ import com.animals.state.MainMenuState;
 import com.animals.state.StartState;
 import com.animals.state.State;
 
+
+
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -28,6 +32,7 @@ public class GameMainActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		assets=getAssets();
+		Log.d("Activity", "Activity is onCreate status");
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
 		setContentView(sGame);	
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);		
@@ -76,6 +81,25 @@ public class GameMainActivity extends Activity{
 	                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 	                | View.SYSTEM_UI_FLAG_FULLSCREEN
 	                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+	}
+	
+	@Override
+	protected void onResume(){
+		Log.d("Activity", "OnResume be4 Super is called");
+		super.onResume();
+		if(sGame != null){
+			Log.d("Activity", "OnResume is called");		
+			sGame.onResume();
+		}
+	}
+	
+	@Override
+	protected void onPause(){
+		
+		super.onPause();
+		if(sGame != null){			
+			sGame.onPause();
+		}
 	}
 	
 	
