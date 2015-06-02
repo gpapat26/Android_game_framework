@@ -14,6 +14,9 @@ public class CarouzelState extends State {
 	private UIButton carouzel_prev;
 	private UIButton carouzel_next;
 	
+	private static float x1,x2;
+	static final int MIN_DISTANCE = 150;
+	
 	public  CarouzelState() {
 		init();
 	}
@@ -48,10 +51,36 @@ public class CarouzelState extends State {
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
 			carouzel_next.onTouchDown(scaledX, scaledY);
 			carouzel_prev.onTouchDown(scaledX, scaledY);
+			
+			 x1 = e.getX();  
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
 			
+			   x2 = e.getX();
+	           float deltaX = x2 - x1;
+	          
+	           if (Math.abs(deltaX) > MIN_DISTANCE)
+	           {
+	            if(x2>x1){
+	            	if (carouzelIndex < Assets.getSizeOfGallery())
+					{
+					carouzelIndex++;	
+					}
+				else{
+					carouzelIndex = 1; //roll - over
+				    }
+	            }else{
+	            	if (carouzelIndex>1){
+						carouzelIndex--;
+					}else{
+						carouzelIndex=Assets.getSizeOfGallery();
+					}
+	            }
+	            
+	           }
+	         
+	           
 			if (carouzel_next.isPressed(scaledX, scaledY)) {
 				carouzel_next.cancel();	
 				if (carouzelIndex < Assets.getSizeOfGallery())
