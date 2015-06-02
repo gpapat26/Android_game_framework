@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Matrix;
 import android.graphics.Point;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
@@ -37,6 +43,8 @@ public class Assets {
 	public static Bitmap carouzel_right_down;
 	
 	private static HashMap<Integer, String> carouzelMap = new HashMap<Integer, String>();
+		
+	private static MediaPlayer mediaPlayer;
 	
 	
 	public static void load(){
@@ -58,6 +66,8 @@ public class Assets {
 		
 		carouzel_right = loadBitmap("carouzel_next.png",true,false);
 		carouzel_right_down = loadBitmap("carouzel_next_down.png",true,false);
+		
+	
 		
 		loadCarouzelMap();
 	}
@@ -108,23 +118,83 @@ public class Assets {
 		}
 		return bitmap;
 	}
-	
-	public static int loadSound(String filename){
-		int soundID = 0;
 		
-		if(soundPool ==null){
-			soundPool = new SoundPool(25, AudioManager.STREAM_MUSIC, 0);
+	//play sounds
+//    private static int loadSound(String filename) {
+//        int soundID = 0;
+//        if (soundPool == null) {
+//           soundPool = buildSoundPool();
+//        }
+//        try {
+//           soundID = soundPool.load(GameMainActivity.assets.openFd(filename),
+//                 1);
+//        } catch (IOException e) {
+//           e.printStackTrace();
+//        }
+//        return soundID;
+//     }
+
+ 
+//	@SuppressWarnings("deprecation")
+//     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//     private static SoundPool buildSoundPool() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//        	
+//           AudioAttributes audioAttributes = new AudioAttributes.Builder()
+//                                   .setUsage(AudioAttributes.USAGE_GAME)
+//                                   .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+//                                   .build();
+//                                   
+//           soundPool = new SoundPool.Builder()
+//                       .setMaxStreams(25)
+//                       .setAudioAttributes(audioAttributes)
+//                       .build();
+//        } else {
+//           soundPool = new SoundPool(25, AudioManager.STREAM_MUSIC, 0);
+//        }
+//        return soundPool;
+//     }
+
+//     public static void playSound(int soundID) {
+//        if (soundPool != null) {
+//           soundPool.play(soundID, 1, 1, 1, 0, 1);
+//        }
+//     }
+    //play music themes 
+ 	public static void playMusic(String filename, boolean looping) {
+ 		Log.d("Assets", "playing music");
+		if (mediaPlayer == null) {
+			mediaPlayer = new MediaPlayer();
 		}
-		try{
-			soundID = soundPool.load(GameMainActivity.assets.openFd(filename), 1);
-		}catch(IOException e){
+		try {
+			AssetFileDescriptor afd = GameMainActivity.assets.openFd(filename);
+			mediaPlayer.setDataSource(afd.getFileDescriptor(),
+					afd.getStartOffset(), afd.getLength());
+			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			mediaPlayer.prepare();
+			mediaPlayer.setLooping(looping);
+			mediaPlayer.start();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return soundID;
 	}
-	
-	public static void playSound(int soundID){
-		soundPool.play(soundID, 1, 1, 1, 0, 1);
+ 	
+	public static void onResume() {	
+		Log.d("Assets", "OnResume is called");
+		playMusic("animals_generic_sounds1.mp3", true);
+	}
+
+	public static void onPause() {
+		if (soundPool != null) {
+			soundPool.release();
+			soundPool = null;
+		}
+
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
+			mediaPlayer.release();
+			mediaPlayer = null;
+		}
 	}
 	
 
