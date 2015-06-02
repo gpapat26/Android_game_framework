@@ -1,5 +1,6 @@
 package com.animals.state;
 
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.animals.simpleandroidgdf.Assets;
@@ -22,7 +23,7 @@ public class StartState extends State {
 	public void init() {
 		playButton = new UIButton(316, 227, 484, 286, Assets.start, Assets.startDown);
 		Assets.loadGalleryImage("welcome screen");
-
+		Assets.onResume();
 	}
 
 	@Override
@@ -57,6 +58,18 @@ public class StartState extends State {
 		}
 
 		return true;
+	}
+
+	@Override
+	public void onResume() {
+		Log.d("StartState", "OnResume is called");
+		Assets.onResume();		
+	}
+
+	@Override
+	public void onPause() {
+		Log.d("StartState", "OnPause is called");
+		Assets.onPause();		
 	}
 
 }
