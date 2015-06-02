@@ -22,8 +22,9 @@ public class CarouzelState extends State {
 	public void init() {
 		//Assets.loadGalleryImage("crocodile");
 		Assets.loadGalleryImageResolver(carouzelIndex);
-		carouzel_prev = new UIButton(0, 290, 65, 370, Assets.carouzel_left_down, Assets.carouzel_left);	
-		carouzel_next = new UIButton(730, 290, 800, 370, Assets.carouzel_right_down, Assets.carouzel_right);	
+		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
+		//carouzel_next = new UIButton(725, 290, 790, 370, Assets.carouzel_right_down, Assets.carouzel_right);	
+		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);
 	}
 
 	@Override

@@ -47,11 +47,17 @@ public class Assets {
 		carouzel_up = loadBitmap("carouzel_up.png",true,false);
 		carouzel_down = loadBitmap("carouzel_down.png",true,false);
 		
-		carouzel_left = loadBitmap("carouzel_left.png",true,false);
-		carouzel_left_down = loadBitmap("carouzel_left_down.png",true,false);
+//		carouzel_left = loadBitmap("carouzel_left.png",true,false);
+//		carouzel_left_down = loadBitmap("carouzel_left_down.png",true,false);
 		
-		carouzel_right = loadBitmap("carouzel_right.png",true,false);
-		carouzel_right_down = loadBitmap("carouzel_right_down.png",true,false);
+		carouzel_left = loadBitmap("carouzel_previous.png",true,false);
+		carouzel_left_down = loadBitmap("carouzel_prev_down.png",true,false);
+		
+//		carouzel_right = loadBitmap("carouzel_right.png",true,false);
+//		carouzel_right_down = loadBitmap("carouzel_right_down.png",true,false);
+		
+		carouzel_right = loadBitmap("carouzel_next.png",true,false);
+		carouzel_right_down = loadBitmap("carouzel_next_down.png",true,false);
 		
 		loadCarouzelMap();
 	}
@@ -143,8 +149,8 @@ public class Assets {
 		Log.d("Assets", "Screen width,height :"+newWidth+","+newHeight);
 		
 		
-		newHeight -=100;
-		newWidth -=100;
+		newHeight -=90;
+		newWidth -=90;
 		
 		float scaleWidth = ((float) newWidth) / width;
 		 
