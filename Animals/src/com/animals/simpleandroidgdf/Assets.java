@@ -383,7 +383,9 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "pig");
 		  
 		  carouzelMap.put(tempVariable++, "rabbit");
-		  carouzelMap.put(tempVariable++, "rabit");
+		  
+		  carouzelMap.put(tempVariable++, "rabbit2");
+		  
 		  carouzelMap.put(tempVariable++, "racoon");
 		  
 		  carouzelMap.put(tempVariable++, "rhino");
