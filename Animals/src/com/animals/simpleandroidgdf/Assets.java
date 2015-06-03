@@ -254,15 +254,21 @@ public class Assets {
 	  private static void loadCarouzelMap(){
 		  int tempVariable = 1;
 		  carouzelMap.put(tempVariable++, "ant");
+		  
 		  carouzelMap.put(tempVariable++, "baby dear");
+		  
 		  carouzelMap.put(tempVariable++, "bear-grizzly");
+		  
 		  carouzelMap.put(tempVariable++, "bear-pollar");
 		  
 		  carouzelMap.put(tempVariable++, "bird-bat");
+		  
 		  carouzelMap.put(tempVariable++, "bird-canary");
+		  
 		  carouzelMap.put(tempVariable++, "bird-nightingale");
 		  
 		  carouzelMap.put(tempVariable++, "bison");
+		  
 		  carouzelMap.put(tempVariable++, "Black panther");
 		  
 		  carouzelMap.put(tempVariable++, "Bull");
@@ -272,21 +278,29 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "camel");
 		  
 		  carouzelMap.put(tempVariable++, "cat");
+		  
 		  carouzelMap.put(tempVariable++, "cat-face");
+		  
 		  carouzelMap.put(tempVariable++, "cat-siam");
 		  
 		  carouzelMap.put(tempVariable++, "chicken");
+		  
 		  carouzelMap.put(tempVariable++, "chicks");
+		  
 		  carouzelMap.put(tempVariable++, "chipmank");
 		  
 		  carouzelMap.put(tempVariable++, "Cow_female_black_white");
 		  
 		  carouzelMap.put(tempVariable++, "crab");
+		  
 		  carouzelMap.put(tempVariable++, "crocodile");
+		  
 		  carouzelMap.put(tempVariable++, "crow");
 		  
 		  carouzelMap.put(tempVariable++, "dog-german-shepard");
+		  
 		  carouzelMap.put(tempVariable++, "dog-lassie");
+		  
 		  carouzelMap.put(tempVariable++, "dog-terrier");
 		  
 		  
@@ -295,21 +309,26 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "dove");
 		  
 		  carouzelMap.put(tempVariable++, "dragonfly");
+		  
 		  carouzelMap.put(tempVariable++, "duck");
 		  
 		  
 		  carouzelMap.put(tempVariable++, "eagle-bold");
+		  
 		  carouzelMap.put(tempVariable++, "elephant");
+		  
 		  carouzelMap.put(tempVariable++, "elk");
-		  
-		  
-		  
+		  	  	  
 		  carouzelMap.put(tempVariable++, "fish-clown");
+		  
 		  carouzelMap.put(tempVariable++, "fish-goldfish");
+		  
 		  carouzelMap.put(tempVariable++, "fish-scorpion");
 		  
 		  carouzelMap.put(tempVariable++, "fox");
+		  
 		  carouzelMap.put(tempVariable++, "frog");
+		  
 		  carouzelMap.put(tempVariable++, "giraffe");
 		  
 		  carouzelMap.put(tempVariable++, "goat");
@@ -321,6 +340,7 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "hedgehog");
 		  
 		  carouzelMap.put(tempVariable++, "horse");
+		  
 		  carouzelMap.put(tempVariable++, "insect-bee");
 		  
 		  carouzelMap.put(tempVariable++, "Kangaroo");
@@ -328,10 +348,15 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "koala");
 		  
 		  carouzelMap.put(tempVariable++, "ladybug");
+		  
 		  carouzelMap.put(tempVariable++, "lamb");
+		  
 		  carouzelMap.put(tempVariable++, "leopard");
+		  
 		  carouzelMap.put(tempVariable++, "lion");
+		  
 		  carouzelMap.put(tempVariable++, "lizard-Igouana");
+		  
 		  carouzelMap.put(tempVariable++, "lizard");
 		  
 		  carouzelMap.put(tempVariable++, "lobster");
@@ -392,6 +417,15 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "wolf");
 		  
 		  carouzelMap.put(tempVariable++, "zebra");
+		  
+		  carouzelMap.put(tempVariable++, "sea gull");
+		  
+		  carouzelMap.put(tempVariable++, "hippo");
+		  
+		  carouzelMap.put(tempVariable++, "donkey");
+		  
+		  carouzelMap.put(tempVariable++, "grasshopper");
+		  
 	 
 	  }
 	
