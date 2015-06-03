@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.util.HashMap;
 
 
+
+import com.animals.model.Animal;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -43,7 +46,9 @@ public class Assets {
 	public static Bitmap carouzel_right_down;
 	
 	private static HashMap<Integer, String> carouzelMap = new HashMap<Integer, String>();
-		
+	private static HashMap<Integer, Animal> animals = new HashMap<Integer, Animal>();
+	//private static Animal[] animals = new Animal[86];	
+	
 	private static MediaPlayer mediaPlayer;
 	
 	
@@ -253,57 +258,190 @@ public class Assets {
 	
 	  private static void loadCarouzelMap(){
 		  int tempVariable = 1;
+		  int tempArrayVariable = 1;
+		  
+
+		  
 		  carouzelMap.put(tempVariable++, "ant");
+	      Animal ant = new Animal();
+	      ant.setAnimalName(R.string.ant);
+	      ant.setAnimalVisualFile("ant");
+	      animals.put(tempArrayVariable++, ant);
 		  
-		  carouzelMap.put(tempVariable++, "baby dear");
+		  carouzelMap.put(tempVariable++, "baby_dear");
+	      Animal baby_dear = new Animal();
+	      baby_dear.setAnimalName(R.string.baby_dear);
+	      baby_dear.setAnimalVisualFile("baby_dear");
+	      baby_dear.addAudioFile("deer");
+	      animals.put(tempArrayVariable++, baby_dear);
 		  
-		  carouzelMap.put(tempVariable++, "bear-grizzly");
+		  carouzelMap.put(tempVariable++, "bear_grizzly");
+	      Animal bear_grizzly = new Animal();
+	      bear_grizzly.setAnimalName(R.string.bear_grizzly);
+	      bear_grizzly.setAnimalVisualFile("bear_grizzly");
+	      bear_grizzly.addAudioFile("bear1");
+	      bear_grizzly.addAudioFile("bear2");
+	      bear_grizzly.addAudioFile("bear3");
+	      animals.put(tempArrayVariable++, bear_grizzly);
 		  
-		  carouzelMap.put(tempVariable++, "bear-pollar");
+		  carouzelMap.put(tempVariable++, "bear_pollar");
+	      Animal bear_pollar = new Animal();
+	      bear_pollar.setAnimalName(R.string.bear_pollar);
+	      bear_pollar.setAnimalVisualFile("bear_pollar");
+	      bear_pollar.addAudioFile("bear1");
+	      bear_pollar.addAudioFile("bear2");
+	      bear_pollar.addAudioFile("bear3");
+	      animals.put(tempArrayVariable++, bear_pollar);
 		  
-		  carouzelMap.put(tempVariable++, "bird-bat");
+		  carouzelMap.put(tempVariable++, "bird_bat");
+	      Animal bird_bat = new Animal();
+	      bird_bat.setAnimalName(R.string.bird_bat);
+	      bird_bat.setAnimalVisualFile("bird_bat");
+	      bird_bat.addAudioFile("bat1");
+	      bird_bat.addAudioFile("bat2");
+	      animals.put(tempArrayVariable++, bird_bat);
 		  
-		  carouzelMap.put(tempVariable++, "bird-canary");
+		  carouzelMap.put(tempVariable++, "bird_canary");
+		  Animal bird_canary = new Animal();
+		  bird_canary.setAnimalName(R.string.bird_canary);
+		  bird_canary.setAnimalVisualFile("bird_canary");
+		  bird_canary.addAudioFile("bird_canary1");
+		  bird_canary.addAudioFile("bird_canary2");
+	      animals.put(tempArrayVariable++, bird_canary);
 		  
-		  carouzelMap.put(tempVariable++, "bird-nightingale");
+		  carouzelMap.put(tempVariable++, "bird_nightingale");
+		  Animal bird_nightingale = new Animal();
+		  bird_nightingale.setAnimalName(R.string.bird_nightingale);
+		  bird_nightingale.setAnimalVisualFile("bird_canary");
+		  bird_nightingale.addAudioFile("bird_canary1");
+		  bird_nightingale.addAudioFile("bird_canary2");
+	      animals.put(tempArrayVariable++, bird_nightingale);
 		  
 		  carouzelMap.put(tempVariable++, "bison");
+		  Animal bison = new Animal();
+		  bison.setAnimalName(R.string.bison);
+		  bison.setAnimalVisualFile("bison");
+		  bison.addAudioFile("bison");
+	      animals.put(tempArrayVariable++, bison);
 		  
-		  carouzelMap.put(tempVariable++, "Black panther");
+		  carouzelMap.put(tempVariable++, "Black_panther");
+		  Animal Black_panther = new Animal();
+		  Black_panther.setAnimalName(R.string.Black_panther);
+		  Black_panther.setAnimalVisualFile("Black_panther");
+		  Black_panther.addAudioFile("tiger");
+		  Black_panther.addAudioFile("tiger1");
+		  Black_panther.addAudioFile("tiger2");
+		  Black_panther.addAudioFile("tiger3");
+		  Black_panther.addAudioFile("tiger4");
+		  Black_panther.addAudioFile("tiger5");
+		  Black_panther.addAudioFile("tiger6");
+		  Black_panther.addAudioFile("tiger7");
+	      animals.put(tempArrayVariable++, Black_panther);
 		  
 		  carouzelMap.put(tempVariable++, "Bull");
+		  Animal Bull = new Animal();
+		  Bull.setAnimalName(R.string.Bull);
+		  Bull.setAnimalVisualFile("Bull");
+	      animals.put(tempArrayVariable++, Bull);
 		  
 		  carouzelMap.put(tempVariable++, "butterfly");
+		  Animal butterfly = new Animal();
+		  butterfly.setAnimalName(R.string.butterfly);
+		  butterfly.setAnimalVisualFile("butterfly");
+	      animals.put(tempArrayVariable++, butterfly);
 		  
 		  carouzelMap.put(tempVariable++, "camel");
+		  Animal camel = new Animal();
+		  camel.setAnimalName(R.string.camel);
+		  camel.setAnimalVisualFile("camel");
+		  camel.addAudioFile("camel");
+	      animals.put(tempArrayVariable++, camel);
 		  
 		  carouzelMap.put(tempVariable++, "cat");
+		  Animal cat = new Animal();
+		  cat.setAnimalName(R.string.cat);
+		  cat.setAnimalVisualFile("cat");
+		  cat.addAudioFile("cat1");
+		  cat.addAudioFile("cat2");
+		  cat.addAudioFile("cat3");
+	      animals.put(tempArrayVariable++, cat);
 		  
-		  carouzelMap.put(tempVariable++, "cat-face");
+		  carouzelMap.put(tempVariable++, "cat_face");
+		  Animal cat_face = new Animal();
+		  cat_face.setAnimalName(R.string.cat_face);
+		  cat_face.setAnimalVisualFile("cat_face");
+		  cat_face.addAudioFile("cat1");
+		  cat_face.addAudioFile("cat2");
+		  cat_face.addAudioFile("cat3");
+	      animals.put(tempArrayVariable++, cat_face);
 		  
-		  carouzelMap.put(tempVariable++, "cat-siam");
+		  carouzelMap.put(tempVariable++, "cat_siam");
+		  Animal cat_siam = new Animal();
+		  cat_siam.setAnimalName(R.string.cat_face);
+		  cat_siam.setAnimalVisualFile("cat_face");
+		  cat_siam.addAudioFile("cat1");
+		  cat_siam.addAudioFile("cat2");
+		  cat_siam.addAudioFile("cat3");
+	      animals.put(tempArrayVariable++, cat_face);
 		  
 		  carouzelMap.put(tempVariable++, "chicken");
+		  Animal chicken = new Animal();
+		  chicken.setAnimalName(R.string.chicken);
+		  chicken.setAnimalVisualFile("chicken");
+		  chicken.addAudioFile("chicken");
+	      animals.put(tempArrayVariable++, chicken);
 		  
 		  carouzelMap.put(tempVariable++, "chicks");
+		  Animal chicks = new Animal();
+		  chicks.setAnimalName(R.string.chicks);
+		  chicks.setAnimalVisualFile("chicks");
+		  chicks.addAudioFile("chicken");
+	      animals.put(tempArrayVariable++, chicks);
 		  
 		  carouzelMap.put(tempVariable++, "chipmank");
+		  Animal chipmank = new Animal();
+		  chipmank.setAnimalName(R.string.chipmank);
+		  chipmank.setAnimalVisualFile("chipmank");
+		  chipmank.addAudioFile("Chipmunk");
+	      animals.put(tempArrayVariable++, chipmank);
 		  
 		  carouzelMap.put(tempVariable++, "Cow_female_black_white");
+		  Animal Cow_female_black_white = new Animal();
+		  Cow_female_black_white.setAnimalName(R.string.Cow_female_black_white);
+		  Cow_female_black_white.setAnimalVisualFile("Cow_female_black_white");
+		  Cow_female_black_white.addAudioFile("cow1");
+		  Cow_female_black_white.addAudioFile("cow2");
+	      animals.put(tempArrayVariable++, Cow_female_black_white);
 		  
 		  carouzelMap.put(tempVariable++, "crab");
+		  Animal crab = new Animal();
+		  Cow_female_black_white.setAnimalName(R.string.crab);
+		  Cow_female_black_white.setAnimalVisualFile("crab");
+	      animals.put(tempArrayVariable++, crab);
 		  
 		  carouzelMap.put(tempVariable++, "crocodile");
+		  Animal crocodile = new Animal();
+		  crocodile.setAnimalName(R.string.crocodile);
+		  crocodile.setAnimalVisualFile("crocodile");
+		  crocodile.addAudioFile("crocodile");
+		  crocodile.addAudioFile("crocodile1");
+		  crocodile.addAudioFile("crocodile2");
+	      animals.put(tempArrayVariable++, crocodile);
 		  
 		  carouzelMap.put(tempVariable++, "crow");
+		  Animal crow = new Animal();
+		  crocodile.setAnimalName(R.string.crow);
+		  crow.setAnimalVisualFile("crow");
+		  crow.addAudioFile("crow1");
+		  crow.addAudioFile("crow2");
+	      animals.put(tempArrayVariable++, crow);
 		  
-		  carouzelMap.put(tempVariable++, "dog-german-shepard");
+		  carouzelMap.put(tempVariable++, "dog_german_shepard");
 		  
-		  carouzelMap.put(tempVariable++, "dog-lassie");
+		  carouzelMap.put(tempVariable++, "dog_lassie");
 		  
-		  carouzelMap.put(tempVariable++, "dog-terrier");
-		  
-		  
+		  carouzelMap.put(tempVariable++, "dog_terrier");
+		  		  
 		  carouzelMap.put(tempVariable++, "dolphin");
 		  
 		  carouzelMap.put(tempVariable++, "dove");
@@ -311,19 +449,18 @@ public class Assets {
 		  carouzelMap.put(tempVariable++, "dragonfly");
 		  
 		  carouzelMap.put(tempVariable++, "duck");
-		  
-		  
-		  carouzelMap.put(tempVariable++, "eagle-bold");
+		  	  
+		  carouzelMap.put(tempVariable++, "eagle_bold");
 		  
 		  carouzelMap.put(tempVariable++, "elephant");
 		  
 		  carouzelMap.put(tempVariable++, "elk");
 		  	  	  
-		  carouzelMap.put(tempVariable++, "fish-clown");
+		  carouzelMap.put(tempVariable++, "fish_clown");
 		  
-		  carouzelMap.put(tempVariable++, "fish-goldfish");
+		  carouzelMap.put(tempVariable++, "fish_goldfish");
 		  
-		  carouzelMap.put(tempVariable++, "fish-scorpion");
+		  carouzelMap.put(tempVariable++, "fish_scorpion");
 		  
 		  carouzelMap.put(tempVariable++, "fox");
 		  
@@ -333,15 +470,15 @@ public class Assets {
 		  
 		  carouzelMap.put(tempVariable++, "goat");
 
-		  carouzelMap.put(tempVariable++, "green-grasshopper-wallpaper");
+		  carouzelMap.put(tempVariable++, "green_grasshopper_wallpaper");
 		  
-		  carouzelMap.put(tempVariable++, "guinea-pig");
+		  carouzelMap.put(tempVariable++, "guinea_pig");
 		  
 		  carouzelMap.put(tempVariable++, "hedgehog");
 		  
 		  carouzelMap.put(tempVariable++, "horse");
 		  
-		  carouzelMap.put(tempVariable++, "insect-bee");
+		  carouzelMap.put(tempVariable++, "insect_bee");
 		  
 		  carouzelMap.put(tempVariable++, "Kangaroo");
 		  
@@ -355,18 +492,19 @@ public class Assets {
 		  
 		  carouzelMap.put(tempVariable++, "lion");
 		  
-		  carouzelMap.put(tempVariable++, "lizard-Igouana");
+		  carouzelMap.put(tempVariable++, "lizard_Igouana");
 		  
 		  carouzelMap.put(tempVariable++, "lizard");
 		  
 		  carouzelMap.put(tempVariable++, "lobster");
+		  
 		  carouzelMap.put(tempVariable++, "monkey");
 		  
 		  carouzelMap.put(tempVariable++, "moose");
 		  
 		  carouzelMap.put(tempVariable++, "mosquito");
 		  
-		  carouzelMap.put(tempVariable++, "mouse-field");
+		  carouzelMap.put(tempVariable++, "mouse_field");
 		  
 		  carouzelMap.put(tempVariable++, "orca");
 		  
@@ -392,7 +530,7 @@ public class Assets {
 		  
 		  carouzelMap.put(tempVariable++, "rooster");
 		  
-		  carouzelMap.put(tempVariable++, "sea lion");
+		  carouzelMap.put(tempVariable++, "sea_lion");
 		  
 		  carouzelMap.put(tempVariable++, "shark");
 		  
@@ -420,7 +558,7 @@ public class Assets {
 		  
 		  carouzelMap.put(tempVariable++, "zebra");
 		  
-		  carouzelMap.put(tempVariable++, "sea gull");
+		  carouzelMap.put(tempVariable++, "sea_gull");
 		  
 		  carouzelMap.put(tempVariable++, "hippo");
 		  

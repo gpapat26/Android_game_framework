@@ -1,6 +1,150 @@
 <resources>
 
-    <string name="app_name">SimpleAndroidGDF</string>
-    <string name="exit">Press Back again to Exit</string>
+    <string name="app_name">Animals</string>
+    <string name="exit">exit</string>
+    <string name="ant">ANT</string>
+    <string name="baby_dear">BABY DEAR</string>
+    <string name="bear_grizzly">GRIZZLY</string>
+    
+    
+    <string name="bear_pollar">POLLAR BEAR</string>
+    <string name="bird_bat">BAT</string>
+    <string name="bird_canary">CANARY</string>
+    
+    
+    <string name="bird_nightingale">NIGHTGALE</string>
+    <string name="bison">BISON</string>
+    <string name="Black_panther">BLACK PANTHER</string>
+    
+    
+    <string name="Bull">BULL</string>
+    <string name="butterfly">BUTTERFLY</string>
+    <string name="camel">CAMEL</string>
+    
+    
+    <string name="cat">CAT</string>
+    <string name="cat_face">CAT</string>
+    <string name="cat_siam">SIAM CAT</string>
+    
+    
+    <string name="chicken">CHIKEN</string>
+    <string name="chicks">CHICKS</string>
+    <string name="chipmank">CHIPMANK</string>
+    
+    
+    <string name="Cow_female_black_white">COW</string>
+    <string name="crab">CRAB</string>
+    <string name="crocodile">CROCODILE</string>
+    
+    
+    <string name="crow">CROW</string>
+    <string name="dog_german_shepard">DOG</string>
+    <string name="dog_lassie">DOG</string>
+    
+    
+    <string name="dog_terrier">DOG</string>
+    <string name="dolphin">DOLPHIN</string>
+    <string name="dove">DOVE</string>
+    
+    
+    <string name="dragonfly">DRAGONFLY</string>
+    <string name="duck">DUCK</string>
+    <string name="eagle_bold">EAGLE</string>
+    
+    
+    <string name="elephant">ELEPHANT</string>
+    <string name="elk">ELK</string>
+    <string name="fish_clown">CLOW NFISH</string>
+    
+    
+    <string name="fish_goldfish">GOLD FISH</string>
+    <string name="fish_scorpion">SCORPION FISH</string>
+    <string name="fox">FOX</string>
+    
+    
+       <string name="frog">FROG</string>
+    <string name="giraffe">GIRAFFE</string>
+    <string name="goat">GOAT</string>
+    
+    
+    <string name="green_grasshopper_wallpaper">GRASSHOPER</string>
+    <string name="guinea_pig">GUINEA PIG</string>
+    <string name="hedgehog">HEDGEHOG</string>
+       		  
+	<string name="horse">HORSE</string>
+    <string name="insect_bee">BEE</string>
+    <string name="Kangaroo">KANGAROO</string>
+    
+		 		  
+	<string name="koala">KOALA</string>
+    <string name="ladybug">LADYBUG</string>
+    <string name="lamb">LAMB</string>
+		  
+	  
+	<string name="leopard">LEOPARD</string>
+    <string name="lion">LION</string>
+    <string name="lizard_Igouana">IGUANA</string>
+		  
+		  
+		  	<string name="lizard">LIZARD</string>
+    <string name="lobster">LOBSTER</string>
+    <string name="monkey">MONKEY</string>
+		  
+		  
+	<string name="moose">MOOSE</string>
+    <string name="mosquito">MOSQUITO</string>
+    <string name="mouse_field">MOUSE</string>
+		  
+		  
+	<string name="orca">ORCA</string>
+    <string name="owl">OWL</string>
+    <string name="panda">PANDA</string>
+		  
+
+		  	  
+	<string name="parrot">moose</string>
+    <string name="peacoc">Baby dear</string>
+    <string name="penguin">Grizzly</string>
+		  
+		  
+	<string name="pig">PIG</string>
+    <string name="rabbit">RABBIT</string>
+    <string name="rabbit2">RABBIT</string>
+		  
+		  
+	<string name="racoon">RACOON</string>
+    <string name="rhino">RHINO</string>
+    <string name="rooster">ROOSTER</string>
+		  
+		  
+	<string name="sea_lion">SEA LION</string>
+    <string name="shark">SHARK</string>
+    <string name="shrimp">SHRIMP</string>
+		  
+
+		  	  
+	<string name="snail">SNAIL</string>
+    <string name="snake">SNAKE</string>
+    <string name="spider">SPIDER</string>
+		  
+		  
+	<string name="starfish">STARFISH</string>
+    <string name="swan">SWAN</string>
+    <string name="swordfish">SWORDFISH</string>
+		  					  
+	<string name="tiger">TIGER</string>
+    <string name="turkey">TURKEY</string>
+    <string name="turtle">TURTLE</string>
+		  
+		  	  
+	<string name="wolf">WOLF</string>
+    <string name="zebra">ZEBRA</string>
+    <string name="sea_gull">SEA GULL</string>
+		  
+		  
+	<string name="hippo">HIPPO</string>
+    <string name="donkey">DONKEY</string>
+    <string name="grasshopper">GRASSHOPER</string>
+		  
 
 </resources>

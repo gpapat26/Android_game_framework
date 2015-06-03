@@ -15,7 +15,7 @@ public class LoadState extends State {
 	@Override
 	public void init() {
 		Assets.load();
-		Assets.loadGalleryImage("welcome screen");
+		Assets.loadGalleryImage("welcome_screen");
 	}
 
 	@Override
