@@ -67,7 +67,7 @@
     <string name="goat">GOAT</string>
     
     
-    <string name="green_grasshopper_wallpaper">GRASSHOPER</string>
+    <string name="grasshoper">GRASSHOPER</string>
     <string name="guinea_pig">GUINEA PIG</string>
     <string name="hedgehog">HEDGEHOG</string>
        		  
@@ -103,7 +103,7 @@
 
 		  	  
 	<string name="parrot">moose</string>
-    <string name="peacoc">Baby dear</string>
+    <string name="peacock">Baby dear</string>
     <string name="penguin">Grizzly</string>
 		  
 		  
@@ -144,7 +144,7 @@
 		  
 	<string name="hippo">HIPPO</string>
     <string name="donkey">DONKEY</string>
-    <string name="grasshopper">GRASSHOPER</string>
+ 
 		  
 
 </resources>
