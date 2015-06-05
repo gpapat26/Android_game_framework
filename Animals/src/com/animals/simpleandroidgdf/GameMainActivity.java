@@ -35,7 +35,7 @@ public class GameMainActivity extends Activity{
 		Log.d("Activity", "Activity is onCreate status");
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
 		setContentView(sGame);	
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
 	@Override

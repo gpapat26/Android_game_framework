@@ -25,11 +25,13 @@ public class GameView extends SurfaceView implements Runnable{
 	private  volatile boolean running = false;
 	public volatile State currentState;
 	private InputHandler inputHandler;
+	public static Context context;
 	
 	
 	
 	public GameView(Context context , int gameWidth,int gameHeight) {
 		super(context);
+		this.context = context;
 		//we create a bitmap with our pre- defined dimentions
 		gameImage = Bitmap.createBitmap(gameWidth, gameHeight, Bitmap.Config.RGB_565);
 		//we create a Rect with our dimentions

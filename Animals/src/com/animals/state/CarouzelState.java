@@ -1,9 +1,17 @@
 package com.animals.state;
 
 
+import java.util.ArrayList;
+
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
+
 import com.animals.simpleandroidgdf.Assets;
+import com.animals.simpleandroidgdf.GameMainActivity;
+import com.animals.simpleandroidgdf.GameView;
+import com.animals.simpleandroidgdf.R;
 import com.animals.util.Painter;
 import com.animals.util.UIButton;
 
@@ -42,7 +50,13 @@ public class CarouzelState extends State {
 		//Assets.loadGalleryImageResolver(carouzelIndex);
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		carouzel_prev.render(g);
-		carouzel_next.render(g);		
+		carouzel_next.render(g);				
+		g.setColor(Color.WHITE);
+		g.setFont(Typeface.DEFAULT_BOLD, 50);
+		//g.drawString("Game Over", 257, 175);
+		//g.drawString("TEST", 257, 175);
+		g.drawString( GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName()), 320, 430);
+
 	}
 
 	@Override
@@ -50,9 +64,10 @@ public class CarouzelState extends State {
 		Log.d("CarouzelState", "Carouzel button is pressed");
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
 			carouzel_next.onTouchDown(scaledX, scaledY);
-			carouzel_prev.onTouchDown(scaledX, scaledY);
-			
+			carouzel_prev.onTouchDown(scaledX, scaledY);		
 			 x1 = e.getX();  
+			
+			 
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
@@ -62,7 +77,7 @@ public class CarouzelState extends State {
 	          
 	           if (Math.abs(deltaX) > MIN_DISTANCE)
 	           {
-	            if(x2>x1){
+	            if(x1>x2){
 	            	if (carouzelIndex < Assets.getSizeOfGallery())
 					{
 					carouzelIndex++;	
@@ -104,6 +119,22 @@ public class CarouzelState extends State {
 			}
 		}
 		Assets.loadGalleryImageResolver(carouzelIndex);
+		try{
+			ArrayList<String> musicList = Assets.animals.get(carouzelIndex).getAnimalAudioFile();
+			
+			if(musicList != null && musicList.size()>0){
+				Assets.playGallerySounds(musicList.get(0));
+				Log.d("CarouzelState", "playing "+ Assets.animals.get(carouzelIndex).getAnimalVisualFile());
+			}
+			else{
+				Assets.stopSoundOnDemand();
+			}
+			
+		}catch(Exception s){
+			Log.d("CarouzelState", "Animal with index "+ carouzelIndex +
+					"does not appear to have any sound :"+s.getMessage());
+		}
+		
 		return true;
 	}
 }
