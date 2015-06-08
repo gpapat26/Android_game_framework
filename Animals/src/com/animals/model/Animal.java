@@ -1,6 +1,7 @@
 package com.animals.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Animal {
 	
@@ -9,13 +10,18 @@ public class Animal {
 	private  String animalVisualFile;
 	
 	private ArrayList<String> animalAudioFile;
-
-	public int getAnimalName() {
-		return animalName;
+	
+	private List<Integer> animalNames;
+	
+	public int getAnimalName(int code) {
+		return animalNames.get(code);
 	}
 
-	public void setAnimalName(int animalName) {
-		this.animalName = animalName;
+	public void addAnimalName(int animalName) {
+		if(animalNames == null){
+			animalNames = new ArrayList<Integer>();
+		}
+		animalNames.add(animalName);
 	}
 
 	public String getAnimalVisualFile() {
@@ -42,6 +48,7 @@ public class Animal {
 		animalAudioFile.add(fileName);
 	}
 	
+
 	
 
 }

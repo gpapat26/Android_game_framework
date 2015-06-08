@@ -54,7 +54,10 @@ public class CarouzelState extends State {
 	@Override
 	public void render(Painter g) {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
-		String animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName());				
+		String animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(0));	
+		//String animalName = GameView.context.getResources().getString(R.string.ant);	
+
+	
 		g.drawRectTextAligned(animalName,displayNameRect,40,Typeface.SERIF,Align.CENTER,Color.WHITE);
 	
 		carouzel_prev.render(g);

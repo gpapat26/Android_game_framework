@@ -1,19 +1,34 @@
 package com.animals.state;
 
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.MotionEvent;
 
+import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.util.Painter;
+import com.animals.util.UIButton;
 
 
 public class LanguageState extends State {
+	
+	private static UIButton greek_button;
+	
+	
+	private static UIButton english_button;
+	
+	
+	public  LanguageState() {
+		init();
+	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		Assets.onPause();
+		greek_button = new UIButton((int)GameMainActivity.GAME_WIDTH/2  - 100 - 50, (int)GameMainActivity.GAME_HEIGHT/2-50, (int)GameMainActivity.GAME_WIDTH/2  - 100 + 100 -50, (int)GameMainActivity.GAME_HEIGHT/2 + -50+ 100, Assets.greek, Assets.greek_down);
+		english_button = new UIButton((int)GameMainActivity.GAME_WIDTH/2  + 100 -50 , (int)GameMainActivity.GAME_HEIGHT/2-50, (int)GameMainActivity.GAME_WIDTH/2  + 100 + 100-50, (int)GameMainActivity.GAME_HEIGHT/2 + - 50+ 100, Assets.english, Assets.english_down);		
 	}
 
 	@Override
@@ -25,13 +40,42 @@ public class LanguageState extends State {
 	@Override
 	public void render(Painter g) {
 		g.setColor(Color.rgb(255, 145, 0));
-		g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);			
+		g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);
+		greek_button.render(g);
+		english_button.render(g);
+		
 	}
 
 	@Override
-	public boolean onTouch(MotionEvent e, int scaledx, int scaledY) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean onTouch(MotionEvent e, int scaledX, int scaledY) {
+		Log.d("MainMenuState", "button clicked");
+		
+		if (e.getAction() == MotionEvent.ACTION_DOWN) {
+			greek_button.onTouchDown(scaledX, scaledY);
+			english_button.onTouchDown(scaledX, scaledY);
+		}
+
+		if (e.getAction() == MotionEvent.ACTION_UP) {
+			if (greek_button.isPressed(scaledX, scaledY)) {
+				
+				greek_button.cancel();				
+				setCurrentState(new StartState());
+				
+			} else {
+				greek_button.cancel();
+			}
+			
+			if (english_button.isPressed(scaledX, scaledY)) {
+				
+				english_button.cancel();				
+				setCurrentState(new StartState());
+				
+			} else {
+				english_button.cancel();
+			}
+		}
+
+		return true;
 	}
 
 }

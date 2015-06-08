@@ -1,9 +1,11 @@
 package com.animals.simpleandroidgdf;
 
 import com.animals.state.CarouzelState;
+import com.animals.state.LanguageState;
 import com.animals.state.MainMenuState;
 import com.animals.state.StartState;
 import com.animals.state.State;
+
 
 
 
@@ -47,6 +49,10 @@ public class GameMainActivity extends Activity{
 		else if(sGame.currentState instanceof CarouzelState){
 			Assets.loadGalleryImage("crab");
 			sGame.setCurrentState(new MainMenuState());
+		}
+		else if(sGame.currentState instanceof LanguageState){
+			
+			sGame.setCurrentState(new StartState());
 		}
 		else if(sGame.currentState instanceof StartState){
 			
