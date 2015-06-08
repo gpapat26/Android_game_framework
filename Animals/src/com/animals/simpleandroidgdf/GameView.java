@@ -167,5 +167,10 @@ public class GameView extends SurfaceView implements Runnable{
 			currentState.onPause();
 		}
 	}
+	
+	public Rect getSrcRectangle(){
+		return gameImageSrc;
+	}
+	
 
 }

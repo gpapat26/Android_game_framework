@@ -3,7 +3,12 @@ package com.animals.state;
 
 import java.util.ArrayList;
 
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Align;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,6 +26,7 @@ public class CarouzelState extends State {
 
 	private UIButton carouzel_prev;
 	private UIButton carouzel_next;
+	private Rect displayNameRect ;
 	
 	private static float x1,x2;
 	static final int MIN_DISTANCE = 150;
@@ -29,7 +35,8 @@ public class CarouzelState extends State {
 		init();
 	}
 	@Override
-	public void init() {
+	public void init() {	
+		displayNameRect = new Rect(GameMainActivity.sGame.getSrcRectangle().left,350, GameMainActivity.sGame.getSrcRectangle().right, GameMainActivity.sGame.getSrcRectangle().bottom);		
 		Assets.onPause();
 		//Assets.loadGalleryImage("crocodile");
 		Assets.loadGalleryImageResolver(carouzelIndex);
@@ -46,18 +53,15 @@ public class CarouzelState extends State {
 
 	@Override
 	public void render(Painter g) {
-		//g.drawImage(Assets.galle, 0, 0);
-		//Assets.loadGalleryImageResolver(carouzelIndex);
 		g.drawImage(Assets.galleryBitmap, 0, 0);
+		String animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName());				
+		g.drawRectTextAligned(animalName,displayNameRect,40,Typeface.SERIF,Align.CENTER,Color.WHITE);
+	
 		carouzel_prev.render(g);
-		carouzel_next.render(g);				
-		g.setColor(Color.WHITE);
-		g.setFont(Typeface.DEFAULT_BOLD, 50);
-		//g.drawString("Game Over", 257, 175);
-		//g.drawString("TEST", 257, 175);
-		g.drawString( GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName()), 320, 430);
-
+		carouzel_next.render(g);
 	}
+	
+
 
 	@Override
 	public boolean onTouch(MotionEvent e, int scaledX, int scaledY) {

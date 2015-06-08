@@ -48,6 +48,9 @@ public class Assets {
 	public static Bitmap carouzel_right_down;
 	public static int streamIDplaying=0;
 	
+	public static Bitmap language;
+	public static Bitmap language_down;
+	
 	//private static HashMap<Integer, String> carouzelMap = new HashMap<Integer, String>();
 	public static HashMap<Integer, Animal> animals = new HashMap<Integer, Animal>();
 	//private static Animal[] animals = new Animal[86];	
@@ -75,7 +78,8 @@ public class Assets {
 		carouzel_right = loadBitmap("carouzel_next.png",true,false);
 		carouzel_right_down = loadBitmap("carouzel_next_down.png",true,false);
 		
-	
+		language = loadBitmap("Language.png",true,false);
+		language_down = loadBitmap("Language_down.png",true,false);
 		
 		loadCarouzelMap();
 	}

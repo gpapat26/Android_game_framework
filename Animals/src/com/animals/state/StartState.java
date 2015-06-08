@@ -1,5 +1,6 @@
 package com.animals.state;
 
+import android.provider.Contacts.Intents.UI;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -14,6 +15,8 @@ public class StartState extends State {
 
 	
 	private UIButton playButton ;
+	private UIButton languageButton;
+	
 	
 	public  StartState() {		
 		init();
@@ -22,6 +25,7 @@ public class StartState extends State {
 	@Override
 	public void init() {
 		playButton = new UIButton(316, 227, 484, 286, Assets.start, Assets.startDown);
+		languageButton = new UIButton(170, 0, 320, 44, Assets.language, Assets.language_down);
 		Assets.loadGalleryImage("welcome_screen");
 		Assets.onResume();
 	}
@@ -36,6 +40,7 @@ public class StartState extends State {
 	public void render(Painter g) {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		playButton.render(g);
+		languageButton.render(g);
 	}
 
 	@Override
@@ -43,7 +48,7 @@ public class StartState extends State {
 
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
 			playButton.onTouchDown(scaledX, scaledY);
-		
+			languageButton.onTouchDown(scaledX, scaledY);
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
@@ -55,6 +60,17 @@ public class StartState extends State {
 			} else {
 				playButton.cancel();
 			}
+			
+			if (languageButton.isPressed(scaledX, scaledY)) {
+				languageButton.cancel();
+				
+				setCurrentState(new LanguageState());
+					
+			} else {
+				languageButton.cancel();
+			}
+			
+			
 		}
 
 		return true;
