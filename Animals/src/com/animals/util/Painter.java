@@ -71,7 +71,8 @@ public class Painter {
 	
 	public void drawRectTextAligned(String text, Rect r,int textSize,android.graphics.Typeface typeFace, android.graphics.Paint.Align align,int color) {
 		
-		this.paint.setARGB(128, 255, 255, 255);
+		//this.paint.setARGB(128, 255, 255, 255);
+		this.paint.setARGB(80, 255, 255, 255);
 		this.canvas.drawRect(r, this.paint);	
 		this.paint.setColor(color);		
 		this.paint.setTypeface(typeFace);

@@ -4,7 +4,11 @@ import com.animals.state.CarouzelState;
 import com.animals.state.LanguageState;
 import com.animals.state.MainMenuState;
 import com.animals.state.StartState;
-import com.animals.state.State;
+
+
+
+
+
 
 
 
@@ -12,6 +16,8 @@ import com.animals.state.State;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,15 +31,22 @@ public class GameMainActivity extends Activity{
 	
 	public static final int GAME_WIDTH = 800;
 	public static final int GAME_HEIGHT = 450;
+	public static final int ENGLISH_CODE = 0;
+	public static final int GREEK_CODE=1;
 	public static GameView sGame;
 	public static AssetManager assets;
 	private Boolean exit = false;
+	public static int languageId=1;
+	private static final String languageCodeKey = "languageCodeKey";
+	
+	private static SharedPreferences prefs;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		assets=getAssets();
+		prefs = getPreferences(Activity.MODE_PRIVATE);
 		Log.d("Activity", "Activity is onCreate status");
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
 		setContentView(sGame);	
@@ -106,6 +119,21 @@ public class GameMainActivity extends Activity{
 		if(sGame != null){			
 			sGame.onPause();
 		}
+	}
+	
+	
+	public static void setLanguageCode(int languageId) {
+		GameMainActivity.languageId = languageId;
+		Editor editor = prefs.edit();
+		editor.putInt(languageCodeKey, languageId);
+		editor.commit();
+		//0 = English
+		//1 = Greek
+		// ...
+	}
+	
+	public static int getLanguageCode(){
+		return prefs.getInt(languageCodeKey, 0);
 	}
 	
 	

@@ -361,6 +361,7 @@ public class Assets {
 		  //8 BISON
 		  Animal bison = new Animal();
 		  bison.addAnimalName(R.string.bison);
+		  bison.addAnimalName(R.string.bison_gr);
 		  bison.setAnimalVisualFile("bison");
 		  bison.addAudioFile("bison");
 	      animals.put(tempArrayVariable++, bison);
@@ -376,6 +377,7 @@ public class Assets {
 		  //10 BULL
 		  Animal Bull = new Animal();
 		  Bull.addAnimalName(R.string.Bull);
+		  Bull.addAnimalName(R.string.Bull_gr);
 		  Bull.setAnimalVisualFile("Bull");
 		  Bull.addAudioFile("cow");
 	      animals.put(tempArrayVariable++, Bull);
@@ -391,6 +393,7 @@ public class Assets {
 		  //12 CAMEL
 		  Animal camel = new Animal();
 		  camel.addAnimalName(R.string.camel);
+		  camel.addAnimalName(R.string.camel_gr);
 		  camel.setAnimalVisualFile("camel");
 		  camel.addAudioFile("camel");
 	      animals.put(tempArrayVariable++, camel);
@@ -398,6 +401,7 @@ public class Assets {
 		  //13 CAT
 		  Animal cat = new Animal();
 		  cat.addAnimalName(R.string.cat);
+		  cat.addAnimalName(R.string.cat_gr);
 		  cat.setAnimalVisualFile("cat");
 		  cat.addAudioFile("cat");
 	      animals.put(tempArrayVariable++, cat);
@@ -453,6 +457,7 @@ public class Assets {
 		  //20 CRAB
 		  Animal crab = new Animal();
 		  crab.addAnimalName(R.string.crab);
+		  crab.addAnimalName(R.string.crab_gr);
 		  crab.setAnimalVisualFile("crab");
 		  crab.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, crab);
@@ -532,6 +537,7 @@ public class Assets {
 		  //30 EAGLE
 		  Animal eagle_bold = new Animal();
 		  eagle_bold.addAnimalName(R.string.eagle_bold);
+		  eagle_bold.addAnimalName(R.string.eagle_bold_gr);
 		  eagle_bold.setAnimalVisualFile("eagle_bold");
 		  eagle_bold.addAudioFile("eagle");
 	      animals.put(tempArrayVariable++, eagle_bold);
@@ -539,7 +545,7 @@ public class Assets {
 		  //31 ELEPHANT
 		  Animal elephant = new Animal();
 		  elephant.addAnimalName(R.string.elephant);
-		  eagle_bold.addAnimalName(R.string.eagle_bold_gr);
+		  elephant.addAnimalName(R.string.elephant_gr);
 		  elephant.setAnimalVisualFile("elephant");
 		  elephant.addAudioFile("elephant");
 	      animals.put(tempArrayVariable++, elephant);

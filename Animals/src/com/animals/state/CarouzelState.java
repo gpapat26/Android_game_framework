@@ -30,12 +30,14 @@ public class CarouzelState extends State {
 	
 	private static float x1,x2;
 	static final int MIN_DISTANCE = 150;
+	private static int languageCode = 0;
 	
 	public  CarouzelState() {
 		init();
 	}
 	@Override
-	public void init() {	
+	public void init() {
+		languageCode = GameMainActivity.getLanguageCode();
 		displayNameRect = new Rect(GameMainActivity.sGame.getSrcRectangle().left,350, GameMainActivity.sGame.getSrcRectangle().right, GameMainActivity.sGame.getSrcRectangle().bottom);		
 		Assets.onPause();
 		//Assets.loadGalleryImage("crocodile");
@@ -53,12 +55,19 @@ public class CarouzelState extends State {
 
 	@Override
 	public void render(Painter g) {
+		String animalName = "UNDENTIFIED";
 		g.drawImage(Assets.galleryBitmap, 0, 0);
-		String animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(0));	
+		try{
+			 animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(languageCode));	
+		//	 Log.d("CarouzelState", "found animal name with index: "+carouzelIndex + "and language code: "+languageCode +" "+animalName);
+
+		}catch(Exception b){
+		//	Log.d("CarouzelState", "unable to find animal name with index: "+carouzelIndex + "and language code: "+languageCode);
+		}
 		//String animalName = GameView.context.getResources().getString(R.string.ant);	
 
 	
-		g.drawRectTextAligned(animalName,displayNameRect,40,Typeface.SERIF,Align.CENTER,Color.WHITE);
+		g.drawRectTextAligned(animalName,displayNameRect,40,Typeface.SERIF,Align.CENTER,Color.rgb(144, 0, 0));
 	
 		carouzel_prev.render(g);
 		carouzel_next.render(g);

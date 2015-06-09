@@ -58,7 +58,8 @@ public class LanguageState extends State {
 		if (e.getAction() == MotionEvent.ACTION_UP) {
 			if (greek_button.isPressed(scaledX, scaledY)) {
 				
-				greek_button.cancel();				
+				greek_button.cancel();
+				GameMainActivity.setLanguageCode(GameMainActivity.GREEK_CODE);
 				setCurrentState(new StartState());
 				
 			} else {
@@ -67,7 +68,8 @@ public class LanguageState extends State {
 			
 			if (english_button.isPressed(scaledX, scaledY)) {
 				
-				english_button.cancel();				
+				english_button.cancel();
+				GameMainActivity.setLanguageCode(GameMainActivity.ENGLISH_CODE);
 				setCurrentState(new StartState());
 				
 			} else {

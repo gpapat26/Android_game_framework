@@ -5,292 +5,183 @@
     <string name="ant">ANT</string>
     <string name="baby_dear">DEAR</string>
     <string name="bear_grizzly">GRIZZLY</string>
-    
-    
     <string name="bear_pollar">POLLAR BEAR</string>
     <string name="bird_bat">BAT</string>
     <string name="bird_canary">CANARY</string>
-    
-    
     <string name="bird_nightingale">NIGHTGALE</string>
     <string name="bison">BISON</string>
     <string name="Black_panther">BLACK PANTHER</string>
-    
-    
     <string name="Bull">BULL</string>
     <string name="butterfly">BUTTERFLY</string>
     <string name="camel">CAMEL</string>
-    
-    
     <string name="cat">CAT</string>
     <string name="cat_face">CAT</string>
     <string name="cat_siam">SIAM CAT</string>
-    
-    
     <string name="chicken">CHIKEN</string>
     <string name="chicks">CHICKS</string>
-    <string name="chipmank">CHIPMANK</string>
-    
-    
+    <string name="chipmank">CHIPMUNK</string>
     <string name="Cow_female_black_white">COW</string>
     <string name="crab">CRAB</string>
     <string name="crocodile">CROCODILE</string>
-    
-    
     <string name="crow">CROW</string>
     <string name="dog_german_shepard">DOG</string>
     <string name="dog_lassie">DOG</string>
-    
-    
     <string name="dog_terrier">DOG</string>
     <string name="dolphin">DOLPHIN</string>
     <string name="dove">DOVE</string>
-    
-    
     <string name="dragonfly">DRAGONFLY</string>
     <string name="duck">DUCK</string>
     <string name="eagle_bold">EAGLE</string>
-    
-    
     <string name="elephant">ELEPHANT</string>
     <string name="elk">ELK</string>
     <string name="fish_clown">CLOW NFISH</string>
-    
-    
     <string name="fish_goldfish">GOLD FISH</string>
     <string name="fish_scorpion">SCORPION FISH</string>
     <string name="fox">FOX</string>
-    
-    
-       <string name="frog">FROG</string>
+    <string name="frog">FROG</string>
     <string name="giraffe">GIRAFFE</string>
     <string name="goat">GOAT</string>
-    
-    
     <string name="grasshoper">GRASSHOPER</string>
     <string name="guinea_pig">GUINEA PIG</string>
     <string name="hedgehog">HEDGEHOG</string>
-       		  
-	<string name="horse">HORSE</string>
+    <string name="horse">HORSE</string>
     <string name="insect_bee">BEE</string>
     <string name="Kangaroo">KANGAROO</string>
-    
-		 		  
-	<string name="koala">KOALA</string>
+    <string name="koala">KOALA</string>
     <string name="ladybug">LADYBUG</string>
     <string name="lamb">LAMB</string>
-		  
-	  
-	<string name="leopard">LEOPARD</string>
+    <string name="leopard">LEOPARD</string>
     <string name="lion">LION</string>
     <string name="lizard_Igouana">IGUANA</string>
-		  
-		  
-		  	<string name="lizard">LIZARD</string>
+    <string name="lizard">LIZARD</string>
     <string name="lobster">LOBSTER</string>
     <string name="monkey">MONKEY</string>
-		  
-		  
-	<string name="moose">MOOSE</string>
+    <string name="moose">MOOSE</string>
     <string name="mosquito">MOSQUITO</string>
     <string name="mouse_field">MOUSE</string>
-		  
-		  
-	<string name="orca">ORCA</string>
+    <string name="orca">ORCA</string>
     <string name="owl">OWL</string>
     <string name="panda">PANDA</string>
-		  
-
-		  	  
-	<string name="parrot">PARROT</string>
+    <string name="parrot">PARROT</string>
     <string name="peacock">PEACOC</string>
     <string name="penguin">PENGUIN</string>
-		  
-		  
-	<string name="pig">PIG</string>
+    <string name="pig">PIG</string>
     <string name="rabbit">RABBIT</string>
     <string name="rabbit2">RABBIT</string>
-		  
-		  
-	<string name="racoon">RACOON</string>
+    <string name="racoon">RACOON</string>
     <string name="rhino">RHINO</string>
     <string name="rooster">ROOSTER</string>
-		  
-		  
-	<string name="sea_lion">SEA LION</string>
+    <string name="sea_lion">SEA LION</string>
     <string name="shark">SHARK</string>
     <string name="shrimp">SHRIMP</string>
-		  
-
-		  	  
-	<string name="snail">SNAIL</string>
+    <string name="snail">SNAIL</string>
     <string name="snake">SNAKE</string>
     <string name="spider">SPIDER</string>
-		  
-		  
-	<string name="starfish">STARFISH</string>
+    <string name="starfish">STARFISH</string>
     <string name="swan">SWAN</string>
     <string name="swordfish">SWORDFISH</string>
-		  					  
-	<string name="tiger">TIGER</string>
+    <string name="tiger">TIGER</string>
     <string name="turkey">TURKEY</string>
     <string name="turtle">TURTLE</string>
-		  
-		  	  
-	<string name="wolf">WOLF</string>
+    <string name="wolf">WOLF</string>
     <string name="zebra">ZEBRA</string>
     <string name="sea_gull">SEA GULL</string>
-		  
-		  
-	<string name="hippo">HIPPO</string>
+    <string name="hippo">HIPPO</string>
     <string name="donkey">DONKEY</string>
-    
-    
-    <string name="app_name_gr">Τα ζωάκια</string>
-    <string name="exit_gr">exit</string>
-    <string name="ant_gr">Μυρμήγκι</string>
-    <string name="baby_dear_gr">BABY DEAR</string>
-    <string name="bear_grizzly_gr">GRIZZLY</string>
-    
-    
-    <string name="bear_pollar_gr">POLLAR BEAR</string>
-    <string name="bird_bat_gr">BAT</string>
-    <string name="bird_canary_gr">CANARY</string>
-    
-    
-    <string name="bird_nightingale_gr">NIGHTGALE</string>
-    <string name="bison_gr">BISON</string>
-    <string name="Black_panther_gr">BLACK PANTHER</string>
-    
-    
-    <string name="Bull_gr">BULL</string>
-    <string name="butterfly_gr">BUTTERFLY</string>
-    <string name="camel_gr">CAMEL</string>
-    
-    
-    <string name="cat_gr">CAT</string>
-    <string name="cat_face_gr">CAT</string>
-    <string name="cat_siam_gr">SIAM CAT</string>
-    
-    
-    <string name="chicken_gr">CHIKEN</string>
-    <string name="chicks_gr">CHICKS</string>
-    <string name="chipmank_gr">CHIPMANK</string>
-    
-    
-    <string name="Cow_female_black_white_gr">COW</string>
-    <string name="crab_gr">CRAB</string>
-    <string name="crocodile_gr">CROCODILE</string>
-    
-    
-    <string name="crow_gr">CROW</string>
-    <string name="dog_german_shepard_gr">DOG</string>
-    <string name="dog_lassie_gr">DOG</string>
-    
-    
-    <string name="dog_terrier_gr">DOG</string>
-    <string name="dolphin_gr">DOLPHIN</string>
-    <string name="dove_gr">DOVE</string>
-    
-    
-    <string name="dragonfly_gr">DRAGONFLY</string>
-    <string name="duck_gr">DUCK</string>
-    <string name="eagle_bold_gr">EAGLE</string>
-    
-    
-    <string name="elephant_gr">ELEPHANT</string>
-    <string name="elk_gr">ELK</string>
-    <string name="fish_clown_gr">CLOW NFISH</string>
-    
-    
-    <string name="fish_goldfish_gr">GOLD FISH</string>
-    <string name="fish_scorpion_gr">SCORPION FISH</string>
-    <string name="fox_gr">FOX</string>
-    
-    
-       <string name="frog_gr">FROG</string>
-    <string name="giraffe_gr">GIRAFFE</string>
-    <string name="goat_gr">GOAT</string>
-    
-    
-    <string name="grasshoper_gr">GRASSHOPER</string>
-    <string name="guinea_pig_gr">GUINEA PIG</string>
-    <string name="hedgehog_gr">HEDGEHOG</string>
-       		  
-	<string name="horse_gr">HORSE</string>
-    <string name="insect_bee_gr">BEE</string>
-    <string name="Kangaroo_gr">KANGAROO</string>
-    
-		 		  
-	<string name="koala_gr">KOALA</string>
-    <string name="ladybug_gr">LADYBUG</string>
-    <string name="lamb_gr">LAMB</string>
-		  
-	  
-	<string name="leopard_gr">LEOPARD</string>
-    <string name="lion_gr">LION</string>
-    <string name="lizard_Igouana_gr">IGUANA</string>
-		  
-		  
-		  	<string name="lizard_gr">LIZARD</string>
-    <string name="lobster_gr">LOBSTER</string>
-    <string name="monkey_gr">MONKEY</string>
-		  
-		  
-	<string name="moose_gr">MOOSE</string>
-    <string name="mosquito_gr">MOSQUITO</string>
-    <string name="mouse_field_gr">MOUSE</string>
-		  
-		  
-	<string name="orca_gr">ORCA</string>
-    <string name="owl_gr">OWL</string>
-    <string name="panda_gr">PANDA</string>
-		  
 
-		  	  
-	<string name="parrot_gr">PARROT</string>
-    <string name="peacock_gr">PEACOC</string>
-    <string name="penguin_gr">PENGUIN</string>
-		  
-		  
-	<string name="pig_gr">PIG</string>
-    <string name="rabbit_gr">RABBIT</string>
-    <string name="rabbit2_gr">RABBIT</string>
-		  
-		  
-	<string name="racoon_gr">RACOON</string>
-    <string name="rhino_gr">RHINO</string>
-    <string name="rooster_gr">ROOSTER</string>
-		  
-		  
-	<string name="sea_lion_gr">SEA LION</string>
-    <string name="shark_gr">SHARK</string>
-    <string name="shrimp_gr">SHRIMP</string>
-		  
+    <!-- GREEK ANIMALS -->
+    <!-- GREEK ANIMALS -->
+    <!-- GREEK ANIMALS -->
+    <!-- GREEK ANIMALS -->
+    <!-- GREEK ANIMALS -->
 
-		  	  
-	<string name="snail_gr">SNAIL</string>
-    <string name="snake_gr">SNAKE</string>
-    <string name="spider_gr">SPIDER</string>
-		  
-		  
-	<string name="starfish_gr">STARFISH</string>
-    <string name="swan_gr">SWAN</string>
-    <string name="swordfish_gr">SWORDFISH</string>
-		  					  
-	<string name="tiger_gr">TIGER</string>
-    <string name="turkey_gr">TURKEY</string>
-    <string name="turtle_gr">TURTLE</string>
-		  
-		  	  
-	<string name="wolf_gr">WOLF</string>
-    <string name="zebra_gr">ZEBRA</string>
-    <string name="sea_gull_gr">SEA GULL</string>
-		  
-		  
-	<string name="hippo_gr">HIPPO</string>
-    <string name="donkey_gr">DONKEY</string>
- 
-		  
+    <string name="app_name_gr">ΤΑ ΖΩΑΚΙΑ</string>
+    <string name="exit_gr">ΠΑΤΗΣΤΕ ΕΠΑΝΕΛΛΗΜΕΝΑ ΓΙΑ ΕΞΟΔΟ</string>
+    <string name="ant_gr">ΜΥΡΜΗΓΚΙ</string>
+    <string name="baby_dear_gr">ΕΛΑΦΙ</string>
+    <string name="bear_grizzly_gr">ΚΑΦΕ ΑΡΚΟΥΔΑ</string>
+    <string name="bear_pollar_gr">ΠΟΛΛΙΚΗ ΑΡΚΟΥΔΑ</string>
+    <string name="bird_bat_gr">ΝΥΧΤΕΡΙΔΑ</string>
+    <string name="bird_canary_gr">ΚΑΝΑΡΙΝΙ</string>
+    <string name="bird_nightingale_gr">ΑΗΔΟΝΙ</string>
+    <string name="bison_gr">ΒΙΣΩΝΑΣ</string>
+    <string name="Black_panther_gr">ΜΑΥΡΟΣ ΠΑΝΘΗΡΑΣ</string>
+    <string name="Bull_gr">ΤΑΥΡΟΣ</string>
+    <string name="butterfly_gr">ΠΕΤΑΛΟΥΔΑ</string>
+    <string name="camel_gr">ΚΑΜΗΛΑ</string>
+    <string name="cat_gr">ΓΑΤΑ</string>
+    <string name="cat_face_gr">ΓΑΤΑ</string>
+    <string name="cat_siam_gr">ΣΙΑΜ ΓΑΤ</string>
+    <string name="chicken_gr">ΚΟΤΑ</string>
+    <string name="chicks_gr">ΚΟΤΟΠΟΥΛΟ</string>
+    <string name="chipmank_gr">ΣΚΙΟΥΡΑΚΙ</string>
+    <string name="Cow_female_black_white_gr">ΑΓΕΛΑΔΑ</string>
+    <string name="crab_gr">ΚΑΒΟΥΡΙ</string>
+    <string name="crocodile_gr">ΚΡΟΚΟΔΕΙΛΟΣ</string>
+    <string name="crow_gr">ΚΟΡΑΚΙΣ</string>
+    <string name="dog_german_shepard_gr">ΛΥΚΟΣΚΥΛΟ</string>
+    <string name="dog_lassie_gr">ΛΑΣΣΥ</string>
+    <string name="dog_terrier_gr">ΤΕΡΙΕ</string>
+    <string name="dolphin_gr">ΔΕΛΦΙΝΙ</string>
+    <string name="dove_gr">ΠΕΡΙΣΤΕΡΙ</string>
+    <string name="dragonfly_gr">ΛΙΒΕΛΛΟΥΛΗ</string>
+    <string name="duck_gr">ΠΑΠΙΑ</string>
+    <string name="eagle_bold_gr">ΑΕΤΟΣ</string>
+    <string name="elephant_gr">ΕΛΕΦΑΝΤΑΣ</string>
+    <string name="elk_gr">ΜΕΓΑΛΟ ΕΛΑΦΙ</string>
+    <string name="fish_clown_gr">ΨΑΡΙ ΚΛΟΟΥΝ</string>
+    <string name="fish_goldfish_gr">ΧΡΥΣΟΨΑΡΟ</string>
+    <string name="fish_scorpion_gr">ΨΑΡΙ ΣΚΟΡΠΙΟΣ</string>
+    <string name="fox_gr">ΑΛΕΠΟΥ</string>
+    <string name="frog_gr">ΒΑΤΡΑΧΟΣ</string>
+    <string name="giraffe_gr">ΚΑΜΗΛΟΠΑΡΔΑΛΗ</string>
+    <string name="goat_gr">ΚΑΤΣΙΚΑ</string>
+    <string name="grasshoper_gr">ΓΡΥΛΛΟΣ</string>
+    <string name="guinea_pig_gr">ΠΟΝΤΙΚΙ</string>
+    <string name="hedgehog_gr">ΣΚΑΤΖΟΧΕΙΡΟΣ</string>
+    <string name="horse_gr">ΑΛΟΓΟ</string>
+    <string name="insect_bee_gr">ΜΕΛΙΣΣΑ</string>
+    <string name="Kangaroo_gr">ΚΑΓΚΟΥΡΟ</string>
+    <string name="koala_gr">ΚΟΑΛΑ</string>
+    <string name="ladybug_gr">ΠΑΣΧΑΛΙΤΣΑ</string>
+    <string name="lamb_gr">ΠΡΟΒΑΤΑΚΙ</string>
+    <string name="leopard_gr">ΛΕΟΠΑΡΔΑΛΗ</string>
+    <string name="lion_gr">ΛΙΟΝΤΑΡΙ</string>
+    <string name="lizard_Igouana_gr">ΙΓΚΟΥΑΝΑ</string>
+    <string name="lizard_gr">ΣΑΥΡΑ</string>
+    <string name="lobster_gr">ΑΣΤΑΚΟΣ</string>
+    <string name="monkey_gr">ΜΑΙΜΟΥ</string>
+    <string name="moose_gr">ΑΜΕΡΙΚΑΝΙΚΟ ΕΛΑΦΙ</string>
+    <string name="mosquito_gr">ΚΟΥΝΟΥΠΙ</string>
+    <string name="mouse_field_gr">ΠΟΝΤΙΚΙ</string>
+    <string name="orca_gr">ΟΡΚΑ</string>
+    <string name="owl_gr">ΚΟΥΚΟΥΒΑΓΙΑ</string>
+    <string name="panda_gr">ΠΑΝΤΑ</string>
+    <string name="parrot_gr">ΠΑΠΑΓΑΛΟΣ</string>
+    <string name="peacock_gr">ΠΑΓΟΝΙ</string>
+    <string name="penguin_gr">ΠΗΓΚΟΥΙΝΟΣ</string>
+    <string name="pig_gr">ΓΟΥΡΟΥΝΙ</string>
+    <string name="rabbit_gr">ΚΟΥΝΕΛΙ</string>
+    <string name="rabbit2_gr">ΚΟΥΝΕΛΙ</string>
+    <string name="racoon_gr">ΡΑΚΟΥΝ</string>
+    <string name="rhino_gr">ΡΙΝΟΚΕΡΟΣ</string>
+    <string name="rooster_gr">ΚΟΚΟΡΑΣ</string>
+    <string name="sea_lion_gr">ΘΑΛΑΣΣΙΟ ΛΙΟΝΤΑΡΙ </string>
+    <string name="shark_gr">ΚΑΡΧΑΡΙΑΣ</string>
+    <string name="shrimp_gr">ΓΑΡΙΔΑ</string>
+    <string name="snail_gr">ΣΑΛΙΓΚΑΡΙ</string>
+    <string name="snake_gr">ΦΙΔΙ</string>
+    <string name="spider_gr">ΑΡΑΧΝΗ</string>
+    <string name="starfish_gr">ΑΣΤΕΡΙΑΣ</string>
+    <string name="swan_gr">ΚΥΚΝΟΣ</string>
+    <string name="swordfish_gr">ΞΙΦΙΑΣ</string>
+    <string name="tiger_gr">ΤΙΓΡΗΣ</string>
+    <string name="turkey_gr">ΓΑΛΟΠΟΥΛΑ</string>
+    <string name="turtle_gr">ΧΕΛΩΝΑ</string>
+    <string name="wolf_gr">ΛΥΚΟΣ</string>
+    <string name="zebra_gr">ΖΕΒΡΑ</string>
+    <string name="sea_gull_gr">ΓΛΑΡΟΣ</string>
+    <string name="hippo_gr">ΙΠΠΟΠΟΤΑΜΟΣ</string>
+    <string name="donkey_gr">ΓΑΙΔΑΡΟΣ</string>
 
 </resources>
