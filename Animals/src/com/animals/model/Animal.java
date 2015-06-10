@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Animal {
 	
-	private  int animalName;
+	private String animalVisualFileSoundLang;
 	
 	private  String animalVisualFile;
 	
@@ -47,6 +47,18 @@ public class Animal {
 		}
 		animalAudioFile.add(fileName);
 	}
+
+	public String getAnimalVisualFileSoundLang() {
+		return animalVisualFileSoundLang;
+	}
+
+	public void setAnimalVisualFileSoundLang(String animalVisualFileSoundLang) {
+		this.animalVisualFileSoundLang = animalVisualFileSoundLang;
+	}
+
+	
+	
+	
 	
 
 	

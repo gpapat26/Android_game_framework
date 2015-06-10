@@ -306,6 +306,7 @@ public class Assets {
 	      ant.addAnimalName(R.string.ant);
 	      ant.addAnimalName(R.string.ant_gr);
 	      ant.setAnimalVisualFile("ant");
+	      ant.setAnimalVisualFileSoundLang("ant");
 	      ant.addAudioFile("empty");
 	      animals.put(tempArrayVariable++, ant);
 	   	  
@@ -314,6 +315,7 @@ public class Assets {
 	      baby_dear.addAnimalName(R.string.baby_dear);
 	      baby_dear.addAnimalName(R.string.baby_dear_gr);
 	      baby_dear.setAnimalVisualFile("baby_dear");
+	      baby_dear.setAnimalVisualFileSoundLang("baby_dear");
 	      baby_dear.addAudioFile("deer");
 	      animals.put(tempArrayVariable++, baby_dear);
 		  
@@ -322,6 +324,7 @@ public class Assets {
 	      bear_grizzly.addAnimalName(R.string.bear_grizzly);
 	      bear_grizzly.addAnimalName(R.string.bear_grizzly_gr);
 	      bear_grizzly.setAnimalVisualFile("bear_grizzly");
+	      bear_grizzly.setAnimalVisualFileSoundLang("bear_grizzly");
 	      bear_grizzly.addAudioFile("bear");
 	      animals.put(tempArrayVariable++, bear_grizzly);
 		  
@@ -330,6 +333,7 @@ public class Assets {
 	      bear_pollar.addAnimalName(R.string.bear_pollar);
 	      bear_pollar.addAnimalName(R.string.bear_pollar_gr);
 	      bear_pollar.setAnimalVisualFile("bear_pollar");
+	      bear_pollar.setAnimalVisualFileSoundLang("bear_pollar");
 	      bear_pollar.addAudioFile("bear");
 	      animals.put(tempArrayVariable++, bear_pollar);
 		  
@@ -338,6 +342,7 @@ public class Assets {
 	      bird_bat.addAnimalName(R.string.bird_bat);
 	      bird_bat.addAnimalName(R.string.bird_bat_gr);
 	      bird_bat.setAnimalVisualFile("bird_bat");
+	      bird_bat.setAnimalVisualFileSoundLang("bird_bat");
 	      bird_bat.addAudioFile("bat");
 	      bird_bat.addAudioFile("bat");
 	      animals.put(tempArrayVariable++, bird_bat);
@@ -347,6 +352,7 @@ public class Assets {
 		  bird_canary.addAnimalName(R.string.bird_canary);
 		  bird_canary.addAnimalName(R.string.bird_canary_gr);
 		  bird_canary.setAnimalVisualFile("bird_canary");
+		  bird_canary.setAnimalVisualFileSoundLang("bird_canary");
 		  bird_canary.addAudioFile("canary");		  
 	      animals.put(tempArrayVariable++, bird_canary);
 		  
@@ -355,6 +361,7 @@ public class Assets {
 		  bird_nightingale.addAnimalName(R.string.bird_nightingale);
 		  bird_nightingale.addAnimalName(R.string.bird_nightingale_gr);
 		  bird_nightingale.setAnimalVisualFile("bird_nightingale");
+		  bird_nightingale.setAnimalVisualFileSoundLang("bird_nightingale");
 		  bird_nightingale.addAudioFile("canary");
 	      animals.put(tempArrayVariable++, bird_nightingale);
 		  
@@ -363,6 +370,7 @@ public class Assets {
 		  bison.addAnimalName(R.string.bison);
 		  bison.addAnimalName(R.string.bison_gr);
 		  bison.setAnimalVisualFile("bison");
+		  bison.setAnimalVisualFileSoundLang("bison");
 		  bison.addAudioFile("bison");
 	      animals.put(tempArrayVariable++, bison);
 		  
@@ -371,6 +379,7 @@ public class Assets {
 		  Black_panther.addAnimalName(R.string.Black_panther);
 		  Black_panther.addAnimalName(R.string.Black_panther_gr);
 		  Black_panther.setAnimalVisualFile("Black_panther");
+		  Black_panther.setAnimalVisualFileSoundLang("Black_panther");
 		  Black_panther.addAudioFile("tiger");
 	      animals.put(tempArrayVariable++, Black_panther);
 		  
@@ -379,6 +388,7 @@ public class Assets {
 		  Bull.addAnimalName(R.string.Bull);
 		  Bull.addAnimalName(R.string.Bull_gr);
 		  Bull.setAnimalVisualFile("Bull");
+		  Bull.setAnimalVisualFileSoundLang("Bull");
 		  Bull.addAudioFile("cow");
 	      animals.put(tempArrayVariable++, Bull);
 		  
@@ -387,6 +397,7 @@ public class Assets {
 		  butterfly.addAnimalName(R.string.butterfly);
 		  butterfly.addAnimalName(R.string.butterfly_gr);
 		  butterfly.setAnimalVisualFile("butterfly");
+		  butterfly.setAnimalVisualFileSoundLang("butterfly");
 		  butterfly.addAudioFile("empty");
 	      animals.put(tempArrayVariable++, butterfly);
 		  
@@ -395,6 +406,7 @@ public class Assets {
 		  camel.addAnimalName(R.string.camel);
 		  camel.addAnimalName(R.string.camel_gr);
 		  camel.setAnimalVisualFile("camel");
+		  camel.setAnimalVisualFileSoundLang("camel");
 		  camel.addAudioFile("camel");
 	      animals.put(tempArrayVariable++, camel);
 		  
@@ -403,6 +415,7 @@ public class Assets {
 		  cat.addAnimalName(R.string.cat);
 		  cat.addAnimalName(R.string.cat_gr);
 		  cat.setAnimalVisualFile("cat");
+		  cat.setAnimalVisualFileSoundLang("cat");
 		  cat.addAudioFile("cat");
 	      animals.put(tempArrayVariable++, cat);
 		  
@@ -411,6 +424,7 @@ public class Assets {
 		  cat_face.addAnimalName(R.string.cat_face);
 		  cat_face.addAnimalName(R.string.cat_face_gr);
 		  cat_face.setAnimalVisualFile("cat_face");
+		  cat_face.setAnimalVisualFileSoundLang("cat");
 		  cat_face.addAudioFile("cat");
 	      animals.put(tempArrayVariable++, cat_face);
 		  
@@ -419,6 +433,7 @@ public class Assets {
 		  cat_siam.addAnimalName(R.string.cat_siam);
 		  cat_siam.addAnimalName(R.string.cat_siam_gr);
 		  cat_siam.setAnimalVisualFile("cat_siam");
+		  cat_siam.setAnimalVisualFileSoundLang("cat");
 		  cat_siam.addAudioFile("cat");
 	      animals.put(tempArrayVariable++, cat_siam);
 		  
@@ -427,6 +442,7 @@ public class Assets {
 		  chicken.addAnimalName(R.string.chicken);
 		  chicken.addAnimalName(R.string.chicken_gr);
 		  chicken.setAnimalVisualFile("chicken");
+		  chicken.setAnimalVisualFileSoundLang("chicken");
 		  chicken.addAudioFile("chiken");
 	      animals.put(tempArrayVariable++, chicken);
 		  
@@ -435,6 +451,7 @@ public class Assets {
 		  chicks.addAnimalName(R.string.chicks);
 		  chicks.addAnimalName(R.string.chicks_gr);
 		  chicks.setAnimalVisualFile("chicks");
+		  chicks.setAnimalVisualFileSoundLang("chicks");
 		  chicks.addAudioFile("chiken");
 	      animals.put(tempArrayVariable++, chicks);
 		  
@@ -443,6 +460,7 @@ public class Assets {
 		  chipmank.addAnimalName(R.string.chipmank);
 		  chipmank.addAnimalName(R.string.chipmank_gr);
 		  chipmank.setAnimalVisualFile("chipmank");
+		  chipmank.setAnimalVisualFileSoundLang("chipmank");
 		  chipmank.addAudioFile("chipmunk");
 	      animals.put(tempArrayVariable++, chipmank);
 		  
@@ -451,6 +469,7 @@ public class Assets {
 		  Cow_female_black_white.addAnimalName(R.string.Cow_female_black_white);
 		  Cow_female_black_white.addAnimalName(R.string.Cow_female_black_white_gr);
 		  Cow_female_black_white.setAnimalVisualFile("Cow_female_black_white");
+		  Cow_female_black_white.setAnimalVisualFileSoundLang("Cow_female_black_white");
 		  Cow_female_black_white.addAudioFile("cow");
 	      animals.put(tempArrayVariable++, Cow_female_black_white);
 		  
@@ -459,6 +478,7 @@ public class Assets {
 		  crab.addAnimalName(R.string.crab);
 		  crab.addAnimalName(R.string.crab_gr);
 		  crab.setAnimalVisualFile("crab");
+		  crab.setAnimalVisualFileSoundLang("crab");
 		  crab.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, crab);
 		  
@@ -466,7 +486,8 @@ public class Assets {
 		  Animal crocodile = new Animal();
 		  crocodile.addAnimalName(R.string.crocodile);
 		  crocodile.addAnimalName(R.string.crocodile_gr);
-		  crocodile.setAnimalVisualFile("crocodile");		
+		  crocodile.setAnimalVisualFile("crocodile");	
+		  crocodile.setAnimalVisualFileSoundLang("crocodile");
 		  crocodile.addAudioFile("crocodile");
 	      animals.put(tempArrayVariable++, crocodile);
 		  
@@ -475,6 +496,7 @@ public class Assets {
 		  crow.addAnimalName(R.string.crow);
 		  crow.addAnimalName(R.string.crow_gr);
 		  crow.setAnimalVisualFile("crow");
+		  crow.setAnimalVisualFileSoundLang("crow");
 		  crow.addAudioFile("crow");
 	      animals.put(tempArrayVariable++, crow);
 		  
@@ -483,6 +505,7 @@ public class Assets {
 		  dog_german_shepard.addAnimalName(R.string.dog_german_shepard);
 		  dog_german_shepard.addAnimalName(R.string.dog_german_shepard_gr);
 		  dog_german_shepard.setAnimalVisualFile("dog_german_shepard");
+		  dog_german_shepard.setAnimalVisualFileSoundLang("dog");
 		  dog_german_shepard.addAudioFile("dog");
 	      animals.put(tempArrayVariable++, dog_german_shepard);
 		  
@@ -491,6 +514,7 @@ public class Assets {
 		  dog_lassie.addAnimalName(R.string.dog_lassie);
 		  dog_lassie.addAnimalName(R.string.dog_lassie_gr);
 		  dog_lassie.setAnimalVisualFile("dog_lassie");
+		  dog_lassie.setAnimalVisualFileSoundLang("dog");
 		  dog_lassie.addAudioFile("dog");
 	      animals.put(tempArrayVariable++, dog_lassie);
 		  
@@ -499,6 +523,7 @@ public class Assets {
 		  dog_terrier.addAnimalName(R.string.dog_terrier);
 		  dog_terrier.addAnimalName(R.string.dog_terrier_gr);
 		  dog_terrier.setAnimalVisualFile("dog_terrier");
+		  dog_terrier.setAnimalVisualFileSoundLang("dog");
 		  dog_terrier.addAudioFile("dog");
 	      animals.put(tempArrayVariable++, dog_terrier);
 		  		  
@@ -507,6 +532,7 @@ public class Assets {
 		  dolphin.addAnimalName(R.string.dolphin);
 		  dolphin.addAnimalName(R.string.dolphin_gr);
 		  dolphin.setAnimalVisualFile("dolphin");
+		  dolphin.setAnimalVisualFileSoundLang("dolphin");
 		  dolphin.addAudioFile("dolphin");
 	      animals.put(tempArrayVariable++, dolphin);
 		  
@@ -515,6 +541,7 @@ public class Assets {
 		  dove.addAnimalName(R.string.dove);
 		  dove.addAnimalName(R.string.dove_gr);
 		  dove.setAnimalVisualFile("dove");
+		  dove.setAnimalVisualFileSoundLang("dove");
 		  dove.addAudioFile("dove");
 	      animals.put(tempArrayVariable++, dove);
 		  
@@ -523,6 +550,7 @@ public class Assets {
 		  dragonfly.addAnimalName(R.string.dragonfly);
 		  dragonfly.addAnimalName(R.string.dragonfly_gr);
 		  dragonfly.setAnimalVisualFile("dragonfly");
+		  dragonfly.setAnimalVisualFileSoundLang("dragonfly");
 		  dragonfly.addAudioFile("mosquito");
 	      animals.put(tempArrayVariable++, dragonfly);
 		  
@@ -531,6 +559,7 @@ public class Assets {
 		  duck.addAnimalName(R.string.duck);
 		  duck.addAnimalName(R.string.duck_gr);
 		  duck.setAnimalVisualFile("duck");
+		  duck.setAnimalVisualFileSoundLang("duck");
 		  duck.addAudioFile("duck");
 	      animals.put(tempArrayVariable++, duck);
 		  	  
@@ -539,6 +568,7 @@ public class Assets {
 		  eagle_bold.addAnimalName(R.string.eagle_bold);
 		  eagle_bold.addAnimalName(R.string.eagle_bold_gr);
 		  eagle_bold.setAnimalVisualFile("eagle_bold");
+		  eagle_bold.setAnimalVisualFileSoundLang("eagle_bold");
 		  eagle_bold.addAudioFile("eagle");
 	      animals.put(tempArrayVariable++, eagle_bold);
 		  
@@ -547,6 +577,7 @@ public class Assets {
 		  elephant.addAnimalName(R.string.elephant);
 		  elephant.addAnimalName(R.string.elephant_gr);
 		  elephant.setAnimalVisualFile("elephant");
+		  elephant.setAnimalVisualFileSoundLang("elephant");
 		  elephant.addAudioFile("elephant");
 	      animals.put(tempArrayVariable++, elephant);
 		  
@@ -555,6 +586,7 @@ public class Assets {
 		  elk.addAnimalName(R.string.elk);
 		  elk.addAnimalName(R.string.elk_gr);	  
 		  elk.setAnimalVisualFile("elk");
+		  elk.setAnimalVisualFileSoundLang("elk");
 		  elk.addAudioFile("elk");
 	      animals.put(tempArrayVariable++, elk);
 		  	  	  
@@ -563,6 +595,7 @@ public class Assets {
 		  fish_clown.addAnimalName(R.string.fish_clown);
 		  fish_clown.addAnimalName(R.string.fish_clown_gr);
 		  fish_clown.setAnimalVisualFile("fish_clown");
+		  fish_clown.setAnimalVisualFileSoundLang("fish_clown");
 		  fish_clown.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, fish_clown);
 		  
@@ -571,6 +604,7 @@ public class Assets {
 		  fish_goldfish.addAnimalName(R.string.fish_goldfish);
 		  fish_goldfish.addAnimalName(R.string.fish_goldfish_gr);
 		  fish_goldfish.setAnimalVisualFile("fish_goldfish");
+		  fish_goldfish.setAnimalVisualFileSoundLang("fish_goldfish");
 		  fish_goldfish.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, fish_goldfish);
 		  
@@ -579,6 +613,7 @@ public class Assets {
 		  fish_scorpion.addAnimalName(R.string.fish_scorpion);
 		  fish_scorpion.addAnimalName(R.string.fish_scorpion_gr);
 		  fish_scorpion.setAnimalVisualFile("fish_scorpion");
+		  fish_scorpion.setAnimalVisualFileSoundLang("fish_scorpion");
 		  fish_scorpion.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, fish_scorpion);
 		  
@@ -587,6 +622,7 @@ public class Assets {
 		  fox.addAnimalName(R.string.fox);
 		  fox.addAnimalName(R.string.fox_gr);
 		  fox.setAnimalVisualFile("fox");
+		  fox.setAnimalVisualFileSoundLang("fox");
 		  fox.addAudioFile("fox");
 	      animals.put(tempArrayVariable++, fox);
 		  
@@ -595,6 +631,7 @@ public class Assets {
 		  frog.addAnimalName(R.string.frog);
 		  frog.addAnimalName(R.string.frog_gr);
 		  frog.setAnimalVisualFile("frog");
+		  frog.setAnimalVisualFileSoundLang("frog");
 		  frog.addAudioFile("frog");
 	      animals.put(tempArrayVariable++, frog);
 		  
@@ -604,6 +641,7 @@ public class Assets {
 		  giraffe.addAnimalName(R.string.giraffe);
 		  giraffe.addAnimalName(R.string.giraffe_gr);
 		  giraffe.setAnimalVisualFile("giraffe");
+		  giraffe.setAnimalVisualFileSoundLang("giraffe");
 		  giraffe.addAudioFile("giraffe");
 	      animals.put(tempArrayVariable++, giraffe);
 		  
@@ -612,6 +650,7 @@ public class Assets {
 		  goat.addAnimalName(R.string.goat);
 		  goat.addAnimalName(R.string.goat_gr);
 		  goat.setAnimalVisualFile("goat");	
+		  goat.setAnimalVisualFileSoundLang("goat");	
 		  goat.addAudioFile("goat");
 	      animals.put(tempArrayVariable++, goat);
 
@@ -620,6 +659,7 @@ public class Assets {
 		  grasshoper.addAnimalName(R.string.grasshoper);
 		  grasshoper.addAnimalName(R.string.grasshoper_gr);
 		  grasshoper.setAnimalVisualFile("grasshoper");
+		  grasshoper.setAnimalVisualFileSoundLang("grasshoper");
 		  grasshoper.addAudioFile("grasshopper");
 	      animals.put(tempArrayVariable++, grasshoper);
 		  
@@ -628,6 +668,7 @@ public class Assets {
 		  guinea_pig.addAnimalName(R.string.guinea_pig);
 		  guinea_pig.addAnimalName(R.string.guinea_pig_gr);
 		  guinea_pig.setAnimalVisualFile("guinea_pig");
+		  guinea_pig.setAnimalVisualFileSoundLang("guinea_pig");
 		  guinea_pig.addAudioFile("mouse");
 	      animals.put(tempArrayVariable++, guinea_pig);
 		  
@@ -636,6 +677,7 @@ public class Assets {
 		  hedgehog.addAnimalName(R.string.hedgehog);
 		  hedgehog.addAnimalName(R.string.hedgehog_gr);
 		  hedgehog.setAnimalVisualFile("hedgehog");
+		  hedgehog.setAnimalVisualFileSoundLang("hedgehog");
 		  hedgehog.addAudioFile("hedgehog");	  
 	      animals.put(tempArrayVariable++, hedgehog);
 		  
@@ -644,6 +686,7 @@ public class Assets {
 		  horse.addAnimalName(R.string.horse);
 		  horse.addAnimalName(R.string.horse_gr);
 		  horse.setAnimalVisualFile("horse");
+		  horse.setAnimalVisualFileSoundLang("horse");
 		  horse.addAudioFile("horse");
 	      animals.put(tempArrayVariable++, horse);
 		  
@@ -652,6 +695,7 @@ public class Assets {
 		  insect_bee.addAnimalName(R.string.insect_bee);
 		  insect_bee.addAnimalName(R.string.insect_bee_gr);
 		  insect_bee.setAnimalVisualFile("insect_bee");
+		  insect_bee.setAnimalVisualFileSoundLang("insect_bee");
 		  insect_bee.addAudioFile("mosquito");	
 	      animals.put(tempArrayVariable++, insect_bee);
 		  
@@ -660,6 +704,7 @@ public class Assets {
 		  Kangaroo.addAnimalName(R.string.Kangaroo);
 		  Kangaroo.addAnimalName(R.string.Kangaroo_gr);
 		  Kangaroo.setAnimalVisualFile("Kangaroo");
+		  Kangaroo.setAnimalVisualFileSoundLang("Kangaroo");
 		  Kangaroo.addAudioFile("spring");	
 	      animals.put(tempArrayVariable++, Kangaroo);
 		  
@@ -668,6 +713,7 @@ public class Assets {
 		  koala.addAnimalName(R.string.koala);
 		  koala.addAnimalName(R.string.koala_gr);
 		  koala.setAnimalVisualFile("koala");
+		  koala.setAnimalVisualFileSoundLang("koala");
 		  koala.addAudioFile("koala");	
 	      animals.put(tempArrayVariable++, koala);
 		  
@@ -676,6 +722,7 @@ public class Assets {
 		  ladybug.addAnimalName(R.string.ladybug);
 		  ladybug.addAnimalName(R.string.ladybug_gr);
 		  ladybug.setAnimalVisualFile("ladybug");
+		  ladybug.setAnimalVisualFileSoundLang("ladybug");
 		  ladybug.addAudioFile("fly");
 
 	      animals.put(tempArrayVariable++, ladybug);
@@ -685,6 +732,7 @@ public class Assets {
 		  lamb.addAnimalName(R.string.lamb);
 		  lamb.addAnimalName(R.string.lamb_gr);
 		  lamb.setAnimalVisualFile("lamb");
+		  lamb.setAnimalVisualFileSoundLang("lamb");
 		  lamb.addAudioFile("goat");
 	      animals.put(tempArrayVariable++, lamb);
 		  
@@ -693,6 +741,7 @@ public class Assets {
 		  leopard.addAnimalName(R.string.leopard);
 		  leopard.addAnimalName(R.string.leopard_gr);
 		  leopard.setAnimalVisualFile("leopard");
+		  leopard.setAnimalVisualFileSoundLang("leopard");
 		  leopard.addAudioFile("tiger");
 	      animals.put(tempArrayVariable++, leopard);
 		  
@@ -701,6 +750,7 @@ public class Assets {
 		  lion.addAnimalName(R.string.lion);
 		  lion.addAnimalName(R.string.lion_gr);
 		  lion.setAnimalVisualFile("lion");
+		  lion.setAnimalVisualFileSoundLang("lion");
 		  lion.addAudioFile("lion");
 	      animals.put(tempArrayVariable++, lion);
 		  
@@ -709,6 +759,7 @@ public class Assets {
 		  lizard_Igouana.addAnimalName(R.string.lizard_Igouana);
 		  lizard_Igouana.addAnimalName(R.string.lizard_Igouana_gr);
 		  lizard_Igouana.setAnimalVisualFile("lizard_Igouana");
+		  lizard_Igouana.setAnimalVisualFileSoundLang("lizard_Igouana");
 		  lizard_Igouana.addAudioFile("reptile");
 	      animals.put(tempArrayVariable++, lizard_Igouana);
 		  
@@ -717,6 +768,7 @@ public class Assets {
 		  lizard.addAnimalName(R.string.lizard);
 		  lizard.addAnimalName(R.string.lizard_gr);
 		  lizard.setAnimalVisualFile("lizard");
+		  lizard.setAnimalVisualFileSoundLang("lizard");
 		  lizard.addAudioFile("reptile");
 	      animals.put(tempArrayVariable++, lizard);
 		  
@@ -725,6 +777,7 @@ public class Assets {
 		  lobster.addAnimalName(R.string.lobster);
 		  lobster.addAnimalName(R.string.lobster_gr);
 		  lobster.setAnimalVisualFile("lobster");
+		  lobster.setAnimalVisualFileSoundLang("lobster");
 		  lobster.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, lobster);
 		  
@@ -733,6 +786,7 @@ public class Assets {
 		  monkey.addAnimalName(R.string.monkey);
 		  monkey.addAnimalName(R.string.monkey_gr);
 		  monkey.setAnimalVisualFile("monkey");
+		  monkey.setAnimalVisualFileSoundLang("monkey");
 		  monkey.addAudioFile("monkey");
 	      animals.put(tempArrayVariable++, monkey);
 		  
@@ -741,6 +795,7 @@ public class Assets {
 		  moose.addAnimalName(R.string.moose);
 		  moose.addAnimalName(R.string.moose_gr);
 		  moose.setAnimalVisualFile("moose");
+		  moose.setAnimalVisualFileSoundLang("moose");
 		  moose.addAudioFile("moose");
 	      animals.put(tempArrayVariable++, moose);
 		  
@@ -749,6 +804,7 @@ public class Assets {
 		  mosquito.addAnimalName(R.string.mosquito);
 		  mosquito.addAnimalName(R.string.mosquito_gr);
 		  mosquito.setAnimalVisualFile("mosquito");
+		  mosquito.setAnimalVisualFileSoundLang("mosquito");
 		  mosquito.addAudioFile("mosquito");
 	      animals.put(tempArrayVariable++, mosquito);
 		  
@@ -757,6 +813,7 @@ public class Assets {
 		  mouse_field.addAnimalName(R.string.mouse_field);
 		  mouse_field.addAnimalName(R.string.mouse_field_gr);
 		  mouse_field.setAnimalVisualFile("mouse_field");
+		  mouse_field.setAnimalVisualFileSoundLang("mouse_field");
 		  mouse_field.addAudioFile("mouse");
 	      animals.put(tempArrayVariable++, mouse_field);
 		  
@@ -765,6 +822,7 @@ public class Assets {
 		  orca.addAnimalName(R.string.orca);
 		  orca.addAnimalName(R.string.orca_gr);
 		  orca.setAnimalVisualFile("orca");
+		  orca.setAnimalVisualFileSoundLang("orca");
 		  orca.addAudioFile("orca");		
 	      animals.put(tempArrayVariable++, orca);
 		  
@@ -773,6 +831,7 @@ public class Assets {
 		  owl.addAnimalName(R.string.owl);
 		  owl.addAnimalName(R.string.owl_gr);
 		  owl.setAnimalVisualFile("owl");
+		  owl.setAnimalVisualFileSoundLang("owl");
 		  owl.addAudioFile("owl");		
 	      animals.put(tempArrayVariable++, owl);
 		  
@@ -781,6 +840,7 @@ public class Assets {
 		  panda.addAnimalName(R.string.panda);
 		  panda.addAnimalName(R.string.panda_gr);
 		  panda.setAnimalVisualFile("panda");
+		  panda.setAnimalVisualFileSoundLang("panda");
 		  panda.addAudioFile("panda");
 	      animals.put(tempArrayVariable++, panda);
 		  
@@ -789,6 +849,7 @@ public class Assets {
 		  parrot.addAnimalName(R.string.parrot);
 		  parrot.addAnimalName(R.string.parrot_gr);
 		  parrot.setAnimalVisualFile("parrot");
+		  parrot.setAnimalVisualFileSoundLang("parrot");
 		  parrot.addAudioFile("parrot");
 	      animals.put(tempArrayVariable++, parrot);
 
@@ -798,6 +859,7 @@ public class Assets {
 		  peacock.addAnimalName(R.string.peacock_gr);
 		  peacock.addAudioFile("peacock");
 		  peacock.setAnimalVisualFile("peacock");
+		  peacock.setAnimalVisualFileSoundLang("peacock");
 	      animals.put(tempArrayVariable++, peacock);
 		  
 		  //63 PENGUIN
@@ -806,6 +868,7 @@ public class Assets {
 		  penguin.addAnimalName(R.string.penguin_gr);
 		  penguin.addAudioFile("penguin");
 		  penguin.setAnimalVisualFile("penguin");
+		  penguin.setAnimalVisualFileSoundLang("penguin");
 	      animals.put(tempArrayVariable++, penguin);
 		  
 		  //64 PIG
@@ -814,6 +877,7 @@ public class Assets {
 		  pig.addAnimalName(R.string.pig_gr);
 		  pig.addAudioFile("pig");
 		  pig.setAnimalVisualFile("pig");
+		  pig.setAnimalVisualFileSoundLang("pig");
 	      animals.put(tempArrayVariable++, pig);
 		  
 		  //65 RABBIT
@@ -822,6 +886,7 @@ public class Assets {
 		  rabbit.addAnimalName(R.string.rabbit_gr);
 		  rabbit.addAudioFile("rabit");
 		  rabbit.setAnimalVisualFile("rabbit");
+		  rabbit.setAnimalVisualFileSoundLang("rabbit");
 	      animals.put(tempArrayVariable++, rabbit);
 		  
 		 //66 RABBIT2
@@ -829,7 +894,8 @@ public class Assets {
 		  rabbit2.addAnimalName(R.string.rabbit2);
 		  rabbit2.addAnimalName(R.string.rabbit2_gr);
 		  rabbit2.addAudioFile("rabit");
-		  rabbit2.setAnimalVisualFile("rabbit");
+		  rabbit2.setAnimalVisualFile("rabbit2");
+		  rabbit2.setAnimalVisualFileSoundLang("rabbit");
 	      animals.put(tempArrayVariable++, rabbit2);
 		  
 		  //67 RACOON
@@ -838,6 +904,7 @@ public class Assets {
 		  racoon.addAnimalName(R.string.racoon_gr);
 		  racoon.addAudioFile("racoon");
 		  racoon.setAnimalVisualFile("racoon");
+		  racoon.setAnimalVisualFileSoundLang("racoon");
 	      animals.put(tempArrayVariable++, racoon);
 		  
 		 //68 RHINO
@@ -846,6 +913,7 @@ public class Assets {
 		  rhino.addAnimalName(R.string.rhino_gr);
 		  rhino.addAudioFile("rhino");
 		  rhino.setAnimalVisualFile("rhino");
+		  rhino.setAnimalVisualFileSoundLang("rhino");
 	      animals.put(tempArrayVariable++, rhino);
 		  
 		  //69 ROOSTER
@@ -853,7 +921,8 @@ public class Assets {
 		  rooster.addAnimalName(R.string.rooster);
 		  rooster.addAnimalName(R.string.rooster_gr);
 		  rooster.addAudioFile("rooster");
-		  rooster.setAnimalVisualFile("rooster");  
+		  rooster.setAnimalVisualFile("rooster"); 
+		  rooster.setAnimalVisualFileSoundLang("rooster"); 
 	      animals.put(tempArrayVariable++, rooster);  
 		  
 		 //70 SEA LION
@@ -862,6 +931,7 @@ public class Assets {
 		  sea_lion.addAnimalName(R.string.sea_lion_gr);
 		  sea_lion.addAudioFile("sea_lion");
 		  sea_lion.setAnimalVisualFile("sea_lion");
+		  sea_lion.setAnimalVisualFileSoundLang("sea_lion");
 	      animals.put(tempArrayVariable++, sea_lion);
 		  
 		  //71 SHARK
@@ -870,6 +940,7 @@ public class Assets {
 		  shark.addAnimalName(R.string.shark_gr);
 		  shark.addAudioFile("fish");
 		  shark.setAnimalVisualFile("shark");
+		  shark.setAnimalVisualFileSoundLang("shark");
 	      animals.put(tempArrayVariable++, shark);
 		  
 		  
@@ -878,12 +949,14 @@ public class Assets {
 		  shrimp.addAnimalName(R.string.shrimp);
 		  shrimp.addAnimalName(R.string.shrimp_gr);
 		  shrimp.setAnimalVisualFile("shrimp");
+		  shrimp.setAnimalVisualFileSoundLang("shrimp");
 		  shrimp.addAudioFile("fish");
 	      animals.put(tempArrayVariable++, shrimp);
 		  
 		 //73 SNAIL
 		  Animal snail = new Animal();
 		  snail.setAnimalVisualFile("snail");
+		  snail.setAnimalVisualFileSoundLang("snail");
 		  snail.addAnimalName(R.string.snail);
 		  snail.addAnimalName(R.string.snail_gr);
 		  snail.addAudioFile("empty");
@@ -894,6 +967,7 @@ public class Assets {
 		  snake.addAnimalName(R.string.snake);
 		  snake.addAnimalName(R.string.snake_gr);
 		  snake.setAnimalVisualFile("snake");
+		  snake.setAnimalVisualFileSoundLang("snake");
 		  snake.addAudioFile("snake");
 	      animals.put(tempArrayVariable++, snake);
 		  
@@ -902,6 +976,7 @@ public class Assets {
 		  spider.addAnimalName(R.string.spider);
 		  spider.addAnimalName(R.string.spider_gr);
 		  spider.setAnimalVisualFile("spider");
+		  spider.setAnimalVisualFileSoundLang("spider");
 		  spider.addAudioFile("empty");
 	      animals.put(tempArrayVariable++, spider);
 		  
@@ -910,6 +985,7 @@ public class Assets {
 		  starfish.addAnimalName(R.string.starfish);
 		  starfish.addAnimalName(R.string.starfish_gr);
 		  starfish.setAnimalVisualFile("starfish");
+		  starfish.setAnimalVisualFileSoundLang("starfish");
 		  starfish.addAudioFile("fish");	
 	      animals.put(tempArrayVariable++, starfish);
 		  
@@ -918,6 +994,7 @@ public class Assets {
 		  swan.addAnimalName(R.string.swan);
 		  swan.addAnimalName(R.string.swan_gr);
 		  swan.setAnimalVisualFile("swan");
+		  swan.setAnimalVisualFileSoundLang("swan");
 		  swan.addAudioFile("swan");	
 	      animals.put(tempArrayVariable++, swan);
 		  
@@ -926,6 +1003,7 @@ public class Assets {
 		  swordfish.addAnimalName(R.string.swordfish);
 		  swordfish.addAnimalName(R.string.swordfish_gr);
 		  swordfish.setAnimalVisualFile("swordfish");
+		  swordfish.setAnimalVisualFileSoundLang("swordfish");
 		  swordfish.addAudioFile("fish");	
 	      animals.put(tempArrayVariable++, swordfish);
 		  
@@ -934,6 +1012,7 @@ public class Assets {
 		  tiger.addAnimalName(R.string.tiger);
 		  tiger.addAnimalName(R.string.tiger_gr);
 		  tiger.setAnimalVisualFile("tiger");
+		  tiger.setAnimalVisualFileSoundLang("tiger");
 		  tiger.addAudioFile("tiger");	
 	      animals.put(tempArrayVariable++, tiger);
 		  
@@ -942,6 +1021,7 @@ public class Assets {
 		  turkey.addAnimalName(R.string.turkey);
 		  turkey.addAnimalName(R.string.turkey_gr);
 		  turkey.setAnimalVisualFile("turkey");
+		  turkey.setAnimalVisualFileSoundLang("turkey");
 		  turkey.addAudioFile("turkey");	
 	      animals.put(tempArrayVariable++, turkey);
 		  
@@ -950,6 +1030,7 @@ public class Assets {
 		  turtle.addAnimalName(R.string.turtle);
 		  turtle.addAnimalName(R.string.turtle_gr);
 		  turtle.setAnimalVisualFile("turtle");
+		  turtle.setAnimalVisualFileSoundLang("turtle");
 		  turtle.addAudioFile("fish");	
 	      animals.put(tempArrayVariable++, turtle);
 		  
@@ -958,6 +1039,7 @@ public class Assets {
 		  wolf.addAnimalName(R.string.wolf);
 		  wolf.addAnimalName(R.string.wolf_gr);
 		  wolf.setAnimalVisualFile("wolf");
+		  wolf.setAnimalVisualFileSoundLang("wolf");
 		  wolf.addAudioFile("wolf");	
 	      animals.put(tempArrayVariable++, wolf);
 		  
@@ -966,6 +1048,7 @@ public class Assets {
 		  zebra.addAnimalName(R.string.zebra);
 		  zebra.addAnimalName(R.string.zebra_gr);
 		  zebra.setAnimalVisualFile("zebra");
+		  zebra.setAnimalVisualFileSoundLang("zebra");
 		  zebra.addAudioFile("zebra");	
 	      animals.put(tempArrayVariable++, zebra);
 		  
@@ -974,6 +1057,7 @@ public class Assets {
 		  sea_gull.addAnimalName(R.string.sea_gull);
 		  sea_gull.addAnimalName(R.string.sea_gull_gr);
 		  sea_gull.setAnimalVisualFile("sea_gull");
+		  sea_gull.setAnimalVisualFileSoundLang("sea_gull");
 		  sea_gull.addAudioFile("seagull");	
 	      animals.put(tempArrayVariable++, sea_gull);
 		  
@@ -983,6 +1067,7 @@ public class Assets {
 		  hippo.addAnimalName(R.string.hippo);
 		  hippo.addAnimalName(R.string.hippo_gr);
 		  hippo.setAnimalVisualFile("hippo");
+		  hippo.setAnimalVisualFileSoundLang("hippo");
 		  hippo.addAudioFile("hippo");	
 	      animals.put(tempArrayVariable++, hippo);
 		
@@ -992,6 +1077,7 @@ public class Assets {
 		  donkey.addAnimalName(R.string.donkey);
 		  donkey.addAnimalName(R.string.donkey_gr);
 		  donkey.setAnimalVisualFile("donkey");
+		  donkey.setAnimalVisualFileSoundLang("donkey");
 		  donkey.addAudioFile("donkey");	
 	      animals.put(tempArrayVariable++, donkey);		  
 			  
