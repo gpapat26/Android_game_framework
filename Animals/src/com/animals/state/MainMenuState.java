@@ -50,7 +50,7 @@ public class MainMenuState extends State {
 		if (e.getAction() == MotionEvent.ACTION_UP) {
 			if (carouzelButton.isPressed(scaledX, scaledY)) {
 				
-				carouzelButton.cancel();				
+				carouzelButton.cancel();					
 				setCurrentState(new CarouzelState());
 				
 			} else {
