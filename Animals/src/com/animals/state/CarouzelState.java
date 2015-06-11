@@ -45,6 +45,8 @@ public class CarouzelState extends State {
 		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
 		//carouzel_next = new UIButton(725, 290, 790, 370, Assets.carouzel_right_down, Assets.carouzel_right);	
 		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);
+		//Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.ogg",false);
+		resolveLinguisticSoundAndPlay();
 	}
 
 	@Override
@@ -58,7 +60,7 @@ public class CarouzelState extends State {
 		String animalName = "UNDENTIFIED";
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		try{
-			 animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(languageCode));	
+			 animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(GameMainActivity.getLanguageCode()));	
 		//	 Log.d("CarouzelState", "found animal name with index: "+carouzelIndex + "and language code: "+languageCode +" "+animalName);
 
 		}catch(Exception b){
@@ -116,31 +118,68 @@ public class CarouzelState extends State {
 				carouzel_next.cancel();	
 				if (carouzelIndex < Assets.getSizeOfGallery())
 					{
-					carouzelIndex++;	
+					carouzelIndex++;
+					playAnimalSoundsAndVoice();
 					}
 				else{
 					carouzelIndex = 1; //roll - over
+					playAnimalSoundsAndVoice();
 				    }
 			}else if(carouzel_prev.isPressed(scaledX, scaledY)){
 				carouzel_prev.cancel();
 				if (carouzelIndex>1){
 					carouzelIndex--;
+					playAnimalSoundsAndVoice();
 				}else{
 					carouzelIndex=Assets.getSizeOfGallery();
+					playAnimalSoundsAndVoice();
 				}
 														
 			} else {
 				carouzel_next.cancel();
 				carouzel_prev.cancel();
 			}
+			
+		
 		}
 		Assets.loadGalleryImageResolver(carouzelIndex);
+		
+	
+		return true;
+	}
+	
+	private void playAnimalSoundsAndVoice(){
 		try{
 			ArrayList<String> musicList = Assets.animals.get(carouzelIndex).getAnimalAudioFile();
 			
 			if(musicList != null && musicList.size()>0){
-				Assets.playGallerySounds(musicList.get(0));
-				Log.d("CarouzelState", "playing "+ Assets.animals.get(carouzelIndex).getAnimalVisualFile());
+				//Assets.playGallerySounds(musicList.get(0));
+				Assets.playMusic2(musicList.get(0)+".ogg",false);
+				
+					Thread thread = new Thread(){				    
+					public void run(){
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+						
+							e.printStackTrace();
+						}
+//						switch(languageCode){
+//						case 0 : 
+//							Log.d("CarouzelState", "starting second media player");
+//					    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.ogg",false);
+//						break;
+//						
+//						case 1 : 
+//							Log.d("CarouzelState", "starting second media player");
+//					    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.ogg",false);
+//						break;
+//						}
+						resolveLinguisticSoundAndPlay();				     
+				    }
+				  };
+				  thread.start();			
 			}
 			else{
 				Assets.stopSoundOnDemand();
@@ -151,6 +190,20 @@ public class CarouzelState extends State {
 					"does not appear to have any sound :"+s.getMessage());
 		}
 		
-		return true;
+	}
+	
+	private void resolveLinguisticSoundAndPlay(){
+		
+		switch(languageCode){
+		case 0 : 
+			Log.d("CarouzelState", "starting second media player");
+	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.ogg",false);
+		break;
+		
+		case 1 : 
+			Log.d("CarouzelState", "starting second media player");
+	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.ogg",false);
+		break;
+		}
 	}
 }
