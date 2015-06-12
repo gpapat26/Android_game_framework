@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Animals</string>
-    <string name="exit">exit</string>
+    <string name="exit">Press again to exit</string>
     <string name="ant">ANT</string>
     <string name="baby_dear">DEAR</string>
     <string name="bear_grizzly">GRIZZLY</string>
@@ -34,14 +34,14 @@
     <string name="eagle_bold">EAGLE</string>
     <string name="elephant">ELEPHANT</string>
     <string name="elk">ELK</string>
-    <string name="fish_clown">CLOW NFISH</string>
+    <string name="fish_clown">CLOWN FISH</string>
     <string name="fish_goldfish">GOLD FISH</string>
     <string name="fish_scorpion">SCORPION FISH</string>
     <string name="fox">FOX</string>
     <string name="frog">FROG</string>
     <string name="giraffe">GIRAFFE</string>
     <string name="goat">GOAT</string>
-    <string name="grasshoper">GRASSHOPER</string>
+    <string name="grasshoper">GRASSHOPPER</string>
     <string name="guinea_pig">GUINEA PIG</string>
     <string name="hedgehog">HEDGEHOG</string>
     <string name="horse">HORSE</string>
@@ -69,8 +69,8 @@
     <string name="rabbit">RABBIT</string>
     <string name="rabbit2">RABBIT</string>
     <string name="racoon">RACOON</string>
-    <string name="rhino">RHINO</string>
-    <string name="rooster">ROOSTER</string>
+    <string name="rhino">RHINOCEROS</string>
+    <string name="rooster">ROUSTER</string>
     <string name="sea_lion">SEA LION</string>
     <string name="shark">SHARK</string>
     <string name="shrimp">SHRIMP</string>
@@ -85,8 +85,8 @@
     <string name="turtle">TURTLE</string>
     <string name="wolf">WOLF</string>
     <string name="zebra">ZEBRA</string>
-    <string name="sea_gull">SEA GULL</string>
-    <string name="hippo">HIPPO</string>
+    <string name="sea_gull">SEAGULL</string>
+    <string name="hippo">HIPPOPOTAMUS</string>
     <string name="donkey">DONKEY</string>
 
     <!-- GREEK ANIMALS -->

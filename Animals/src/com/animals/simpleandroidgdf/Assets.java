@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.animals.model.Animal;
+import com.animals.util.UIButton;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -56,6 +57,9 @@ public class Assets {
 
 	public static Bitmap english;
 	public static Bitmap english_down;
+	
+	public static Bitmap play_animal;
+	public static Bitmap play_animal_down;
 
 	// public static HashMap<Integer, Animal> animals = new HashMap<Integer,
 	// Animal>();
@@ -89,6 +93,11 @@ public class Assets {
 
 		english = loadBitmap("english_button.png", true, false);
 		english_down = loadBitmap("english_button_down.png", true, false);
+		
+		play_animal = loadBitmap("play_gallery_animal_up.png", true, false);
+		play_animal_down = loadBitmap("play_gallery_animal_down.png", true, false);
+		
+		
 
 		loadCarouzelMap();
 	}

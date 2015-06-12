@@ -3,20 +3,16 @@ package com.animals.state;
 
 import java.util.ArrayList;
 
-import android.graphics.Canvas;
+
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
-
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.simpleandroidgdf.GameView;
-import com.animals.simpleandroidgdf.R;
 import com.animals.util.Painter;
 import com.animals.util.UIButton;
 
@@ -26,7 +22,9 @@ public class CarouzelState extends State {
 
 	private UIButton carouzel_prev;
 	private UIButton carouzel_next;
+	private UIButton animal;
 	private Rect displayNameRect ;
+	
 	
 	private static float x1,x2;
 	static final int MIN_DISTANCE = 150;
@@ -40,12 +38,10 @@ public class CarouzelState extends State {
 		languageCode = GameMainActivity.getLanguageCode();
 		displayNameRect = new Rect(GameMainActivity.sGame.getSrcRectangle().left,350, GameMainActivity.sGame.getSrcRectangle().right, GameMainActivity.sGame.getSrcRectangle().bottom);		
 		Assets.onPause();
-		//Assets.loadGalleryImage("crocodile");
 		Assets.loadGalleryImageResolver(carouzelIndex);
 		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
-		//carouzel_next = new UIButton(725, 290, 790, 370, Assets.carouzel_right_down, Assets.carouzel_right);	
-		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);
-		//Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.ogg",false);
+		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);				
+		animal = new UIButton(110, 355, 200, 445, Assets.play_animal , Assets.play_animal_down);
 		resolveLinguisticSoundAndPlay();
 	}
 
@@ -73,6 +69,7 @@ public class CarouzelState extends State {
 	
 		carouzel_prev.render(g);
 		carouzel_next.render(g);
+		animal.render(g);
 	}
 	
 
@@ -84,7 +81,7 @@ public class CarouzelState extends State {
 			carouzel_next.onTouchDown(scaledX, scaledY);
 			carouzel_prev.onTouchDown(scaledX, scaledY);		
 			 x1 = e.getX();  
-			
+			 animal.onTouchDown(scaledX, scaledY);
 			 
 		}
 
@@ -112,7 +109,10 @@ public class CarouzelState extends State {
 	            }
 	            
 	           }
-	         
+	       if (animal.isPressed(scaledX, scaledY)) {
+	    	   animal.cancel();
+	    	   playAnimalSoundsAndVoice();
+	       }
 	           
 			if (carouzel_next.isPressed(scaledX, scaledY)) {
 				carouzel_next.cancel();	
@@ -165,17 +165,6 @@ public class CarouzelState extends State {
 						
 							e.printStackTrace();
 						}
-//						switch(languageCode){
-//						case 0 : 
-//							Log.d("CarouzelState", "starting second media player");
-//					    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.ogg",false);
-//						break;
-//						
-//						case 1 : 
-//							Log.d("CarouzelState", "starting second media player");
-//					    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.ogg",false);
-//						break;
-//						}
 						resolveLinguisticSoundAndPlay();				     
 				    }
 				  };
