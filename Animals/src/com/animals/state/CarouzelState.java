@@ -4,12 +4,14 @@ package com.animals.state;
 import java.util.ArrayList;
 
 
+
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
+
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.simpleandroidgdf.GameView;
@@ -24,6 +26,7 @@ public class CarouzelState extends State {
 	private UIButton carouzel_next;
 	private UIButton animal;
 	private Rect displayNameRect ;
+	private UIButton back;
 	
 	
 	private static float x1,x2;
@@ -42,6 +45,7 @@ public class CarouzelState extends State {
 		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
 		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);				
 		animal = new UIButton(110, 355, 200, 445, Assets.play_animal , Assets.play_animal_down);
+		back = new UIButton(605, 355, 695, 445, Assets.back , Assets.back_down);
 		resolveLinguisticSoundAndPlay();
 	}
 
@@ -70,6 +74,7 @@ public class CarouzelState extends State {
 		carouzel_prev.render(g);
 		carouzel_next.render(g);
 		animal.render(g);
+		back.render(g);
 	}
 	
 
@@ -82,6 +87,7 @@ public class CarouzelState extends State {
 			carouzel_prev.onTouchDown(scaledX, scaledY);		
 			 x1 = e.getX();  
 			 animal.onTouchDown(scaledX, scaledY);
+			 back.onTouchDown(scaledX, scaledY);
 			 
 		}
 
@@ -112,6 +118,12 @@ public class CarouzelState extends State {
 	       if (animal.isPressed(scaledX, scaledY)) {
 	    	   animal.cancel();
 	    	   playAnimalSoundsAndVoice();
+	       }
+	       if (back.isPressed(scaledX, scaledY)) {
+	    	   back.cancel();
+	    		Assets.loadGalleryImage("crab");
+				GameMainActivity.sGame.setCurrentState(new MainMenuState());
+				return true;
 	       }
 	           
 			if (carouzel_next.isPressed(scaledX, scaledY)) {

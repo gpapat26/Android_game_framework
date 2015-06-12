@@ -60,6 +60,9 @@ public class Assets {
 	
 	public static Bitmap play_animal;
 	public static Bitmap play_animal_down;
+	
+	public static Bitmap back;
+	public static Bitmap back_down;
 
 	// public static HashMap<Integer, Animal> animals = new HashMap<Integer,
 	// Animal>();
@@ -96,6 +99,9 @@ public class Assets {
 		
 		play_animal = loadBitmap("play_gallery_animal_up.png", true, false);
 		play_animal_down = loadBitmap("play_gallery_animal_down.png", true, false);
+		
+		back = loadBitmap("back.png", true, false);
+		back_down = loadBitmap("back_down.png", true, false);
 		
 		
 
@@ -248,6 +254,7 @@ public class Assets {
 			mediaPlayer2 = new MediaPlayer();
 			mediaPlayer2.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer2.setLooping(looping);
+			mediaPlayer2.setVolume(1.0f, 1.0f);
 		}
 		try {
 
@@ -322,6 +329,7 @@ public class Assets {
 			mediaPlayer3 = new MediaPlayer();
 			mediaPlayer3.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer3.setLooping(looping);
+			mediaPlayer3.setVolume(1.0f, 1.0f);
 		}
 		try {
 
