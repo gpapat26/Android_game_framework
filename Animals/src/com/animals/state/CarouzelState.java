@@ -5,16 +5,19 @@ import java.util.ArrayList;
 
 
 
+
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.simpleandroidgdf.GameView;
+import com.animals.simpleandroidgdf.R;
 import com.animals.util.Painter;
 import com.animals.util.UIButton;
 
@@ -32,6 +35,7 @@ public class CarouzelState extends State {
 	private static float x1,x2;
 	static final int MIN_DISTANCE = 150;
 	private static int languageCode = 0;
+	private static int backPressedCounter = 0;
 	
 	public  CarouzelState() {
 		init();
@@ -120,10 +124,17 @@ public class CarouzelState extends State {
 	    	   playAnimalSoundsAndVoice();
 	       }
 	       if (back.isPressed(scaledX, scaledY)) {
-	    	   back.cancel();
-	    		Assets.loadGalleryImage("crab");
-				GameMainActivity.sGame.setCurrentState(new MainMenuState());
-				return true;
+	    	   if(backPressedCounter<3){
+	    		   Toast.makeText(GameMainActivity.sGame.context, R.string.exit,Toast.LENGTH_SHORT).show();
+	    		   backPressedCounter++;
+	    	   }else{
+	    		   back.cancel();
+		    		Assets.loadGalleryImage("crab");
+					GameMainActivity.sGame.setCurrentState(new MainMenuState());
+					backPressedCounter = 0;
+					return true;
+	    	   }
+	    	  
 	       }
 	           
 			if (carouzel_next.isPressed(scaledX, scaledY)) {
@@ -166,8 +177,8 @@ public class CarouzelState extends State {
 			
 			if(musicList != null && musicList.size()>0){
 				//Assets.playGallerySounds(musicList.get(0));
-				Assets.playMusic2(musicList.get(0)+".ogg",false);
-				
+				//Assets.playMusic2(musicList.get(0)+".ogg",false);
+				Assets.playMusic2(musicList.get(0)+".mp3",false);
 					Thread thread = new Thread(){				    
 					public void run(){
 						
@@ -198,12 +209,12 @@ public class CarouzelState extends State {
 		switch(languageCode){
 		case 0 : 
 			Log.d("CarouzelState", "starting second media player");
-	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.ogg",false);
+	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.mp3",false);
 		break;
 		
 		case 1 : 
 			Log.d("CarouzelState", "starting second media player");
-	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.ogg",false);
+	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.mp3",false);
 		break;
 		}
 	}

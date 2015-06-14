@@ -162,7 +162,8 @@ public class Assets {
 	}
 
 	public static void playGallerySounds(String soundFileName) {
-		int id = loadSound(soundFileName + ".ogg");
+		//int id = loadSound(soundFileName + ".ogg");
+		int id = loadSound(soundFileName + ".mp3");
 		playSound(id);
 	}
 
@@ -254,7 +255,7 @@ public class Assets {
 			mediaPlayer2 = new MediaPlayer();
 			mediaPlayer2.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer2.setLooping(looping);
-			mediaPlayer2.setVolume(1.0f, 1.0f);
+		
 		}
 		try {
 
@@ -264,6 +265,7 @@ public class Assets {
 				mediaPlayer2 = new MediaPlayer();
 				mediaPlayer2.setAudioStreamType(AudioManager.STREAM_MUSIC);
 				mediaPlayer2.setLooping(looping);
+				
 			}
 
 			afd = GameMainActivity.assets.openFd(filename);
@@ -279,8 +281,11 @@ public class Assets {
 
 				@Override
 				public void onPrepared(MediaPlayer mp) {
-					if (!mp.isPlaying())
+					if (!mp.isPlaying()){
+						mp.setVolume(1.0f, 1.0f);
 						mp.start();
+					}
+						
 				}
 			});
 
@@ -329,7 +334,7 @@ public class Assets {
 			mediaPlayer3 = new MediaPlayer();
 			mediaPlayer3.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer3.setLooping(looping);
-			mediaPlayer3.setVolume(1.0f, 1.0f);
+			
 		}
 		try {
 
@@ -339,6 +344,7 @@ public class Assets {
 				mediaPlayer3 = new MediaPlayer();
 				mediaPlayer3.setAudioStreamType(AudioManager.STREAM_MUSIC);
 				mediaPlayer3.setLooping(looping);
+				
 			}
 
 			afd = GameMainActivity.assets.openFd(filename);
@@ -354,8 +360,11 @@ public class Assets {
 
 				@Override
 				public void onPrepared(MediaPlayer mp) {
-					if (!mp.isPlaying())
+					if (!mp.isPlaying()){
+						mp.setVolume(1.0f, 1.0f);
 						mp.start();
+					}
+						
 				}
 			});
 
@@ -396,7 +405,8 @@ public class Assets {
 
 	public static void onResume() {
 		Log.d("Assets", "OnResume is called");
-		playMusic("animals.ogg", true);
+		//playMusic("animals.ogg", true);
+		playMusic("animals.mp3", true);
 	}
 
 	public static void onPause() {
