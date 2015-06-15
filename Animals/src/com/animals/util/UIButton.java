@@ -25,6 +25,14 @@ public class UIButton {
 		g.drawImage(currentButtonImage, buttonRect.left, buttonRect.top, buttonRect.width(), buttonRect.height());
 	}
 	
+	public void render(Painter g, boolean render) {
+		if(render){
+			Bitmap currentButtonImage = buttonDown ? buttonDownImage : buttonImage;
+			g.drawImage(currentButtonImage, buttonRect.left, buttonRect.top, buttonRect.width(), buttonRect.height());
+		}
+		
+	}
+	
 	public void render(Painter g, Bitmap alternate, Bitmap alternateDown) {
 		Bitmap currentButtonImage = buttonDown ? alternateDown : alternate;
 		g.drawImage(currentButtonImage, buttonRect.left, buttonRect.top, buttonRect.width(), buttonRect.height());

@@ -69,6 +69,30 @@ public class Assets {
 	
 	public static Bitmap balloons_button;
 	public static Bitmap balloons_button_down;
+	
+	public static Bitmap balloon_black;
+	public static Bitmap balloon_black_pop;
+	
+	public static Bitmap balloon_blue;
+	public static Bitmap balloon_blue_pop;
+	
+	public static Bitmap balloon_green;
+	public static Bitmap balloon_green_pop;
+	
+	public static Bitmap balloon_grey;
+	public static Bitmap balloon_grey_pop;
+	
+	public static Bitmap balloon_orange;
+	public static Bitmap balloon_orange_pop;
+	
+	public static Bitmap balloon_pink;
+	public static Bitmap balloon_pink_pop;
+	
+	public static Bitmap balloon_red;
+	public static Bitmap balloon_red_pop;
+	
+	public static Bitmap balloon_yellow;
+	public static Bitmap balloon_yellow_pop;
 
 	// public static HashMap<Integer, Animal> animals = new HashMap<Integer,
 	// Animal>();
@@ -79,6 +103,8 @@ public class Assets {
 	private static MediaPlayer mediaPlayer2;
 	
 	private static MediaPlayer mediaPlayer3;
+	
+	
 
 	public static void load() {
 
@@ -121,6 +147,33 @@ public class Assets {
 	    balloons_button = loadBitmap("balloons_button.png", true, false);
 	    balloons_button_down = loadBitmap("balloons_button_down.png", true, false);
 		
+	    
+	    
+	    
+	    
+		  balloon_black = loadBitmap("balloon_black.png", true, false);
+		 balloon_black_pop = loadBitmap("balloon_black_bang.png", true, false);
+		
+		  balloon_blue = loadBitmap("balloon_blue.png", true, false);
+		balloon_blue_pop = loadBitmap("balloon_blue_bang.png", true, false);
+		
+		 balloon_green = loadBitmap("balloon_green.png", true, false);
+		 balloon_green_pop = loadBitmap("balloon_green_bang.png", true, false);
+		
+		 balloon_grey = loadBitmap("balloon_grey.png", true, false);
+		 balloon_grey_pop = loadBitmap("balloon_grey_bang.png", true, false);
+		
+		  balloon_orange = loadBitmap("balloon_orange.png", true, false);
+		  balloon_orange_pop = loadBitmap("balloon_orange_bang.png", true, false);
+		
+		 balloon_pink = loadBitmap("balloon_pink.png", true, false);
+		 balloon_pink_pop = loadBitmap("balloon_pink_bang.png", true, false);
+		
+		 balloon_red = loadBitmap("balloon_red.png", true, false);
+		 balloon_red_pop = loadBitmap("balloon_red_bang.png", true, false);
+		
+		 balloon_yellow= loadBitmap("balloon_yellow.png", true, false);
+		 balloon_yellow_pop = loadBitmap("balloon_yellow_bang.png", true, false);
 
 		loadCarouzelMap();
 	}
