@@ -60,7 +60,7 @@ public class GameMainActivity extends Activity{
 				sGame.setCurrentState(new StartState());
 			}
 		else if(sGame.currentState instanceof CarouzelState){
-			Assets.loadGalleryImage("crab");
+			Assets.loadGalleryImage("farm1");
 			sGame.setCurrentState(new MainMenuState());
 		}
 		else if(sGame.currentState instanceof LanguageState){

@@ -39,8 +39,8 @@ public class Assets {
 	public static Bitmap start;
 	public static Bitmap startDown;
 
-	public static Bitmap carouzel_up;
-	public static Bitmap carouzel_down;
+	public static Bitmap carouzel_up1;
+	public static Bitmap carouzel_down1;
 
 	public static Bitmap carouzel_left;
 	public static Bitmap carouzel_left_down;
@@ -63,6 +63,12 @@ public class Assets {
 	
 	public static Bitmap back;
 	public static Bitmap back_down;
+	
+	public static Bitmap home;
+	public static Bitmap home_down;
+	
+	public static Bitmap balloons_button;
+	public static Bitmap balloons_button_down;
 
 	// public static HashMap<Integer, Animal> animals = new HashMap<Integer,
 	// Animal>();
@@ -79,8 +85,11 @@ public class Assets {
 		start = loadBitmap("start_button.png", false, false);
 		startDown = loadBitmap("start_button_down.png", false, false);
 
-		carouzel_up = loadBitmap("carouzel_up.png", true, false);
-		carouzel_down = loadBitmap("carouzel_down.png", true, false);
+		//carouzel_up1 = loadBitmap("carouzel_up.png", true, false);
+		//carouzel_down1 = loadBitmap("carouzel_down.png", true, false);
+		
+		carouzel_up1 = loadBitmap("carouzel_up1.png", true, false);
+		carouzel_down1 = loadBitmap("carouzel_down1.png", true, false);
 
 		carouzel_left = loadBitmap("carouzel_previous.png", true, false);
 		carouzel_left_down = loadBitmap("carouzel_prev_down.png", true, false);
@@ -99,10 +108,18 @@ public class Assets {
 		
 		play_animal = loadBitmap("play_gallery_animal_up.png", true, false);
 		play_animal_down = loadBitmap("play_gallery_animal_down.png", true, false);
-		
+				
 		back = loadBitmap("back.png", true, false);
 		back_down = loadBitmap("back_down.png", true, false);
 		
+		home = loadBitmap("button_home_up.png", true, false);
+	    home_down = loadBitmap("button_home_down.png", true, false);
+	    
+	    home = loadBitmap("button_home_up.png", true, false);
+	    home_down = loadBitmap("button_home_down.png", true, false);
+		
+	    balloons_button = loadBitmap("balloons_button.png", true, false);
+	    balloons_button_down = loadBitmap("balloons_button_down.png", true, false);
 		
 
 		loadCarouzelMap();

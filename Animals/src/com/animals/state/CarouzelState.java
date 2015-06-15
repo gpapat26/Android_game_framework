@@ -124,9 +124,10 @@ public class CarouzelState extends State {
 	    	   playAnimalSoundsAndVoice();
 	       }
 	       if (back.isPressed(scaledX, scaledY)) {
-	    	   if(backPressedCounter<3){
+	    	   if(backPressedCounter<1){
 	    		   Toast.makeText(GameMainActivity.sGame.context, R.string.exit,Toast.LENGTH_SHORT).show();
 	    		   backPressedCounter++;
+	    		   back.cancel();
 	    	   }else{
 	    		   back.cancel();
 		    		Assets.loadGalleryImage("crab");

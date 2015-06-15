@@ -13,6 +13,7 @@ public class MainMenuState extends State {
 	
 	private UIButton carouzelButton;
 	private UIButton back;
+	private UIButton balloon;
 
 	public  MainMenuState() {
 		init();
@@ -21,9 +22,15 @@ public class MainMenuState extends State {
 	public void init() {
 		//Assets.galleryBitmap = null;	
 		Assets.onPause();
-		carouzelButton = new UIButton(316, 227, 484, 286, Assets.carouzel_up, Assets.carouzel_down);
-		back = new UIButton(605, 355, 695, 445, Assets.back , Assets.back_down);
-		Assets.loadGalleryImage("crab");
+		//carouzelButton = new UIButton(316, 227, 484, 286, Assets.carouzel_up1, Assets.carouzel_down1);
+		carouzelButton = new UIButton(250, 200, 350, 300, Assets.carouzel_up1, Assets.carouzel_down1);
+		//back = new UIButton(705, 355, 795, 445, Assets.back , Assets.back_down);	
+		//back = new UIButton(450, 200, 550, 300, Assets.home , Assets.home_down);		
+		
+		balloon = new UIButton(450, 200, 550, 300, Assets.balloons_button , Assets.balloons_button_down);
+		
+		back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
+		Assets.loadGalleryImage("farm1");
 		
 	}
 
@@ -39,6 +46,7 @@ public class MainMenuState extends State {
 			g.drawImage(Assets.galleryBitmap, 0, 0);
 			carouzelButton.render(g);
 			back.render(g);
+			balloon.render(g);
 		}
 		
 	}
@@ -50,23 +58,40 @@ public class MainMenuState extends State {
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
 			carouzelButton.onTouchDown(scaledX, scaledY);
 			back.onTouchDown(scaledX, scaledY);
+			balloon.onTouchDown(scaledX, scaledY);
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
-			 if (back.isPressed(scaledX, scaledY)) {
+			
+			if (back.isPressed(scaledX, scaledY)) {
 		    	   back.cancel();
-		    		Assets.loadGalleryImage("crab");
+		    		//Assets.loadGalleryImage("crab");
 					GameMainActivity.sGame.setCurrentState(new StartState());
 					return true;
 		       }
+			else{
+				back.cancel();
+			}
 			if (carouzelButton.isPressed(scaledX, scaledY)) {
-				
+			
 				carouzelButton.cancel();					
 				setCurrentState(new CarouzelState());
-				
-			} else {
+				return true;
+			}else{
 				carouzelButton.cancel();
 			}
+			
+		
+			if (balloon.isPressed(scaledX, scaledY)) {			
+				balloon.cancel();					
+				setCurrentState(new BalloonPopState());	
+				return true;
+			}
+			else{
+				balloon.cancel();
+			}
+			
+			
 		}
 
 		return true;
