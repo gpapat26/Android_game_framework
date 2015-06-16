@@ -1202,7 +1202,7 @@ public class Assets {
 		Animal rooster = new Animal();
 		rooster.addAnimalName(R.string.rooster);
 		rooster.addAnimalName(R.string.rooster_gr);
-		rooster.addAudioFile("rooster");
+		rooster.addAudioFile("Rooster");
 		rooster.setAnimalVisualFile("rooster");
 		rooster.setAnimalVisualFileSoundLang("rooster");
 		animals.put(tempArrayVariable++, rooster);
