@@ -1,8 +1,11 @@
 package com.animals.state;
 
+import java.util.ArrayList;
+
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.animals.model.Balloon;
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.util.Painter;
@@ -12,15 +15,15 @@ public class BalloonPopState extends State{
 	
 	private UIButton back;
 	
-	private UIButton balloon_black;
-	private UIButton balloon_blue;
-	private UIButton balloon_green;
-	private UIButton balloon_grey;
-	private UIButton balloon_orange;
+	private Balloon balloon_black;
+	private Balloon balloon_blue;
+	private Balloon balloon_green;
+	private Balloon balloon_grey;
+	private Balloon balloon_orange;	
+	private Balloon balloon_pink;
+	private Balloon balloon_red;
+	private Balloon balloon_yellow;
 	
-	private UIButton balloon_pink;
-	private UIButton balloon_red;
-	private UIButton balloon_yellow;
 	
 	private boolean black;
 	private boolean blue;
@@ -31,30 +34,13 @@ public class BalloonPopState extends State{
 	private boolean red;
 	private boolean yellow;
 	
-//	
-//	  balloon_black = loadBitmap("balloon_black.png", true, false);
-//	 balloon_black_pop = loadBitmap("balloon_black_bang.png", true, false);
-//	
-//	  balloon_blue = loadBitmap("balloon_blue.png", true, false);
-//	balloon_blue_pop = loadBitmap("balloon_blue_bang.png", true, false);
-//	
-//	 balloon_green = loadBitmap("balloon_green.png", true, false);
-//	 balloon_green_pop = loadBitmap("balloon_green_bang.png", true, false);
-//	
-//	 balloon_grey = loadBitmap("balloon_grey.png", true, false);
-//	 balloon_grey_pop = loadBitmap("balloon_grey_bang.png", true, false);
-//	
-//	  balloon_orange = loadBitmap("balloon_orange.png", true, false);
-//	  balloon_orange_pop = loadBitmap("balloon_orange_bang.png", true, false);
-//	
-//	 balloon_pink = loadBitmap("balloon_pink.png", true, false);
-//	 balloon_pink_pop = loadBitmap("balloon_pink_bang.png", true, false);
-//	
-//	 balloon_red = loadBitmap("balloon_red.png", true, false);
-//	 balloon_red_pop = loadBitmap("balloon_red_bang.png", true, false);
-//	
-//	balloon_yellow= loadBitmap("balloon_yellow.png", true, false);
-//	balloon_yellow_pop = loadBitmap("balloon_yellow_bang.png", true, false);
+	private ArrayList<Balloon> balloons;
+	
+	private static final int BALLOON_HEIGHT = 130;
+	private static final int BALLOON_WIDTH = 130;
+	
+	
+	private int balloonYSpeed = 3;
 	
 	 public BalloonPopState() {
 		init();
@@ -62,22 +48,46 @@ public class BalloonPopState extends State{
 
 	@Override
 	public void init() {
+		balloons = new ArrayList<Balloon>();
+		
+		balloon_black = new Balloon(400, 400, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_black,Assets.balloon_black_pop);
+		balloon_blue = new Balloon(500, 200, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_blue,Assets.balloon_blue_pop);
+		balloon_green = new Balloon(420, 490, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_green,Assets.balloon_green_pop);
+		balloon_grey= new Balloon(100, 250, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_grey,Assets.balloon_grey_pop);
+		balloon_orange = new Balloon(490, 200, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_orange,Assets.balloon_orange_pop);
+		balloon_pink= new Balloon(100, 100, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_pink,Assets.balloon_pink_pop);
+		balloon_yellow= new Balloon(200, 200, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop);
+		
+		balloons.add(balloon_black)	;
+		balloons.add(balloon_blue)	;
+		balloons.add(balloon_green)	;
+		balloons.add(balloon_grey)	;
+		balloons.add(balloon_orange)	;
+		balloons.add(balloon_pink)	;
+		balloons.add(balloon_yellow)	;
 		Assets.loadGalleryImage("farm1");	
 		back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
 		
-		balloon_black = new UIButton(700, 400, 820, 600, Assets.balloon_black , Assets.balloon_black_pop);
-		balloon_blue = new UIButton(500, 200, 620, 400, Assets.balloon_blue , Assets.balloon_blue_pop);
-		balloon_green = new UIButton(705, 355, 795, 445, Assets.balloon_green , Assets.balloon_green_pop);
-		balloon_grey = new UIButton(705, 355, 795, 445, Assets.balloon_grey , Assets.balloon_grey_pop);
-		balloon_orange = new UIButton(705, 355, 795, 445, Assets.balloon_orange , Assets.balloon_orange_pop);
-		balloon_pink = new UIButton(705, 355, 795, 445, Assets.balloon_pink , Assets.balloon_pink_pop);
-		balloon_red = new UIButton(705, 355, 795, 445, Assets.balloon_red , Assets.balloon_red_pop);
-		balloon_yellow = new UIButton(705, 355, 795, 445, Assets.balloon_yellow , Assets.balloon_yellow_pop);
+//		balloon_black = new UIButton(700, 400, 820, 600, Assets.balloon_black , Assets.balloon_black_pop);
+//		balloon_blue = new UIButton(500, 200, 620, 400, Assets.balloon_blue , Assets.balloon_blue_pop);
+//		balloon_green = new UIButton(705, 355, 795, 445, Assets.balloon_green , Assets.balloon_green_pop);
+//		balloon_grey = new UIButton(705, 355, 795, 445, Assets.balloon_grey , Assets.balloon_grey_pop);
+//		balloon_orange = new UIButton(705, 355, 795, 445, Assets.balloon_orange , Assets.balloon_orange_pop);
+//		balloon_pink = new UIButton(705, 355, 795, 445, Assets.balloon_pink , Assets.balloon_pink_pop);
+//		balloon_red = new UIButton(705, 355, 795, 445, Assets.balloon_red , Assets.balloon_red_pop);
+//		balloon_yellow = new UIButton(705, 355, 795, 445, Assets.balloon_yellow , Assets.balloon_yellow_pop);
 	}
 
 	@Override
 	public void update(float delta) {
-		// TODO Auto-generated method stub
+		updateBalloons(delta);
+		
+	}
+
+	private void updateBalloons(float delta) {
+		for(int i =0; i<balloons.size();i++){
+			balloons.get(i).update(delta,balloonYSpeed);		
+		}
 		
 	}
 
@@ -85,11 +95,13 @@ public class BalloonPopState extends State{
 	public void render(Painter g) {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		back.render(g);
-		balloon_blue.render(g);
-		balloon_black.render(g);
-		
-		
-		
+	    renderBalloons(g);	
+	}
+
+	private void renderBalloons(Painter g) {
+		for (Balloon balloon : balloons) {
+			balloon.render(g);
+		}		
 	}
 
 	@Override
@@ -97,30 +109,24 @@ public class BalloonPopState extends State{
 		Log.d("MainMenuState", "button clicked");
 		
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
-			
+				for(int i =0; i<balloons.size();i++){
+					Balloon balloon = balloons.get(i);
+				
+					if(balloon.isVisible())	{
+						if (!balloon.isPopped()){
+							if (balloon.getRect().contains(scaledX, scaledY)){
+								balloon.onUserTouch();
+							}
+					}
+				 }
+				}
 			back.onTouchDown(scaledX, scaledY);
-			balloon_blue.onTouchDown(scaledX, scaledY);
-			balloon_black.onTouchDown(scaledX, scaledY);
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
 			 if (back.isPressed(scaledX, scaledY)) {
 		    	   back.cancel();		    		
 					GameMainActivity.sGame.setCurrentState(new MainMenuState());
-					return true;
-		       }
-			 
-			 if (balloon_blue.isPressed(scaledX, scaledY)) {		
-				 balloon_blue.cancel();	
-				 blue = false;
-					//GameMainActivity.sGame.setCurrentState(new MainMenuState());
-					return true;
-		       }
-			 
-			 if (balloon_black.isPressed(scaledX, scaledY)) {
-				 balloon_black.cancel();
-				 black = false;
-					//GameMainActivity.sGame.setCurrentState(new MainMenuState());
 					return true;
 		       }
 
