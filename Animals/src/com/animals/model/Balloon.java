@@ -78,9 +78,8 @@ public class Balloon {
 		setCurrentBalloonImage(balloon);
 		y+=500;
 		x = RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH);
-		int rand  = RandomNumberGenerator.getRandIntBetween(5, 10);
-		VELX_POSITIVE =  rand;
-		VELX_NEGATIVE = -rand;
+		VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2, 10);
+		VELX_NEGATIVE = - VELX_POSITIVE;
 		updateRect();
 	}
 

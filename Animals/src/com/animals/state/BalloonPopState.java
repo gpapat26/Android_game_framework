@@ -9,30 +9,31 @@ import com.animals.model.Balloon;
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.util.Painter;
+import com.animals.util.RandomNumberGenerator;
 import com.animals.util.UIButton;
 
 public class BalloonPopState extends State{
 	
 	private UIButton back;
 	
-	private Balloon balloon_black;
-	private Balloon balloon_blue;
-	private Balloon balloon_green;
-	private Balloon balloon_grey;
-	private Balloon balloon_orange;	
-	private Balloon balloon_pink;
-	private Balloon balloon_red;
-	private Balloon balloon_yellow;
+//	private Balloon balloon_black;
+//	private Balloon balloon_blue;
+//	private Balloon balloon_green;
+//	private Balloon balloon_grey;
+//	private Balloon balloon_orange;	
+//	private Balloon balloon_pink;
+//	private Balloon balloon_red;
+//	private Balloon balloon_yellow;
 	
 	
-	private boolean black;
-	private boolean blue;
-	private boolean green;
-	private boolean grey;
-	private boolean orange;
-	private boolean pink;
-	private boolean red;
-	private boolean yellow;
+//	private boolean black;
+//	private boolean blue;
+//	private boolean green;
+//	private boolean grey;
+//	private boolean orange;
+//	private boolean pink;
+//	private boolean red;
+//	private boolean yellow;
 	
 	private ArrayList<Balloon> balloons;
 	
@@ -50,21 +51,52 @@ public class BalloonPopState extends State{
 	public void init() {
 		balloons = new ArrayList<Balloon>();
 		
-		balloon_black = new Balloon(400, 400, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_black,Assets.balloon_black_pop);
-		balloon_blue = new Balloon(500, 200, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_blue,Assets.balloon_blue_pop);
-		balloon_green = new Balloon(420, 490, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_green,Assets.balloon_green_pop);
-		balloon_grey= new Balloon(100, 250, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_grey,Assets.balloon_grey_pop);
-		balloon_orange = new Balloon(490, 200, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_orange,Assets.balloon_orange_pop);
-		balloon_pink= new Balloon(100, 100, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_pink,Assets.balloon_pink_pop);
-		balloon_yellow= new Balloon(200, 200, BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop);
+//		balloon_black = new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_black,Assets.balloon_black_pop);
+//		balloon_blue = new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_blue,Assets.balloon_blue_pop);
+//		balloon_green = new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_green,Assets.balloon_green_pop);
+//		balloon_grey= new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_grey,Assets.balloon_grey_pop);
+//		balloon_orange = new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_orange,Assets.balloon_orange_pop);
+//		balloon_pink= new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_pink,Assets.balloon_pink_pop);
+//		balloon_yellow= new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop);
 		
-		balloons.add(balloon_black)	;
-		balloons.add(balloon_blue)	;
-		balloons.add(balloon_green)	;
-		balloons.add(balloon_grey)	;
-		balloons.add(balloon_orange)	;
-		balloons.add(balloon_pink)	;
-		balloons.add(balloon_yellow)	;
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_black,Assets.balloon_black_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_blue,Assets.balloon_blue_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_green,Assets.balloon_green_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_grey,Assets.balloon_grey_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_orange,Assets.balloon_orange_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_pink,Assets.balloon_pink_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop))	;
+		}
+		
+		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_red,Assets.balloon_red_pop))	;
+		}
+		
+//		balloons.add(balloon_blue)	;
+//		balloons.add(balloon_green)	;
+//		balloons.add(balloon_grey)	;
+//		balloons.add(balloon_orange)	;
+//		balloons.add(balloon_pink)	;
+//		balloons.add(balloon_yellow)	;
 		Assets.loadGalleryImage("farm1");	
 		back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
 		
@@ -115,6 +147,7 @@ public class BalloonPopState extends State{
 					if(balloon.isVisible())	{
 						if (!balloon.isPopped()){
 							if (balloon.getRect().contains(scaledX, scaledY)){
+								Assets.playBalloonPop();
 								balloon.onUserTouch();
 							}
 					}

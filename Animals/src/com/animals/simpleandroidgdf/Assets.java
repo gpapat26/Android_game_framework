@@ -104,6 +104,8 @@ public class Assets {
 	
 	private static MediaPlayer mediaPlayer3;
 	
+	private static int balloonPopId ;
+	
 	
 
 	public static void load() {
@@ -176,6 +178,19 @@ public class Assets {
 		 balloon_yellow_pop = loadBitmap("balloon_yellow_bang.png", true, false);
 
 		loadCarouzelMap();
+		
+		loadBaloonPop("balloon_pop.mp3");
+	}
+
+	private static void loadBaloonPop(String filenaMe) {
+		
+		buildSoundPool();
+		balloonPopId = loadSound(filenaMe);
+		
+	}
+	
+	public static void playBalloonPop(){
+		playAlreadyLoadedSound(balloonPopId);
 	}
 
 	public static int getSizeOfGallery() {
@@ -231,9 +246,9 @@ public class Assets {
 		return bitmap;
 	}
 
-	public static void playGallerySounds(String soundFileName) {
+	public static void playLoadedSound(String soundFileName) {
 		//int id = loadSound(soundFileName + ".ogg");
-		int id = loadSound(soundFileName + ".mp3");
+		int id = loadSound(soundFileName);
 		playSound(id);
 	}
 
@@ -243,11 +258,11 @@ public class Assets {
 			soundPool = buildSoundPool();
 		}
 		try {
-			if (streamIDplaying != -99999999 && soundPool != null) {
-				Log.d("Assets", "Stopped music with strweam id"
-						+ streamIDplaying);
-				soundPool.stop(streamIDplaying);
-			}
+//			if (streamIDplaying != -99999999 && soundPool != null) {
+//				Log.d("Assets", "Stopped music with strweam id"
+//						+ streamIDplaying);
+//				soundPool.stop(streamIDplaying);
+//			}
 			soundID = soundPool.load(GameMainActivity.assets.openFd(filename),
 					1);
 			Log.d("Assets", "generated a new sound id " + soundID);
@@ -292,6 +307,10 @@ public class Assets {
 			});
 
 		}
+	}
+	
+	private static void playAlreadyLoadedSound(int soundID){
+		soundPool.play(soundID, 20, 20, 1, 0, 1f);
 	}
 
 	// play music themes
