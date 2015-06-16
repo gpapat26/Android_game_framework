@@ -185,6 +185,9 @@ public class Assets {
 	private static void loadBaloonPop(String filenaMe) {
 		
 		buildSoundPool();
+		 if(soundPool == null){
+			 Log.d("Assets", "SoundPool is not created 3");
+		 }
 		balloonPopId = loadSound(filenaMe);
 		
 	}
@@ -263,11 +266,12 @@ public class Assets {
 //						+ streamIDplaying);
 //				soundPool.stop(streamIDplaying);
 //			}
-			soundID = soundPool.load(GameMainActivity.assets.openFd(filename),
-					1);
+			soundID = soundPool.load(GameMainActivity.assets.openFd(filename),1);
 			Log.d("Assets", "generated a new sound id " + soundID);
+		
 		} catch (IOException e) {
 			e.printStackTrace();
+			Log.d("Assets", "UNABLE TO GENERATE SOUND ID ");
 		}
 		return soundID;
 	}
@@ -288,8 +292,15 @@ public class Assets {
 
 			soundPool = new SoundPool.Builder().setMaxStreams(30)
 					.setAudioAttributes(audioAttributes).build();
+			 
+			 if(soundPool == null){
+				 Log.d("Assets", "SoundPool is not created 1");
+			 }
 		} else {
 			soundPool = new SoundPool(30, AudioManager.STREAM_MUSIC, 0);
+			 if(soundPool == null){
+				 Log.d("Assets", "SoundPool is not created 2");
+			 }
 		}
 
 		return soundPool;
@@ -310,7 +321,21 @@ public class Assets {
 	}
 	
 	private static void playAlreadyLoadedSound(int soundID){
-		soundPool.play(soundID, 20, 20, 1, 0, 1f);
+		try{
+		
+		if(soundPool != null){
+			 Log.d("Assets", "playing soundId "+soundID);
+			
+			soundPool.play(soundID, 1, 1, 1, 0, 1);
+		}
+		else{
+			 Log.d("Assets", "Not playing music "+soundID);						
+		}
+		
+		}catch(Exception e){
+			Log.d("Assets", "Unable to play "+soundID);
+		}
+	
 	}
 
 	// play music themes
@@ -500,8 +525,9 @@ public class Assets {
 
 	public static void onPause() {
 		if (soundPool != null) {
-			soundPool.release();
-			soundPool = null;
+			//soundPool.release();
+			//soundPool = null;
+			soundPool.autoPause();
 		}
 
 		if (mediaPlayer != null) {
@@ -716,7 +742,7 @@ public class Assets {
 		chipmank.addAnimalName(R.string.chipmank_gr);
 		chipmank.setAnimalVisualFile("chipmank");
 		chipmank.setAnimalVisualFileSoundLang("chipmank");
-		chipmank.addAudioFile("chipmunk");
+		chipmank.addAudioFile("Chipmunk");
 		animals.put(tempArrayVariable++, chipmank);
 
 		// 19 COW
