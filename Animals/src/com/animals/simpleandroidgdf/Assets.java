@@ -96,6 +96,10 @@ public class Assets {
 	
 	public static Bitmap balloon_clown;
 	public static Bitmap balloon_clown_pop;
+	
+	public static Bitmap balloon_girraffe;
+	public static Bitmap balloon_hippo;
+	
 
 	public static SparseArray<Animal> animals = new SparseArray<Animal>();
 
@@ -181,6 +185,9 @@ public class Assets {
 		 
 		 balloon_clown     = loadBitmap("balloon_clown.png", true, false);
 		 balloon_clown_pop = loadBitmap("balloon_clown_bang.png", true, false);
+		 
+		 balloon_girraffe    = loadBitmap("balloon_girraffe.png", true, false);
+		 balloon_hippo = loadBitmap("balloon_hippo.png", true, false);
 
 		loadCarouzelMap();
 		

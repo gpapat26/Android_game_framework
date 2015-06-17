@@ -93,7 +93,9 @@ public class BalloonPopState extends State{
 		
 		
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_clown,Assets.balloon_clown_pop, true))	;
-		
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_hippo,Assets.balloon_green_pop, false))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_girraffe,Assets.balloon_green_pop, false))	;
+
 		
 //		balloons.add(balloon_blue)	;
 //		balloons.add(balloon_green)	;

@@ -26,9 +26,11 @@ public class LanguageState extends State {
 
 	@Override
 	public void init() {
-		Assets.onPause();
+		//Assets.onPause();
 		greek_button = new UIButton((int)GameMainActivity.GAME_WIDTH/2  - 100 - 50, (int)GameMainActivity.GAME_HEIGHT/2-50, (int)GameMainActivity.GAME_WIDTH/2  - 100 + 100 -50, (int)GameMainActivity.GAME_HEIGHT/2 + -50+ 100, Assets.greek, Assets.greek_down);
 		english_button = new UIButton((int)GameMainActivity.GAME_WIDTH/2  + 100 -50 , (int)GameMainActivity.GAME_HEIGHT/2-50, (int)GameMainActivity.GAME_WIDTH/2  + 100 + 100-50, (int)GameMainActivity.GAME_HEIGHT/2 + - 50+ 100, Assets.english, Assets.english_down);		
+	    Assets.loadGalleryImage("cartoon-rural-scene-farm-animals-24447502_2");
+	
 	}
 
 	@Override
@@ -39,8 +41,9 @@ public class LanguageState extends State {
 
 	@Override
 	public void render(Painter g) {
-		g.setColor(Color.rgb(255, 145, 0));
-		g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);
+		//g.setColor(Color.rgb(255, 145, 0));
+		//g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);
+		g.drawImage(Assets.galleryBitmap, 0, 0);
 		greek_button.render(g);
 		english_button.render(g);
 		
