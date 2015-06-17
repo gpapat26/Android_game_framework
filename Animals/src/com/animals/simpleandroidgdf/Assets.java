@@ -93,9 +93,10 @@ public class Assets {
 	
 	public static Bitmap balloon_yellow;
 	public static Bitmap balloon_yellow_pop;
+	
+	public static Bitmap balloon_clown;
+	public static Bitmap balloon_clown_pop;
 
-	// public static HashMap<Integer, Animal> animals = new HashMap<Integer,
-	// Animal>();
 	public static SparseArray<Animal> animals = new SparseArray<Animal>();
 
 	private static MediaPlayer mediaPlayer;
@@ -105,6 +106,7 @@ public class Assets {
 	private static MediaPlayer mediaPlayer3;
 	
 	private static int balloonPopId ;
+	private static int balloonClownId ;
 	
 	
 
@@ -176,15 +178,21 @@ public class Assets {
 		
 		 balloon_yellow= loadBitmap("balloon_yellow.png", true, false);
 		 balloon_yellow_pop = loadBitmap("balloon_yellow_bang.png", true, false);
+		 
+		 balloon_clown     = loadBitmap("balloon_clown.png", true, false);
+		 balloon_clown_pop = loadBitmap("balloon_clown_bang.png", true, false);
 
 		loadCarouzelMap();
 		
 		loadBaloonPop("balloon_pop.mp3");
+		
+		loadZongPop("wrong2.mp3");
+	
 	}
 
 	private static void loadBaloonPop(String filenaMe) {
-		
-		buildSoundPool();
+		if(soundPool == null)
+		  buildSoundPool();
 		 if(soundPool == null){
 			 Log.d("Assets", "SoundPool is not created 3");
 		 }
@@ -192,8 +200,22 @@ public class Assets {
 		
 	}
 	
+	private static void loadZongPop(String filenaMe) {
+		if(soundPool == null)
+		buildSoundPool();
+		 if(soundPool == null){
+			 Log.d("Assets", "SoundPool is not created 3");
+		 }
+		 balloonClownId = loadSound(filenaMe);
+		
+	}
+	
 	public static void playBalloonPop(){
 		playAlreadyLoadedSound(balloonPopId);
+	}
+	
+	public static void playClownPop(){
+		playAlreadyLoadedSound(balloonClownId);
 	}
 
 	public static int getSizeOfGallery() {
@@ -289,7 +311,7 @@ public class Assets {
 					.setUsage(AudioAttributes.USAGE_GAME)
 					.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
 					.build();
-
+             
 			soundPool = new SoundPool.Builder().setMaxStreams(30)
 					.setAudioAttributes(audioAttributes).build();
 			 
@@ -520,7 +542,9 @@ public class Assets {
 	public static void onResume() {
 		Log.d("Assets", "OnResume is called");
 		//playMusic("animals.ogg", true);
-		playMusic("animals.mp3", true);
+		//playMusic("animals.mp3", true);
+		playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		
 	}
 
 	public static void onPause() {
@@ -530,6 +554,14 @@ public class Assets {
 			soundPool.autoPause();
 		}
 
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
+			mediaPlayer.release();
+			mediaPlayer = null;
+		}
+	}
+	
+	public static void stopPreviousMusic(){
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 			mediaPlayer.release();

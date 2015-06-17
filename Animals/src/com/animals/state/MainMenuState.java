@@ -21,7 +21,7 @@ public class MainMenuState extends State {
 	@Override
 	public void init() {
 		//Assets.galleryBitmap = null;	
-		Assets.onPause();
+		//Assets.onPause();
 		//carouzelButton = new UIButton(316, 227, 484, 286, Assets.carouzel_up1, Assets.carouzel_down1);
 		carouzelButton = new UIButton(250, 200, 350, 300, Assets.carouzel_up1, Assets.carouzel_down1);
 		//back = new UIButton(705, 355, 795, 445, Assets.back , Assets.back_down);	

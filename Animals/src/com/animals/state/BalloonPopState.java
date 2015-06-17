@@ -60,36 +60,40 @@ public class BalloonPopState extends State{
 //		balloon_yellow= new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop);
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_black,Assets.balloon_black_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_black,Assets.balloon_black_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_blue,Assets.balloon_blue_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_blue,Assets.balloon_blue_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_green,Assets.balloon_green_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_green,Assets.balloon_green_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_grey,Assets.balloon_grey_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_grey,Assets.balloon_grey_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_orange,Assets.balloon_orange_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_orange,Assets.balloon_orange_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_pink,Assets.balloon_pink_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_pink,Assets.balloon_pink_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_yellow,Assets.balloon_yellow_pop, false))	;
 		}
 		
 		for(int i =0; i<RandomNumberGenerator.getRandIntBetween(1,3);i++){
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_red,Assets.balloon_red_pop))	;
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_red,Assets.balloon_red_pop, false))	;
 		}
+		
+		
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH), RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_HEIGHT), BALLOON_WIDTH, BALLOON_HEIGHT,Assets.balloon_clown,Assets.balloon_clown_pop, true))	;
+		
 		
 //		balloons.add(balloon_blue)	;
 //		balloons.add(balloon_green)	;
@@ -147,7 +151,12 @@ public class BalloonPopState extends State{
 					if(balloon.isVisible())	{
 						if (!balloon.isPopped()){
 							if (balloon.getRect().contains(scaledX, scaledY)){
-								Assets.playBalloonPop();
+								if(balloon.isClown()){
+									Assets.playClownPop();									
+								}
+								else{
+									Assets.playBalloonPop();
+								}								
 								balloon.onUserTouch();
 							}
 					}

@@ -44,7 +44,7 @@ public class CarouzelState extends State {
 	public void init() {
 		languageCode = GameMainActivity.getLanguageCode();
 		displayNameRect = new Rect(GameMainActivity.sGame.getSrcRectangle().left,350, GameMainActivity.sGame.getSrcRectangle().right, GameMainActivity.sGame.getSrcRectangle().bottom);		
-		Assets.onPause();
+		//Assets.onPause();
 		Assets.loadGalleryImageResolver(carouzelIndex);
 		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
 		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);				

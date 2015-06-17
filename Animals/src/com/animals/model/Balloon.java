@@ -27,8 +27,9 @@ public class Balloon {
 	private int VELX_NEGATIVE ;
 	private int currentVelocity ;
 	private int platosX;
+	private boolean isClown;
 	
-	public Balloon(float x, float y, int width, int height,Bitmap balloon,Bitmap balloonPop) {
+	public Balloon(float x, float y, int width, int height,Bitmap balloon,Bitmap balloonPop,boolean isclown) {
 		this.x = x;
 		this.y = y;
 		this.originalX = x;
@@ -44,6 +45,7 @@ public class Balloon {
 		VELX_POSITIVE =  rand;
 		VELX_NEGATIVE = -rand;
 		platosX = RandomNumberGenerator.getRandIntBetween(50, 200);
+		this.isClown =isclown;
 	}
 	
 
@@ -211,5 +213,21 @@ public class Balloon {
 	public void setCurrentBalloonImage(Bitmap currentBalloonImage) {
 		this.currentBalloonImage = currentBalloonImage;
 	}
+
+
+
+
+	public boolean isClown() {
+		return isClown;
+	}
+
+
+
+
+	public void setClown(boolean isClown) {
+		this.isClown = isClown;
+	}
+	
+	
 
 }
