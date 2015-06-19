@@ -42,10 +42,13 @@ public class BalloonWinState extends State{
 		g.drawImage(Assets.balloon_blue_pop,GameMainActivity.GAME_WIDTH/2-130, GameMainActivity.GAME_HEIGHT/2-130);
 		
 			
-		g.setFont(Typeface.DEFAULT, 40);
+		g.setFont(Typeface.DEFAULT, 70);
 		g.setColor(Color.GREEN);
-		g.drawString("You Win", (GameMainActivity.GAME_WIDTH/2) - 300 , (GameMainActivity.GAME_HEIGHT/2) +50);	
-		g.drawString("Score : "+targetCovered, (GameMainActivity.GAME_WIDTH/2 )+ 100, (GameMainActivity.GAME_HEIGHT/2) +50);
+		
+		g.drawString("Score : "+targetCovered, (GameMainActivity.GAME_WIDTH/2 )-150, (GameMainActivity.GAME_HEIGHT/2) +50);
+		g.setFont(Typeface.DEFAULT_BOLD, 100);
+		g.setColor(Color.GREEN);
+		g.drawString("You Win", (GameMainActivity.GAME_WIDTH/2)-200, (GameMainActivity.GAME_HEIGHT/2) -100);	
 		back.render(g);
 		
 	}

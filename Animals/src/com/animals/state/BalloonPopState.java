@@ -20,62 +20,59 @@ public class BalloonPopState extends State {
 
 	private UIButton back;
 
-	// private Balloon balloon_black;
-	// private Balloon balloon_blue;
-	// private Balloon balloon_green;
-	// private Balloon balloon_grey;
-	// private Balloon balloon_orange;
-	// private Balloon balloon_pink;
-	// private Balloon balloon_red;
-	// private Balloon balloon_yellow;
-
-	// private boolean black;
-	// private boolean blue;
-	// private boolean green;
-	// private boolean grey;
-	// private boolean orange;
-	// private boolean pink;
-	// private boolean red;
-	// private boolean yellow;
-
+	private long startTime;
+	
 	private ArrayList<Balloon> balloons;
 
 	private static final int BALLOON_HEIGHT = 130;
 	private static final int BALLOON_WIDTH = 130;
 
-	private int reverseCounterBalloonCreator;
+	
 	private int reversePopCounter;
 	private int expectedToPop;
-
 	private boolean gameLost = false;
+	private float balloonYSpeed = 1;
+	
+	private int targetScore ;
 
-	private int balloonYSpeed = 1;
+	private int currentScore ;
+	private int state;
+	private int seconds;
 
-	public BalloonPopState(int numberOfBalloons) {
-		this.reverseCounterBalloonCreator = numberOfBalloons;
-		this.reversePopCounter = numberOfBalloons;
-		this.expectedToPop = numberOfBalloons;		
+	private static int WIN_SCORE = 10000;
+
+	public BalloonPopState(int state) {
 		
-		init();
-		
+		if(state ==1 ){
+			
+			this.reversePopCounter = 20;
+			this.expectedToPop = 20;
+			this.state = state;
+			this.targetScore = 20;
+			this.seconds =60;
+		}
+		else if(state == 2){
+			
+			this.reversePopCounter = 100;
+			this.expectedToPop = 100;
+			this.state = state;
+			this.targetScore = 100;
+			this.seconds =30;
+		}			
+		init();		
 	}
+	
 
 	@Override
 	public void init() {
-
+		
+		createOneMinuteInterval();
+		
+		recalculateStartTime();
+		
 		balloons = new ArrayList<Balloon>();
 
-		Timer timer = new Timer();
-
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				gameLost = true;
-			}
-		}, 1 * 60 * 1000);
-
-		// int counter = reverseCounterBalloonCreator;
-		if (expectedToPop == 10) {
+		if (state ==1) {
 			Log.d("BalloonPopState", "expected 10");
 			
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
@@ -128,7 +125,7 @@ public class BalloonPopState extends State {
 
 		}
 		
-		else if (expectedToPop == 20){
+		else if (state ==2){
 			Log.d("BalloonPopState", "expected 20");
 			for (int i = 0; i < 2; i++) {
 			
@@ -226,22 +223,92 @@ public class BalloonPopState extends State {
 		back = new UIButton(705, 355, 795, 445, Assets.home, Assets.home_down);
 
 	}
+	
+	private void createOneMinuteInterval(){
+		
+		Timer timer = new Timer();
+
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				Log.d("BalloonPopState", "timer");
+				
+				if(state == 1 ){
+					
+					if(currentScore<targetScore){
+						gameLost = true;
+					}
+					else{
+						gameLost = false;
+					}
+				}
+				
+				else if(state ==2){
+					if(currentScore<targetScore){
+						gameLost = true;
+					}
+					else{
+						Log.d("BalloonPopState", "didnt loose!!");
+						gameLost = false;
+						targetScore= targetScore+100;
+						balloonYSpeed = balloonYSpeed+0.5f;
+						recalculateStartTime();
+						createOneMinuteInterval();
+					}
+				}
+				
+			}
+		}, 1 * seconds * 1000);
+		
+	}
+	
+	public int calculateSecondsPassed(long tStart){
+					
+		long tEnd = System.currentTimeMillis();		
+		
+		long tDelta = tEnd - tStart;
+		
+		double elapsedSeconds = tDelta / 1000.0;
+		
+		return (int)elapsedSeconds;
+	}
+	
+	public void recalculateStartTime(){	
+		startTime = System.currentTimeMillis();			
+	}
 
 	@Override
 	public void update(float delta) {
 		updateBalloons(delta);
-		if (reversePopCounter == 0) {
-			
-			GameMainActivity.sGame.setCurrentState(new BalloonWinState(expectedToPop));
-			balloons.clear();
-		}
-		if (gameLost) {
 		
-			GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
-					expectedToPop - reversePopCounter, expectedToPop));
-			balloons.clear();
+		if(state ==1){
+			if (reversePopCounter == 0) {
+				
+				GameMainActivity.sGame.setCurrentState(new BalloonWinState(expectedToPop));
+				balloons.clear();
+			}
+			if (gameLost) {
+			
+				GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
+						currentScore, expectedToPop));
+				balloons.clear();
+			}			
 		}
-
+		
+		if(state ==2){
+			
+			if (gameLost) {					
+				GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
+						expectedToPop - reversePopCounter, expectedToPop));
+				balloons.clear();
+			}
+			if(currentScore >= WIN_SCORE ){
+				GameMainActivity.sGame.setCurrentState(new  BalloonWinState(
+						currentScore));
+				balloons.clear();
+			}
+			
+		}		
 	}
 
 	private void updateBalloons(float delta) {
@@ -259,19 +326,31 @@ public class BalloonPopState extends State {
 		back.render(g);
 		renderBalloons(g);
 		renderScore( g);
-		
+		renderTime(g);				
 	}
 	
+
+
+
+	private void renderTime(Painter g) {
+		 calculateSecondsPassed(startTime);
+		 g.setColor(Color.BLACK);
+		 g.setFont(Typeface.SANS_SERIF, 40);
+		 g.drawString(calculateSecondsPassed(startTime)+"", GameMainActivity.GAME_WIDTH-60, 30);			
+	}
+
 	private void renderScore(Painter g) {		
 		g.setColor(Color.BLACK);
 		g.setFont(Typeface.SANS_SERIF, 40);
-		g.drawString("Score:"+(expectedToPop - reversePopCounter), 20, 30);	
+		g.drawString("Score:"+(currentScore)+":"+targetScore, 20, 30);	
 	}
 	
 
 	private void renderBalloons(Painter g) {
+		if(balloons != null)
 		for (Balloon balloon : balloons) {
-			balloon.render(g);
+			if(balloon != null)
+			  balloon.render(g);
 		}
 	}
 
@@ -295,7 +374,7 @@ public class BalloonPopState extends State {
 							}
 							else{
 								Assets.playBalloonPop(); // < Have to change this!!
-								reversePopCounter = reversePopCounter +2;
+								reversePopCounter = reversePopCounter -5;
 							}
 							balloon.onUserTouch();
 						}
@@ -309,12 +388,12 @@ public class BalloonPopState extends State {
 			if (back.isPressed(scaledX, scaledY)) {
 				back.cancel();			
 				GameMainActivity.sGame.setCurrentState(new MainMenuState());
-				balloons.clear();
+				//balloons.clear();
 				return true;
 			}
 
 		}
-
+		currentScore = expectedToPop - reversePopCounter;
 		return true;
 	}
 

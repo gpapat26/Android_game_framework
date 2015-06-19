@@ -45,8 +45,8 @@ public class BalloonLooseState extends State{
 			
 		g.setFont(Typeface.DEFAULT, 70);
 		g.setColor(Color.RED);
-		g.drawString("You Loose", (GameMainActivity.GAME_WIDTH/2) - 300, (GameMainActivity.GAME_HEIGHT/2)+50);	
-		g.drawString("Score : "+balloonsPopped+"", (GameMainActivity.GAME_WIDTH/2)+100, (GameMainActivity.GAME_HEIGHT/2)+50);
+		g.drawString("You Loose", 30, (GameMainActivity.GAME_HEIGHT/2)+50);	
+		g.drawString("Score : "+balloonsPopped+"", (GameMainActivity.GAME_WIDTH/2)+10, (GameMainActivity.GAME_HEIGHT/2)+50);
 		back.render(g);
 		
 	}

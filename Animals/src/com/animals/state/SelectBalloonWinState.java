@@ -27,8 +27,8 @@ public class SelectBalloonWinState extends State {
 	@Override
 	public void init() {
 		Assets.loadGalleryImage("grass_sky");	
-		balloon1 = new UIButton(GameMainActivity.GAME_WIDTH/2 - 100 , GameMainActivity.GAME_HEIGHT/2, GameMainActivity.GAME_WIDTH/2 - 100 +BALLOON_WIDTH , GameMainActivity.GAME_HEIGHT/2 +BALLOON_HEIGHT, Assets.balloon_blue , Assets.balloon_blue_pop);
-		balloon2 = new UIButton(GameMainActivity.GAME_WIDTH/2 + 100 , GameMainActivity.GAME_HEIGHT/2, GameMainActivity.GAME_WIDTH/2 + 100 +BALLOON_WIDTH , GameMainActivity.GAME_HEIGHT/2 +BALLOON_HEIGHT, Assets.balloon_yellow , Assets.balloon_yellow_pop);
+		balloon1 = new UIButton(GameMainActivity.GAME_WIDTH/2 - 260 , GameMainActivity.GAME_HEIGHT/2-130, GameMainActivity.GAME_WIDTH/2 -BALLOON_WIDTH , GameMainActivity.GAME_HEIGHT/2 , Assets.balloon_blue , Assets.balloon_blue_pop);
+		balloon2 = new UIButton(GameMainActivity.GAME_WIDTH/2 + 130 , GameMainActivity.GAME_HEIGHT/2-130, GameMainActivity.GAME_WIDTH/2 + BALLOON_WIDTH +BALLOON_WIDTH , GameMainActivity.GAME_HEIGHT/2 , Assets.balloon_girraffe , Assets.balloon_blue_pop);
 		back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);
 	}
 
@@ -66,13 +66,13 @@ public class SelectBalloonWinState extends State {
 		       }
 			 if (balloon1.isPressed(scaledX, scaledY)) {
 				 balloon1.cancel();			 
-					GameMainActivity.sGame.setCurrentState(new BalloonPopState(10));
+					GameMainActivity.sGame.setCurrentState(new BalloonPopState(1));
 					return true;
 		       }
 			 
 			 if (balloon2.isPressed(scaledX, scaledY)) {
 				 balloon2.cancel();		    		
-					GameMainActivity.sGame.setCurrentState(new BalloonPopState(20));
+					GameMainActivity.sGame.setCurrentState(new BalloonPopState(2));
 					return true;
 		       }
 
