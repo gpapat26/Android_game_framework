@@ -84,7 +84,7 @@ public class MainMenuState extends State {
 		
 			if (balloon.isPressed(scaledX, scaledY)) {			
 				balloon.cancel();					
-				setCurrentState(new BalloonPopState());	
+				setCurrentState(new SelectBalloonWinState());	
 				return true;
 			}
 			else{

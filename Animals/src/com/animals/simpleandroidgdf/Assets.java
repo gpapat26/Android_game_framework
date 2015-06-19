@@ -100,6 +100,8 @@ public class Assets {
 	public static Bitmap balloon_girraffe;
 	public static Bitmap balloon_hippo;
 	
+	//public static Bitmap grass_sky;
+	
 
 	public static SparseArray<Animal> animals = new SparseArray<Animal>();
 
@@ -155,9 +157,7 @@ public class Assets {
 	    balloons_button = loadBitmap("balloons_button.png", true, false);
 	    balloons_button_down = loadBitmap("balloons_button_down.png", true, false);
 		
-	    
-	    
-	    
+	       
 	    
 		  balloon_black = loadBitmap("balloon_black.png", true, false);
 		 balloon_black_pop = loadBitmap("balloon_black_bang.png", true, false);
@@ -188,7 +188,9 @@ public class Assets {
 		 
 		 balloon_girraffe    = loadBitmap("balloon_girraffe.png", true, false);
 		 balloon_hippo = loadBitmap("balloon_hippo.png", true, false);
-
+		 
+		//grass_sky = loadBitmap("grass_sky.jpg", true, false);
+		 		 	 
 		loadCarouzelMap();
 		
 		loadBaloonPop("balloon_pop.mp3");

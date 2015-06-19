@@ -28,8 +28,10 @@ public class Balloon {
 	private int currentVelocity ;
 	private int platosX;
 	private boolean isClown;
+	private boolean isAnimal;
 	
-	public Balloon(float x, float y, int width, int height,Bitmap balloon,Bitmap balloonPop,boolean isclown) {
+	
+	public Balloon(float x, float y, int width, int height,Bitmap balloon,Bitmap balloonPop,boolean isclown,boolean isAnimal) {
 		this.x = x;
 		this.y = y;
 		this.originalX = x;
@@ -46,6 +48,7 @@ public class Balloon {
 		VELX_NEGATIVE = -rand;
 		platosX = RandomNumberGenerator.getRandIntBetween(50, 200);
 		this.isClown =isclown;
+		this.isAnimal = isAnimal;
 	}
 	
 
@@ -55,7 +58,7 @@ public class Balloon {
 	public void update(float delta,float velY){
 				
 		//y-= velY*delta;
-		y-= velY;
+		y-= delta*velY*0.1;
 		x+= currentVelocity;	
 		
 		if(x > originalX+platosX){
@@ -75,14 +78,17 @@ public class Balloon {
 	}
 	
 	private void reset() { //Balloon has reached the top of the screen.
-		visible = true;
-		popped = false;
-		setCurrentBalloonImage(balloon);
-		y+=500;
-		x = RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH);
-		VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2, 10);
-		VELX_NEGATIVE = - VELX_POSITIVE;
-		updateRect();
+	
+			visible = true;
+			popped = false;
+			setCurrentBalloonImage(balloon);
+			y+=500;
+			x = RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH);
+			VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2, 10);
+			VELX_NEGATIVE = - VELX_POSITIVE;
+			updateRect();
+		
+
 	}
 
 	private void updateRect() {
@@ -90,6 +96,7 @@ public class Balloon {
 	}
 	
 	public void onUserTouch(){
+		
 		popped = true;
 		visible= true;	
 		setCurrentBalloonImage(balloonPop);
@@ -227,6 +234,21 @@ public class Balloon {
 	public void setClown(boolean isClown) {
 		this.isClown = isClown;
 	}
+
+
+
+
+	public boolean isAnimal() {
+		return isAnimal;
+	}
+
+
+
+
+	public void setAnimal(boolean isAnimal) {
+		this.isAnimal = isAnimal;
+	}	
+	
 	
 	
 
