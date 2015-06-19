@@ -232,8 +232,7 @@ public class BalloonPopState extends State {
 		updateBalloons(delta);
 		if (reversePopCounter == 0) {
 			
-			GameMainActivity.sGame.setCurrentState(new BalloonWinState(
-					expectedToPop));
+			GameMainActivity.sGame.setCurrentState(new BalloonWinState(expectedToPop));
 			balloons.clear();
 		}
 		if (gameLost) {
@@ -289,7 +288,7 @@ public class BalloonPopState extends State {
 						if (balloon.getRect().contains(scaledX, scaledY)) {
 							if (balloon.isClown()) {
 								Assets.playClownPop();
-								reversePopCounter =0;
+								reversePopCounter =expectedToPop;
 							} else if(!balloon.isAnimal()){
 								Assets.playBalloonPop();
 								reversePopCounter--;
