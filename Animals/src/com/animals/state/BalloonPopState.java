@@ -26,6 +26,10 @@ public class BalloonPopState extends State {
 
 	private static final int BALLOON_HEIGHT = 130;
 	private static final int BALLOON_WIDTH = 130;
+	
+	private Timer timer; 
+	
+	private int animalBonus=5;
 
 	
 	private int reversePopCounter;
@@ -38,24 +42,27 @@ public class BalloonPopState extends State {
 	private int currentScore ;
 	private int state;
 	private int seconds;
+	private int stage=0;
 
 	private static int WIN_SCORE = 10000;
 
 	public BalloonPopState(int state) {
 		
-		if(state ==1 ){
+		this.state = state;
+		
+		if(this.state ==1 ){
 			
 			this.reversePopCounter = 20;
 			this.expectedToPop = 20;
-			this.state = state;
+			
 			this.targetScore = 20;
 			this.seconds =60;
 		}
-		else if(state == 2){
+		else if(this.state == 2){
 			
 			this.reversePopCounter = 100;
 			this.expectedToPop = 100;
-			this.state = state;
+		
 			this.targetScore = 100;
 			this.seconds =30;
 		}			
@@ -75,53 +82,53 @@ public class BalloonPopState extends State {
 		if (state ==1) {
 			Log.d("BalloonPopState", "expected 10");
 			
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_black,
-					Assets.balloon_black_pop, false, false));
+					Assets.balloon_black_pop, false, false, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_blue,
-					Assets.balloon_blue_pop, false, false));
+					Assets.balloon_blue_pop, false, false, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_green,
-					Assets.balloon_green_pop, false, false));
+					Assets.balloon_green_pop, false, false, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_grey,
-					Assets.balloon_grey_pop, false, false));
+					Assets.balloon_grey_pop, false, false, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_orange,
-					Assets.balloon_orange_pop, false, false));
+					Assets.balloon_orange_pop, false, false, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_pink,
-					Assets.balloon_pink_pop, false, false));
+					Assets.balloon_pink_pop, false, false, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_yellow,
-					Assets.balloon_yellow_pop, false, gameLost));
+					Assets.balloon_yellow_pop, false, gameLost, 0,0));
 
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_red,
-					Assets.balloon_red_pop, false, false));
+					Assets.balloon_red_pop, false, false, 0,0));
 
 		}
 		
@@ -129,92 +136,111 @@ public class BalloonPopState extends State {
 			Log.d("BalloonPopState", "expected 20");
 			for (int i = 0; i < 2; i++) {
 			
-				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+						GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_blue,
-						Assets.balloon_blue_pop, false, false));
+						Assets.balloon_blue_pop, false, false, stage,null));
 			
 
 			}
 
 			for (int i = 0; i < 2; i++) {
 				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+						GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_green,
-						Assets.balloon_green_pop, false, false));
+						Assets.balloon_green_pop, false, false, stage,null));
 			
 			}
 
 			for (int i = 0; i < 2; i++) {
 				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+						GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_grey,
-						Assets.balloon_grey_pop, false, false));
+						Assets.balloon_grey_pop, false, false,  stage,null));
 			
 
 			}
 
 			for (int i = 0; i < 2; i++) {
 				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+						GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_orange,
-						Assets.balloon_orange_pop, false, false));
+						Assets.balloon_orange_pop, false, false,  stage,null));
 		
 
 			}
 
 			for (int i = 0; i < 2; i++) {
-				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
+				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
 						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_pink,
-						Assets.balloon_pink_pop, false, false));
+						Assets.balloon_pink_pop, false, false, stage,null));
 			
 			}
 
 			for (int i = 0; i < 2; i++) {
-				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+						GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_yellow,
-						Assets.balloon_yellow_pop, false, false));
+						Assets.balloon_yellow_pop, false, false, stage,null));
 		
 
 			}
 
 			for (int i = 0; i < 2; i++) {
-				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-						GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+				balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+						GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 						.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 						BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_red,
-						Assets.balloon_red_pop, false, false));
-		
-
+						Assets.balloon_red_pop, false, false, stage,null));	
 			}
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
+			
+			
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
 					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
-					Assets.balloon_clown_pop, true, true));
+					Assets.balloon_clown_pop, true, true, stage,0));			
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
+					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
+					Assets.balloon_clown_pop, true, true,stage,2));			
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
+					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
+					Assets.balloon_clown_pop, true, true,stage,3));
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
+					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
+					Assets.balloon_clown_pop, true, true,stage,4));
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
+					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
+					Assets.balloon_clown_pop, true, true,stage,5));
 		
 
 		
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_hippo,
-					Assets.balloon_green_pop, false,true));
+					Assets.balloon_green_pop, false,true ,stage,null));
 			
-			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(0,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_girraffe,
-					Assets.balloon_green_pop, false,true));
-			
+					Assets.balloon_green_pop, false,true,  stage,null));
 		}
 
 		
@@ -226,7 +252,7 @@ public class BalloonPopState extends State {
 	
 	private void createOneMinuteInterval(){
 		
-		Timer timer = new Timer();
+		timer = new Timer();
 
 		timer.schedule(new TimerTask() {
 			@Override
@@ -251,6 +277,8 @@ public class BalloonPopState extends State {
 						Log.d("BalloonPopState", "didnt loose!!");
 						gameLost = false;
 						targetScore= targetScore+100;
+						animalBonus = animalBonus+2;
+						stage = stage+1;
 						balloonYSpeed = balloonYSpeed+0.5f;
 						recalculateStartTime();
 						createOneMinuteInterval();
@@ -285,12 +313,16 @@ public class BalloonPopState extends State {
 			if (reversePopCounter == 0) {
 				
 				GameMainActivity.sGame.setCurrentState(new BalloonWinState(expectedToPop));
+				 timer.cancel();
+		         timer.purge();
 				balloons.clear();
 			}
 			if (gameLost) {
 			
 				GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
 						currentScore, expectedToPop));
+				 timer.cancel();
+		         timer.purge();
 				balloons.clear();
 			}			
 		}
@@ -300,11 +332,15 @@ public class BalloonPopState extends State {
 			if (gameLost) {					
 				GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
 						expectedToPop - reversePopCounter, expectedToPop));
+				 timer.cancel();
+		         timer.purge();
 				balloons.clear();
 			}
 			if(currentScore >= WIN_SCORE ){
 				GameMainActivity.sGame.setCurrentState(new  BalloonWinState(
 						currentScore));
+				 timer.cancel();
+		         timer.purge();
 				balloons.clear();
 			}
 			
@@ -312,9 +348,25 @@ public class BalloonPopState extends State {
 	}
 
 	private void updateBalloons(float delta) {
+	
 		for (int i = 0; i < balloons.size(); i++) {
 			Balloon b = balloons.get(i);
-			b.update(delta, balloonYSpeed);
+			
+			b.setStage(stage);
+			
+			if (b.isClown()){
+				if(stage>=b.getClownNo()){
+					
+					b.update(delta, balloonYSpeed);
+				}
+				else{
+					// Dont do anything , dont update
+				}
+			
+			}
+			else{
+				b.update(delta, balloonYSpeed);
+			}
 		}
 
 	}
@@ -349,8 +401,21 @@ public class BalloonPopState extends State {
 	private void renderBalloons(Painter g) {
 		if(balloons != null)
 		for (Balloon balloon : balloons) {
-			if(balloon != null)
-			  balloon.render(g);
+			if(balloon != null){
+				if (balloon.isClown()){
+					if(stage>=balloon.getClownNo()){
+						  balloon.render(g);				
+					}
+					else{
+						// Dont do anything , render
+					}
+				}
+				else{
+					 balloon.render(g);	
+				}
+				
+			}
+			
 		}
 	}
 
@@ -367,14 +432,16 @@ public class BalloonPopState extends State {
 						if (balloon.getRect().contains(scaledX, scaledY)) {
 							if (balloon.isClown()) {
 								Assets.playClownPop();
-								reversePopCounter =expectedToPop;
+								//reversePopCounter =expectedToPop;
+								reversePopCounter=reversePopCounter+20;
 							} else if(!balloon.isAnimal()){
 								Assets.playBalloonPop();
-								reversePopCounter--;
+								
+								reversePopCounter= reversePopCounter-2;
 							}
 							else{
-								Assets.playBalloonPop(); // < Have to change this!!
-								reversePopCounter = reversePopCounter -5;
+								Assets.playAnimalPop(); // < Have to change this!!
+								reversePopCounter = reversePopCounter -animalBonus;
 							}
 							balloon.onUserTouch();
 						}
@@ -388,6 +455,8 @@ public class BalloonPopState extends State {
 			if (back.isPressed(scaledX, scaledY)) {
 				back.cancel();			
 				GameMainActivity.sGame.setCurrentState(new MainMenuState());
+				 timer.cancel();
+		         timer.purge();
 				//balloons.clear();
 				return true;
 			}

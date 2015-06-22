@@ -113,7 +113,15 @@ public class Assets {
 	
 	private static int balloonPopId ;
 	private static int balloonClownId ;
-	
+	private static int powerUpAscendingDingId;
+	public static Bitmap scoreDown;
+	public static Bitmap score;
+	public static Bitmap scoreDown2;
+	public static Bitmap score2;
+	public static Bitmap signIn;
+	public static Bitmap signInDown;
+	public static Bitmap signOut;
+	public static Bitmap signOutDown;
 	
 
 	public static void load() {
@@ -189,6 +197,17 @@ public class Assets {
 		 balloon_girraffe    = loadBitmap("balloon_girraffe.png", true, false);
 		 balloon_hippo = loadBitmap("balloon_hippo.png", true, false);
 		 
+		scoreDown = loadBitmap("score_button_down.png", true, false);
+		score = loadBitmap("score_button.png", true, false);
+			
+		scoreDown2 = loadBitmap("score_button_play_down.png", true, false);
+		score2 = loadBitmap("score_button_play.png", true, false);
+			
+		signIn = loadBitmap("sign_in.png", true, false);
+		signInDown = loadBitmap("sign_in_down.png", true, false);
+		signOut = loadBitmap("sign_out.png", true, false);
+		signOutDown = loadBitmap("sign_out_down.png", true, false);
+		 
 		//grass_sky = loadBitmap("grass_sky.jpg", true, false);
 		 		 	 
 		loadCarouzelMap();
@@ -196,6 +215,8 @@ public class Assets {
 		loadBaloonPop("balloon_pop.mp3");
 		
 		loadZongPop("wrong2.mp3");
+		
+		loadAscendingPowerUp("comedy_marimba_ascend_003.mp3");
 	
 	}
 
@@ -219,12 +240,27 @@ public class Assets {
 		
 	}
 	
+	private static void loadAscendingPowerUp(String filenaMe) {
+		if(soundPool == null)
+		buildSoundPool();
+		 if(soundPool == null){
+			 Log.d("Assets", "SoundPool is not created 3");
+		 }
+		 powerUpAscendingDingId = loadSound(filenaMe);
+		
+	}
+	
 	public static void playBalloonPop(){
 		playAlreadyLoadedSound(balloonPopId);
 	}
 	
 	public static void playClownPop(){
 		playAlreadyLoadedSound(balloonClownId);
+	}
+	
+	public static void playAnimalPop() {		
+		playAlreadyLoadedSound(powerUpAscendingDingId);
+		
 	}
 
 	public static int getSizeOfGallery() {
@@ -1402,5 +1438,7 @@ public class Assets {
 		animals.put(tempArrayVariable++, donkey);
 
 	}
+
+
 
 }

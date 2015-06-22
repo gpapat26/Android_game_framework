@@ -13,12 +13,17 @@ import com.animals.util.UIButton;
 public class BalloonLooseState extends State{
 	
 	private UIButton back;
-	
+	private int playerScore;
 	private  int balloonsPopped;
 	
 	private  int balloonTarget;
 
 	public BalloonLooseState(int balloonsPopped,int balloonTarget) {
+		playerScore = GameMainActivity.getHighScore();
+		Log.d("BalloonLooseState", "Score retrieved is "+playerScore + "while balloons popped is"+balloonsPopped);
+		if(playerScore < balloonsPopped){
+			GameMainActivity.setHighScore(balloonsPopped);
+		}
 		init();
 		
 		this.balloonsPopped = balloonsPopped;

@@ -14,11 +14,17 @@ import com.animals.util.UIButton;
 public class BalloonWinState extends State{
 	
 	public  int targetCovered;
-	
+//	private String playerScore;
 	private UIButton back;
 
 	public BalloonWinState(int targetCovered) {
+		
 		this.targetCovered = targetCovered;
+		//this.playerScore = targetCovered+"";
+		
+		if(targetCovered> GameMainActivity.getHighScore()){
+			GameMainActivity.setHighScore(targetCovered);
+		}
 		init();
 	}
 

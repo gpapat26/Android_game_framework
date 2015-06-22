@@ -1,4 +1,7 @@
 <resources>
+    
+    <string name="leaderBoardTest">123</string>
+    <string name="leaderBoardProduction">456</string>
 
     <string name="app_name">Animals</string>
     <string name="exit">Press again to exit</string>

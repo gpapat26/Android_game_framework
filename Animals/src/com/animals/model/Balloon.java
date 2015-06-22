@@ -29,9 +29,11 @@ public class Balloon {
 	private int platosX;
 	private boolean isClown;
 	private boolean isAnimal;
+	private int stage;
+	private Integer clownNo;
 	
 	
-	public Balloon(float x, float y, int width, int height,Bitmap balloon,Bitmap balloonPop,boolean isclown,boolean isAnimal) {
+	public Balloon(float x, float y, int width, int height,Bitmap balloon,Bitmap balloonPop,boolean isclown,boolean isAnimal, int stage, Integer clownNo) {
 		this.x = x;
 		this.y = y;
 		this.originalX = x;
@@ -49,6 +51,8 @@ public class Balloon {
 		platosX = RandomNumberGenerator.getRandIntBetween(50, 200);
 		this.isClown =isclown;
 		this.isAnimal = isAnimal;
+		this.stage =stage;
+		this.clownNo = clownNo;
 	}
 	
 
@@ -82,13 +86,32 @@ public class Balloon {
 			visible = true;
 			popped = false;
 			setCurrentBalloonImage(balloon);
-			y+=500;
+			y+=RandomNumberGenerator.getRandIntBetween(GameMainActivity.GAME_HEIGHT +200, GameMainActivity.GAME_HEIGHT+400);
 			x = RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH);
-			VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2, 10);
-			VELX_NEGATIVE = - VELX_POSITIVE;
+			//VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2, 10);
+			//VELX_NEGATIVE = - VELX_POSITIVE;
+			alterPlatos();
 			updateRect();
 		
 
+	}
+	
+	public void alterPlatos(){
+		
+		
+		if(isAnimal){
+			VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(5+stage, 10+stage);
+			VELX_NEGATIVE = - VELX_POSITIVE;
+		}
+		else if(!isAnimal&&isClown){
+			VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(8+stage, 10+stage);
+			VELX_NEGATIVE = - VELX_POSITIVE;
+		}
+		else{
+			VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2+stage, 10+stage);
+			VELX_NEGATIVE = - VELX_POSITIVE;
+		}
+		
 	}
 
 	private void updateRect() {
@@ -247,6 +270,34 @@ public class Balloon {
 
 	public void setAnimal(boolean isAnimal) {
 		this.isAnimal = isAnimal;
+	}
+
+
+
+
+	public int getStage() {
+		return stage;
+	}
+
+
+
+
+	public void setStage(int stage) {
+		this.stage = stage;
+	}
+
+
+
+
+	public Integer getClownNo() {
+		return clownNo;
+	}
+
+
+
+
+	public void setClownNo(Integer clownNo) {
+		this.clownNo = clownNo;
 	}	
 	
 	
