@@ -136,8 +136,8 @@ public class MainActivity extends Activity {
          * want to make it easy for an attacker to replace the public key with one
          * of their own and then fake messages from the server.
          */
-        String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNgrpfcgNutjrbjzpYOTGSrPCWwoO34B9+2CwXjfTuaahBV06he8epGoI4LPQnnNjnGyXdsBnKTjb0NRir6J96rNihsOUu2uQP5k57xDMFy6uVmvNKs9eSpeW249JoqgjDhDxATcXSxg+HOjWnEBCwlE5TWk7eMuUdWOCHOKty/m4NQIlK+a1n5YwFFRhF0ynbmvquWAXs1C96RNdr/kBvRvxPGMSqYC3mFzhNWTR/6i2TZuTF9oDvK+lRZ4LK+dIkdIMKolTLnTaE8rHItCn53dn9KP/dH9Ncp1hYr/dRlnf10lLTE/DpQQ/zKnpKa0aEjKlUd0Vm66PLhsxAQNtwIDAQAB";
-
+        String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsMeRpkxXL4Y133MVFCtNVi+kgYCeOw2fUHa4WpX4b+vKmoE1pZyHWvkoTytMCqkFbeSurzaBJesA6Ohyd5LEDA0aip9g/d7L3gdduOoNWNy+eApMrmLcTU45yPB2LUjmoOxieLoKeHIWpnBpgQuccRQQvyrHgH7OZFeZowu9IzwbnB2RLWktDN6UpYGX14qF/u7ZA9T9lWoeuS59uos71D4vADOiHZqOW2E2Q180HV987QkgiRUoEZ4LJ8SXH+FMrI1edaOvH8wVzkApzl9ptTpBZOOCOpRfDk54rTuUZTWGupPythk9LWVmDrT3VIMr2nJnO/ZiynJ027pD5o842QIDAQAB";
+        
         // Some sanity checks to see if the developer (that's you!) really followed the
         // instructions to run this sample (don't put these checks on your app!)
         if (base64EncodedPublicKey.contains("CONSTRUCT_YOUR")) {

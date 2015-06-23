@@ -14,6 +14,7 @@ public class MainMenuState extends State {
 	private UIButton carouzelButton;
 	private UIButton back;
 	private UIButton balloon;
+	private UIButton purhaceButton;
 
 	public  MainMenuState() {
 		init();
@@ -30,6 +31,9 @@ public class MainMenuState extends State {
 		balloon = new UIButton(450, 200, 550, 300, Assets.balloons_button , Assets.balloons_button_down);
 		
 		back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
+		
+		purhaceButton = new UIButton(5, 355, 105, 445, Assets.buyItemUp, Assets.buyItemDown);
+		
 		Assets.loadGalleryImage("farm1");
 		
 	}
@@ -47,6 +51,7 @@ public class MainMenuState extends State {
 			carouzelButton.render(g);
 			back.render(g);
 			balloon.render(g);
+			purhaceButton.render(g);
 		}
 		
 	}
@@ -59,6 +64,7 @@ public class MainMenuState extends State {
 			carouzelButton.onTouchDown(scaledX, scaledY);
 			back.onTouchDown(scaledX, scaledY);
 			balloon.onTouchDown(scaledX, scaledY);
+			purhaceButton.onTouchDown(scaledX, scaledY);
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
@@ -91,6 +97,17 @@ public class MainMenuState extends State {
 				balloon.cancel();
 			}
 			
+			if (purhaceButton.isPressed(scaledX, scaledY)) {			
+				purhaceButton.cancel();					
+				setCurrentState(new PurchaseState());	
+				return true;
+			}
+			else{
+				purhaceButton.cancel();
+			}
+			
+			
+			
 			
 		}
 
@@ -102,6 +119,12 @@ public class MainMenuState extends State {
 	public void onPause() {
 		Log.d("MainMenuState", "OnPause is called");
 		Assets.onPause();	
+	}
+	
+	@Override
+	public void onResume() {
+		Log.d("StartState", "OnResume is called");
+		Assets.onResume();		
 	}
 
 }

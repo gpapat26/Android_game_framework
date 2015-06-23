@@ -82,5 +82,17 @@ public class LanguageState extends State {
 
 		return true;
 	}
+	
+	@Override
+	public void onPause() {
+		Log.d("MainMenuState", "OnPause is called");
+		Assets.onPause();	
+	}
+	
+	@Override
+	public void onResume() {
+		Log.d("StartState", "OnResume is called");
+		Assets.onResume();		
+	}
 
 }

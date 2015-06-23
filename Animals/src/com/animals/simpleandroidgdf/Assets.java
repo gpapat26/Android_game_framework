@@ -123,6 +123,19 @@ public class Assets {
 	public static Bitmap signOut;
 	public static Bitmap signOutDown;
 	
+	public static Bitmap buyItemUp;
+	public static Bitmap buyItemDown;
+	
+	public static Bitmap premiumBought;
+	
+	public static Bitmap buyItemUp2;
+	public static Bitmap buyItemDown2;
+	public static Bitmap displayWait;
+	
+
+	
+	
+	
 
 	public static void load() {
 
@@ -207,6 +220,16 @@ public class Assets {
 		signInDown = loadBitmap("sign_in_down.png", true, false);
 		signOut = loadBitmap("sign_out.png", true, false);
 		signOutDown = loadBitmap("sign_out_down.png", true, false);
+		
+		buyItemUp = loadBitmap("buy_item_up.png", true, false);
+		buyItemDown = loadBitmap("buy_item_down.png", true, false);
+		
+		buyItemUp2 = loadBitmap("Buy.png", true, false);
+		buyItemDown2 = loadBitmap("Buy_down.png", true, false);
+		
+		premiumBought = loadBitmap("premium_bought.png", true, false);
+		
+		displayWait =loadBitmap("wait.png", true, false);
 		 
 		//grass_sky = loadBitmap("grass_sky.jpg", true, false);
 		 		 	 

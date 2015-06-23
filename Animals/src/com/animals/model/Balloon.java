@@ -86,14 +86,17 @@ public class Balloon {
 			visible = true;
 			popped = false;
 			setCurrentBalloonImage(balloon);
-			y+=RandomNumberGenerator.getRandIntBetween(GameMainActivity.GAME_HEIGHT +200, GameMainActivity.GAME_HEIGHT+400);
-			x = RandomNumberGenerator.getRandIntBetween(0, GameMainActivity.GAME_WIDTH);
-			//VELX_POSITIVE   = RandomNumberGenerator.getRandIntBetween(2, 10);
-			//VELX_NEGATIVE = - VELX_POSITIVE;
+			y+=RandomNumberGenerator.getRandIntBetween(GameMainActivity.GAME_HEIGHT, GameMainActivity.GAME_HEIGHT *2);
+			x = RandomNumberGenerator.getRandIntBetween(50, GameMainActivity.GAME_WIDTH-50);
+			alterOriginOfBalloons();
 			alterPlatos();
 			updateRect();
 		
 
+	}
+	
+	public void alterOriginOfBalloons(){
+		currentVelocity = RandomNumberGenerator.getRandIntBetween(2, 5);
 	}
 	
 	public void alterPlatos(){

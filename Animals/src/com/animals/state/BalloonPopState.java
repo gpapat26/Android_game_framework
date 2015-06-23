@@ -203,27 +203,27 @@ public class BalloonPopState extends State {
 			
 			
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
 					Assets.balloon_clown_pop, true, true, stage,0));			
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
 					Assets.balloon_clown_pop, true, true,stage,2));			
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
 					Assets.balloon_clown_pop, true, true,stage,3));
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
 					Assets.balloon_clown_pop, true, true,stage,4));
 			balloons.add(new Balloon(RandomNumberGenerator.getRandIntBetween(50,
-					GameMainActivity.GAME_WIDTH), RandomNumberGenerator
+					GameMainActivity.GAME_WIDTH-50), RandomNumberGenerator
 					.getRandIntBetween(GameMainActivity.GAME_HEIGHT,2*GameMainActivity.GAME_HEIGHT),
 					BALLOON_WIDTH, BALLOON_HEIGHT, Assets.balloon_clown,
 					Assets.balloon_clown_pop, true, true,stage,5));
@@ -464,6 +464,18 @@ public class BalloonPopState extends State {
 		}
 		currentScore = expectedToPop - reversePopCounter;
 		return true;
+	}
+	
+	@Override
+	public void onPause() {
+		Log.d("MainMenuState", "OnPause is called");
+		Assets.onPause();	
+	}
+	
+	@Override
+	public void onResume() {
+		Log.d("StartState", "OnResume is called");
+		Assets.onResume();		
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 
+
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
@@ -44,7 +45,7 @@ public class CarouzelState extends State {
 	public void init() {
 		languageCode = GameMainActivity.getLanguageCode();
 		displayNameRect = new Rect(GameMainActivity.sGame.getSrcRectangle().left,350, GameMainActivity.sGame.getSrcRectangle().right, GameMainActivity.sGame.getSrcRectangle().bottom);		
-		//Assets.onPause();
+		Assets.onPause();
 		Assets.loadGalleryImageResolver(carouzelIndex);
 		carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);	
 		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);				
@@ -218,5 +219,17 @@ public class CarouzelState extends State {
 	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.mp3",false);
 		break;
 		}
+	}
+	
+	@Override
+	public void onPause() {
+		Log.d("MainMenuState", "OnPause is called");
+		Assets.onPause();	
+	}
+	
+	@Override
+	public void onResume() {
+		Log.d("StartState", "OnResume is called");
+		Assets.onResume();		
 	}
 }
