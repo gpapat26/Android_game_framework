@@ -229,7 +229,7 @@ public class Assets {
 		
 		premiumBought = loadBitmap("premium_bought.png", true, false);
 		
-		displayWait =loadBitmap("wait.png", true, false);
+		displayWait =loadBitmap("loading.jpg", true, false);
 		 
 		//grass_sky = loadBitmap("grass_sky.jpg", true, false);
 		 		 	 

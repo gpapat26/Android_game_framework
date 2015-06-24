@@ -14,6 +14,7 @@ public class PurchaseState extends State {
 	private UIButton buyPremiumItem;
 	private UIButton displayAlreadyPurhcace;
 	private static final String TAG ="PurchaseState";
+	public static boolean pleaseWaitLocal=false;
 
 	
 	public PurchaseState(){
@@ -48,8 +49,8 @@ public class PurchaseState extends State {
 		else{
 			buyPremiumItem.render(g);
 		}
-		if(GameMainActivity.waitForPurhcace){
-			g.drawImage(Assets.displayWait, 50, 50);
+		if(pleaseWaitLocal){
+			g.drawImage(Assets.displayWait, 0, 0);
 		}
 
 	}
@@ -82,7 +83,15 @@ public class PurchaseState extends State {
 			if (buyPremiumItem.isPressed(scaledX, scaledY)) {
 				 buyPremiumItem.cancel();
 				 Log.d(TAG, "Buy premium is pressed");
-				 GameMainActivity.onUpgradeAppButtonClicked();								
+					Thread thread = new Thread(){				    
+						public void run(){	
+							pleaseWaitLocal = true;
+								GameMainActivity.onUpgradeAppButtonClicked();
+						    pleaseWaitLocal = false;
+					    }
+					  };
+					  thread.start();			
+				 							
 		       }
 			else{
 				buyPremiumItem.cancel();
