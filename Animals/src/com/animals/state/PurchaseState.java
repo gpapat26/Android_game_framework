@@ -29,7 +29,7 @@ public class PurchaseState extends State {
 		 back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
 		 buyPremiumItem  = new UIButton(250, 200, 350, 300, Assets.buyItemUp2 , Assets.buyItemDown2);		
 		 
-		 displayAlreadyPurhcace  = new UIButton(450, 200, 550, 300, Assets.premiumBought , Assets.premiumBought);		 	   	     
+		 displayAlreadyPurhcace  = new UIButton(250, 200, 350, 300, Assets.premiumBought , Assets.premiumBought);		 	   	     
 	}
 
 	@Override
