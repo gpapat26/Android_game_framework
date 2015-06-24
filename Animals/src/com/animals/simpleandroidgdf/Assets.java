@@ -130,7 +130,7 @@ public class Assets {
 	
 	public static Bitmap buyItemUp2;
 	public static Bitmap buyItemDown2;
-	public static Bitmap displayWait;
+	//public static Bitmap displayWait;
 	
 
 	
@@ -229,7 +229,7 @@ public class Assets {
 		
 		premiumBought = loadBitmap("premium_bought.png", true, false);
 		
-		displayWait =loadBitmap("loading.jpg", true, false);
+		//displayWait =loadBitmap("loading.jpg", true, false);
 		 
 		//grass_sky = loadBitmap("grass_sky.jpg", true, false);
 		 		 	 

@@ -35,7 +35,7 @@ public class GameMainActivity extends BaseGameActivity{
 	public static int languageId=1;
 	private static final String languageCodeKey = "languageCodeKey";
 	private static final String highScoreKey = "highScoreAnimalKey";
-	private static final String premiumKey = "highScoreAnimalKey";
+	private static final String premiumKey = "premium";
 	private static int highScore;
 	
 	public static boolean testingMode = false;
@@ -43,11 +43,11 @@ public class GameMainActivity extends BaseGameActivity{
 	public static GameMainActivity instance;
     public static final String TAG = "GameMainActivity";
 	
-	private static SharedPreferences prefs;	
+	public static SharedPreferences prefs;	
 	 // Does the user have the premium upgrade?
     public static boolean mIsPremium = false;
     
-    public static final String SKU_PREMIUM = "premium";
+    public static final String SKU_PREMIUM = "premium2";
     
     // (arbitrary) request code for the purchase flow
     static final int RC_REQUEST = 10001;
@@ -255,11 +255,10 @@ public class GameMainActivity extends BaseGameActivity{
 	}
 	
 	private boolean retrievePremiumStatus() {
-		return prefs.getBoolean("premiumKey", false);
+		return prefs.getBoolean(premiumKey, false);
 		
 	}
 	
-
 	public static void setLanguageCode(int languageId) {
 		GameMainActivity.languageId = languageId;
 		Editor editor = prefs.edit();
@@ -275,7 +274,13 @@ public class GameMainActivity extends BaseGameActivity{
 	//********************* Google Play Payment Methods*********************************//
     //**********************************************************************************//
 
-    
+	private void setPremiumStatus(boolean value){
+		Editor editor = prefs.edit();
+		editor.putBoolean(premiumKey, value);
+		editor.commit();
+		Log.d("GameMainActivity", "premium is "+value);	
+	}
+	
     // Listener that's called when we finish querying the items and subscriptions we own
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
         public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
@@ -301,7 +306,11 @@ public class GameMainActivity extends BaseGameActivity{
             // Do we have the premium upgrade?
             Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
             mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
+            
+            setPremiumStatus(mIsPremium);
+            
             Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+           //here store key
             //Other payment options can be placed here ,consumption plans
             
             
@@ -317,7 +326,7 @@ public class GameMainActivity extends BaseGameActivity{
     	// TODO add a blur allover the screen...
     	if(set){
     		waitForPurhcace = set;
-    		Toast.makeText(sGame.getContext(), "please wait payment to complete",Toast.LENGTH_SHORT).show();
+    		//Toast.makeText(sGame.getContext(), "please wait payment to complete",Toast.LENGTH_SHORT).show();
     	}
     	else{
     		waitForPurhcace = set;

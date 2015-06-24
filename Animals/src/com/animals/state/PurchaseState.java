@@ -1,5 +1,9 @@
 package com.animals.state;
 
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.Paint.Align;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -15,6 +19,7 @@ public class PurchaseState extends State {
 	private UIButton displayAlreadyPurhcace;
 	private static final String TAG ="PurchaseState";
 	public static boolean pleaseWaitLocal=false;
+	private static Rect rect;
 
 	
 	public PurchaseState(){
@@ -27,9 +32,9 @@ public class PurchaseState extends State {
 		// TODO Auto-generated method stub
 		 Assets.loadGalleryImage("cartoon-rural-scene-farm-animals-24447502_2");
 		 back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
-		 buyPremiumItem  = new UIButton(250, 200, 350, 300, Assets.buyItemUp2 , Assets.buyItemDown2);		
-		 
-		 displayAlreadyPurhcace  = new UIButton(250, 200, 350, 300, Assets.premiumBought , Assets.premiumBought);		 	   	     
+		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.buyItemUp2 , Assets.buyItemDown2);		
+		 rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
+		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
 	}
 
 	@Override
@@ -43,34 +48,38 @@ public class PurchaseState extends State {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		
 		back.render(g);
+	
+		
 		if(GameMainActivity.mIsPremium){
+			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0));
 			displayAlreadyPurhcace.render(g);
 		}
-		else{
+		else if(!pleaseWaitLocal){
+			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0));
 			buyPremiumItem.render(g);
 		}
-		if(pleaseWaitLocal){
-			g.drawImage(Assets.displayWait, 0, 0);
+		else{
+			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0));
+
 		}
 
 	}
+	
 
 	@Override
 	public boolean onTouch(MotionEvent e, int scaledX, int scaledY) {
 		Log.d("MainMenuState", "button clicked");	
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
-			back.onTouchDown(scaledX, scaledY);
+			back.onTouchDown(scaledX, scaledY);			
 			
-			if(!GameMainActivity.mIsPremium)
-				buyPremiumItem.onTouchDown(scaledX, scaledX);
-			
-			
+			if(!GameMainActivity.mIsPremium){
+				buyPremiumItem.onTouchDown(scaledX, scaledY);
+			}									
 		}
+		
 		if (e.getAction() == MotionEvent.ACTION_UP) {			
 			if (back.isPressed(scaledX, scaledY)) {
-		    	   back.cancel();
-		    	 
-		    		
+		    	   back.cancel();    		
 					GameMainActivity.sGame.setCurrentState(new MainMenuState());
 					return true;
 		       }
@@ -80,18 +89,28 @@ public class PurchaseState extends State {
 			
 			
 			
-			if (buyPremiumItem.isPressed(scaledX, scaledY)) {
+			if (buyPremiumItem.isPressed(scaledX, scaledY) ) {
 				 buyPremiumItem.cancel();
-				 Log.d(TAG, "Buy premium is pressed");
+//				 Log.d(TAG, "Buy premium is pressed");
+//				 
 					Thread thread = new Thread(){				    
 						public void run(){	
 							pleaseWaitLocal = true;
+							
+							try {
 								GameMainActivity.onUpgradeAppButtonClicked();
+								sleep(10000);
+							} catch (Exception e) {
+								
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						    pleaseWaitLocal = false;
 					    }
 					  };
+//					  
 					  thread.start();			
-				 							
+//				 							
 		       }
 			else{
 				buyPremiumItem.cancel();
