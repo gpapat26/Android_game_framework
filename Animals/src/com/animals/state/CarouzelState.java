@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 
+
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
@@ -37,12 +38,15 @@ public class CarouzelState extends State {
 	static final int MIN_DISTANCE = 150;
 	private static int languageCode = 0;
 	private static int backPressedCounter = 0;
+	private UIButton purhaceButton;
+	private Rect wholeScreenRect;
 	
 	public  CarouzelState() {
 		init();
 	}
 	@Override
 	public void init() {
+		wholeScreenRect = new Rect(0,0,GameMainActivity.GAME_WIDTH,GameMainActivity.GAME_HEIGHT);
 		languageCode = GameMainActivity.getLanguageCode();
 		displayNameRect = new Rect(GameMainActivity.sGame.getSrcRectangle().left,350, GameMainActivity.sGame.getSrcRectangle().right, GameMainActivity.sGame.getSrcRectangle().bottom);		
 		Assets.onPause();
@@ -51,6 +55,7 @@ public class CarouzelState extends State {
 		carouzel_next = new UIButton(705, 355, 795, 445, Assets. carouzel_right , Assets.carouzel_right_down);				
 		animal = new UIButton(110, 355, 200, 445, Assets.play_animal , Assets.play_animal_down);
 		back = new UIButton(605, 355, 695, 445, Assets.back , Assets.back_down);
+		purhaceButton = new UIButton(110, 355, 200, 445, Assets.buyItemUp, Assets.buyItemDown);
 		resolveLinguisticSoundAndPlay();
 	}
 
@@ -62,8 +67,11 @@ public class CarouzelState extends State {
 
 	@Override
 	public void render(Painter g) {
-		String animalName = "UNDENTIFIED";
+		String animalName = null;
+	
 		g.drawImage(Assets.galleryBitmap, 0, 0);
+		
+		
 		try{
 			 animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(GameMainActivity.getLanguageCode()));	
 		//	 Log.d("CarouzelState", "found animal name with index: "+carouzelIndex + "and language code: "+languageCode +" "+animalName);
@@ -74,12 +82,28 @@ public class CarouzelState extends State {
 		//String animalName = GameView.context.getResources().getString(R.string.ant);	
 
 	
-		g.drawRectTextAligned(animalName,displayNameRect,40,Typeface.SERIF,Align.CENTER,Color.rgb(144, 0, 0));
-	
+		g.drawRectTextAligned(animalName,displayNameRect,40,Typeface.SERIF,Align.CENTER,Color.rgb(144, 0, 0),true);
+		
+		if(Assets.currentAnimal.isPromo()){
+			if(languageCode== 0){
+				g.drawRectTextAligned(GameMainActivity.sGame.getContext().getResources().getString(R.string.promoMain),wholeScreenRect,40,Typeface.SERIF,Align.CENTER,Color.rgb(144, 0, 0),true);		
+			}
+			else if(languageCode== 1){
+				g.drawRectTextAligned(GameMainActivity.sGame.getContext().getResources().getString(R.string.promoMain_gr),wholeScreenRect,40,Typeface.SERIF,Align.CENTER,Color.rgb(144, 0, 0),true);		
+
+			}
+		}
+		
 		carouzel_prev.render(g);
-		carouzel_next.render(g);
-		animal.render(g);
+		carouzel_next.render(g);		
 		back.render(g);
+		if(!Assets.currentAnimal.isPromo()){
+			animal.render(g);
+		}
+		else{
+			purhaceButton.render(g);
+		}
+		
 	}
 	
 
@@ -93,6 +117,11 @@ public class CarouzelState extends State {
 			 x1 = e.getX();  
 			 animal.onTouchDown(scaledX, scaledY);
 			 back.onTouchDown(scaledX, scaledY);
+			 
+			 if(Assets.currentAnimal.isPromo()){
+				 purhaceButton.onTouchDown(scaledX, scaledY);
+			 }
+			
 			 
 		}
 
@@ -138,6 +167,15 @@ public class CarouzelState extends State {
 	    	   }
 	    	  
 	       }
+	       
+	       if (Assets.currentAnimal.isPromo() && purhaceButton.isPressed(scaledX, scaledY)) {			
+				purhaceButton.cancel();					
+				setCurrentState(new PurchaseState());	
+				return true;
+			}
+			else{
+				purhaceButton.cancel();
+			}
 	           
 			if (carouzel_next.isPressed(scaledX, scaledY)) {
 				carouzel_next.cancel();	
@@ -173,7 +211,7 @@ public class CarouzelState extends State {
 		return true;
 	}
 	
-	private void playAnimalSoundsAndVoice(){
+	private  void playAnimalSoundsAndVoice(){
 		try{
 			ArrayList<String> musicList = Assets.animals.get(carouzelIndex).getAnimalAudioFile();
 			

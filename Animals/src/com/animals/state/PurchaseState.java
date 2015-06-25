@@ -51,15 +51,15 @@ public class PurchaseState extends State {
 	
 		
 		if(GameMainActivity.mIsPremium){
-			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0));
+			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true);
 			displayAlreadyPurhcace.render(g);
 		}
 		else if(!pleaseWaitLocal){
-			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0));
+			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0), true);
 			buyPremiumItem.render(g);
 		}
 		else{
-			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0));
+			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true);
 
 		}
 

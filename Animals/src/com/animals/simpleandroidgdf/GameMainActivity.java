@@ -336,11 +336,11 @@ public class GameMainActivity extends BaseGameActivity{
 
 
     static void alert(String message) {
-        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
-        bld.setMessage(message);
-        bld.setNeutralButton("OK", null);
-        Log.d(TAG, "Showing alert dialog: " + message);
-        bld.create().show();
+//        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
+//        bld.setMessage(message);
+//        bld.setNeutralButton("OK", null);
+//        Log.d(TAG, "Showing alert dialog: " + message);
+//        bld.create().show();
     }
     
 
@@ -412,6 +412,7 @@ public class GameMainActivity extends BaseGameActivity{
                 // bought the premium upgrade!
                 Log.d(TAG, "Purchase is premium upgrade. Congratulating user.");
                 alert("Thank you for upgrading to premium!");
+                Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
                 mIsPremium = true;           
                 setWaitScreen(false);
             }

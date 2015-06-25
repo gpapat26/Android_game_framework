@@ -91,6 +91,8 @@
     <string name="sea_gull">SEAGULL</string>
     <string name="hippo">HIPPOPOTAMUS</string>
     <string name="donkey">DONKEY</string>
+    <string name="promo">Upgrade App</string>
+    <string name="promoMain">More than 80+ Animals with premium</string>
 
     <!-- GREEK ANIMALS -->
     <!-- GREEK ANIMALS -->
@@ -186,5 +188,7 @@
     <string name="sea_gull_gr">ΓΛΑΡΟΣ</string>
     <string name="hippo_gr">ΙΠΠΟΠΟΤΑΜΟΣ</string>
     <string name="donkey_gr">ΓΑΙΔΑΡΟΣ</string>
+     <string name="promo_gr">Aναβαθμίστε!</string>
+     <string name="promoMain_gr">Περισσότερα απο 80+ ζωάκια </string>
 
 </resources>

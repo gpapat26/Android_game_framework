@@ -44,6 +44,7 @@ public class BalloonPopState extends State {
 	private int seconds;
 	private int stage=0;
 
+
 	private static int WIN_SCORE = 10000;
 
 	public BalloonPopState(int state) {
@@ -395,6 +396,7 @@ public class BalloonPopState extends State {
 		g.setColor(Color.BLACK);
 		g.setFont(Typeface.SANS_SERIF, 40);
 		g.drawString("Score:"+(currentScore)+":"+targetScore, 20, 30);	
+		//g.drawRectTextAligned("Score:"+(currentScore)+":"+targetScore, r, textSize, typeFace, align, color);
 	}
 	
 

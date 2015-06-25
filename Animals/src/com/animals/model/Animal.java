@@ -13,6 +13,8 @@ public class Animal {
 	
 	private List<Integer> animalNames;
 	
+	private boolean promo= false;
+	
 	public int getAnimalName(int code) {
 		return animalNames.get(code);
 	}
@@ -54,6 +56,14 @@ public class Animal {
 
 	public void setAnimalVisualFileSoundLang(String animalVisualFileSoundLang) {
 		this.animalVisualFileSoundLang = animalVisualFileSoundLang;
+	}
+
+	public boolean isPromo() {
+		return promo;
+	}
+
+	public void setPromo(boolean promo) {
+		this.promo = promo;
 	}
 
 	
