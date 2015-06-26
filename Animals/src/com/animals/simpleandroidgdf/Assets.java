@@ -674,7 +674,7 @@ public class Assets {
 		}
 		else if(GameMainActivity.sGame.currentState instanceof BalloonLooseState)
 		{				
-			
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
 		}
 		else if(GameMainActivity.sGame.currentState instanceof SelectBalloonWinState)
 		{				
