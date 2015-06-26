@@ -57,7 +57,7 @@ public class Painter {
 	
 	public void fillOval(int x, int y, int width, int height){
 		paint.setStyle(Paint.Style.FILL);
-		dstRectF.set(y, y, x+width, y+height);
+		dstRectF.set(x, y, x+width, y+height);
 		canvas.drawOval(dstRectF, paint);
 	}
 	
@@ -69,13 +69,13 @@ public class Painter {
 		return paint;
 	}
 	
-	public void drawRectTextAligned(String text, Rect r,int textSize,android.graphics.Typeface typeFace, android.graphics.Paint.Align align,int color,boolean isTransparent) {
+	public void drawRectTextAligned(String text, Rect r,int textSize,android.graphics.Typeface typeFace, android.graphics.Paint.Align align,int color,boolean isTransparent,int transparency) {
 		
 		//this.paint.setARGB(128, 255, 255, 255);
 		if(isTransparent){
-			this.paint.setARGB(80, 255, 255, 255);
+			this.paint.setARGB(transparency, 255, 255, 255);
 		}
-		
+			
 		this.canvas.drawRect(r, this.paint);	
 		this.paint.setColor(color);		
 		this.paint.setTypeface(typeFace);

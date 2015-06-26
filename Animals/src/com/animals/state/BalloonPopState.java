@@ -5,6 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.graphics.Color;
+import android.graphics.Paint.Align;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -313,7 +314,7 @@ public class BalloonPopState extends State {
 		if(state ==1){
 			if (reversePopCounter == 0) {
 				
-				GameMainActivity.sGame.setCurrentState(new BalloonWinState(expectedToPop));
+				GameMainActivity.sGame.setCurrentState(new BalloonWinState(expectedToPop,state));
 				 timer.cancel();
 		         timer.purge();
 				balloons.clear();
@@ -321,7 +322,7 @@ public class BalloonPopState extends State {
 			if (gameLost) {
 			
 				GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
-						currentScore, expectedToPop));
+						currentScore, expectedToPop,state));
 				 timer.cancel();
 		         timer.purge();
 				balloons.clear();
@@ -332,14 +333,14 @@ public class BalloonPopState extends State {
 			
 			if (gameLost) {					
 				GameMainActivity.sGame.setCurrentState(new BalloonLooseState(
-						expectedToPop - reversePopCounter, expectedToPop));
+						expectedToPop - reversePopCounter, expectedToPop,state));
 				 timer.cancel();
 		         timer.purge();
 				balloons.clear();
 			}
 			if(currentScore >= WIN_SCORE ){
 				GameMainActivity.sGame.setCurrentState(new  BalloonWinState(
-						currentScore));
+						currentScore,state));
 				 timer.cancel();
 		         timer.purge();
 				balloons.clear();
@@ -386,17 +387,19 @@ public class BalloonPopState extends State {
 
 
 	private void renderTime(Painter g) {
-		 calculateSecondsPassed(startTime);
-		 g.setColor(Color.BLACK);
-		 g.setFont(Typeface.SANS_SERIF, 40);
-		 g.drawString(calculateSecondsPassed(startTime)+"", GameMainActivity.GAME_WIDTH-60, 30);			
+		 //calculateSecondsPassed(startTime);
+		// g.setColor(Color.BLACK);
+		 //g.setFont(Typeface.SANS_SERIF, 40);
+		 //g.drawString(calculateSecondsPassed(startTime)+"", GameMainActivity.GAME_WIDTH-60, 30);
+		 g.drawRectTextAligned("Timer:"+calculateSecondsPassed(startTime), GameMainActivity.upperRightTimer, 30, Typeface.SANS_SERIF, Align.CENTER, Color.BLACK,true,100);
+
 	}
 
 	private void renderScore(Painter g) {		
-		g.setColor(Color.BLACK);
-		g.setFont(Typeface.SANS_SERIF, 40);
-		g.drawString("Score:"+(currentScore)+":"+targetScore, 20, 30);	
-		//g.drawRectTextAligned("Score:"+(currentScore)+":"+targetScore, r, textSize, typeFace, align, color);
+		//g.setColor(Color.BLACK);
+		//g.setFont(Typeface.SANS_SERIF, 30);
+		//g.drawString("Score:"+(currentScore)+":"+targetScore, 20, 30);	
+		g.drawRectTextAligned("Score:"+(currentScore)+":"+targetScore, GameMainActivity.upperLeftScore, 30, Typeface.SANS_SERIF, Align.CENTER, Color.BLACK,true,100);
 	}
 	
 

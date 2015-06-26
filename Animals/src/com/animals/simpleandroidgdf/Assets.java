@@ -3,8 +3,14 @@ package com.animals.simpleandroidgdf;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.animals.animation.Animation;
+import com.animals.animation.Frame;
 import com.animals.model.Animal;
 import com.animals.util.UIButton;
+
+
+
+
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -100,6 +106,9 @@ public class Assets {
 	public static Bitmap balloon_girraffe;
 	public static Bitmap balloon_hippo;
 	
+	public static Bitmap replay;
+	public static Bitmap replayDown;
+	
 	//public static Bitmap grass_sky;
 	
 
@@ -132,7 +141,9 @@ public class Assets {
 	public static Bitmap buyItemDown2;
 	public static Animal currentAnimal;
 	//public static Bitmap displayWait;
-	
+	public static Bitmap cloud1;
+	public static Bitmap cloud2;
+
 	
 
 	
@@ -140,6 +151,9 @@ public class Assets {
 	
 
 	public static void load() {
+		
+		cloud1 = loadBitmap("cloud1.png", true,false);
+		cloud2 = loadBitmap("cloud2.png", true,false);
 
 		start = loadBitmap("start_button.png", false, false);
 		startDown = loadBitmap("start_button_down.png", false, false);
@@ -231,6 +245,9 @@ public class Assets {
 		
 		premiumBought = loadBitmap("premium_bought.png", true, false);
 		
+		replay = loadBitmap("replayButton.png", true, false);
+		replayDown = loadBitmap("replayButton_down.png", true, false);
+		
 		//displayWait =loadBitmap("loading.jpg", true, false);
 		 
 		//grass_sky = loadBitmap("grass_sky.jpg", true, false);
@@ -242,6 +259,7 @@ public class Assets {
 		loadZongPop("wrong2.mp3");
 		
 		loadAscendingPowerUp("comedy_marimba_ascend_003.mp3");
+		
 	
 	}
 
@@ -470,7 +488,7 @@ public class Assets {
 		try {
 
 			if (mediaPlayer2 != null) {
-				mediaPlayer2.stop();
+				mediaPlayer2.pause();
 				mediaPlayer2.release();
 				mediaPlayer2 = new MediaPlayer();
 				mediaPlayer2.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -544,12 +562,13 @@ public class Assets {
 			mediaPlayer3 = new MediaPlayer();
 			mediaPlayer3.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer3.setLooping(looping);
+		
 			
 		}
 		try {
 
 			if (mediaPlayer3 != null) {
-				mediaPlayer3.stop();
+				mediaPlayer3.pause();
 				mediaPlayer3.release();
 				mediaPlayer3 = new MediaPlayer();
 				mediaPlayer3.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -685,7 +704,7 @@ public class Assets {
 
 	}
 
-	private static void loadCarouzelMap() {
+	public static void loadCarouzelMap() {
 
 		int tempArrayVariable = 1;
 
@@ -1569,6 +1588,16 @@ public class Assets {
 			eagle_bold.addAudioFile("eagle");
 			animals.put(tempArrayVariable++, eagle_bold);
 			
+			// 77 PROMO
+			Animal swan = new Animal();
+			swan.addAnimalName(R.string.promo);
+			swan.addAnimalName(R.string.promo_gr);
+			swan.setAnimalVisualFile("swan");
+			swan.setAnimalVisualFileSoundLang("promo");
+			swan.addAudioFile("empty");
+			swan.setPromo(true);
+			animals.put(tempArrayVariable++, swan);
+			
 			// 3 GRIZZLY
 			Animal bear_grizzly = new Animal();
 			bear_grizzly.addAnimalName(R.string.bear_grizzly);
@@ -1578,14 +1607,37 @@ public class Assets {
 			bear_grizzly.addAudioFile("bear");
 			animals.put(tempArrayVariable++, bear_grizzly);
 			
+			
 			//PROMO
 			Animal promo = new Animal();
 			promo.addAnimalName(R.string.promo);
 			promo.addAnimalName(R.string.promo_gr);
 			promo.setAnimalVisualFile("dolphin");
 			promo.setAnimalVisualFileSoundLang("promo");
+			promo.addAudioFile("empty");
 			promo.setPromo(true);
 			animals.put(tempArrayVariable++, promo);
+			
+			// 34 GOLD FISH
+			Animal fish_goldfish = new Animal();
+			fish_goldfish.addAnimalName(R.string.fish_goldfish);
+			fish_goldfish.addAnimalName(R.string.fish_goldfish_gr);
+			fish_goldfish.setAnimalVisualFile("fish_goldfish");
+			fish_goldfish.setAnimalVisualFileSoundLang("fish_goldfish");
+			fish_goldfish.addAudioFile("fish");
+			animals.put(tempArrayVariable++, fish_goldfish);
+			
+			//PROMO
+			Animal promo2 = new Animal();
+			promo2.addAnimalName(R.string.promo);
+			promo2.addAnimalName(R.string.promo_gr);
+			promo2.setAnimalVisualFile("tiger");
+			promo2.setAnimalVisualFileSoundLang("promo");
+			promo2.addAudioFile("empty");
+			promo2.setPromo(true);
+			animals.put(tempArrayVariable++, promo2);
+			
+			
 		}
 	
 	}

@@ -35,7 +35,7 @@ public class MainMenuState extends State {
 		purhaceButton = new UIButton(5, 355, 105, 445, Assets.buyItemUp, Assets.buyItemDown);
 		
 		Assets.loadGalleryImage("farm1");
-		
+		Assets.onResume();	
 	}
 
 	@Override

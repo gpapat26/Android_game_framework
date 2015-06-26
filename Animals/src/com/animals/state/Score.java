@@ -5,6 +5,7 @@ import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.util.Painter;
 
 import android.graphics.Color;
+import android.graphics.Paint.Align;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,21 +33,26 @@ public class Score extends State {
 	public void render(Painter g) {
 		g.setColor(Color.rgb(53, 165, 253));
 		g.fillRect(0, 0, GameMainActivity.GAME_WIDTH, GameMainActivity.GAME_HEIGHT);
-		g.setColor(Color.WHITE);
-		g.setFont(Typeface.DEFAULT_BOLD, 50);
-		g.drawString("The All-Time High Score", 120, 175);
+		//g.setColor(Color.WHITE);
+		//g.setFont(Typeface.DEFAULT_BOLD, 50);
+		//g.drawString("The All-Time High Score", 120, 175);
+		g.drawRectTextAligned("The All-Time High Score", GameMainActivity.upperHalfScreen, 50, Typeface.DEFAULT_BOLD, Align.CENTER, Color.WHITE, true, 0);
 		
-		g.setFont(Typeface.DEFAULT_BOLD, 70);
+		//g.setFont(Typeface.DEFAULT_BOLD, 70);
 		if(highScore!=null){
-			g.drawString(highScore, 370, 260);
+			//g.drawString(highScore, 370, 260);
+			g.drawRectTextAligned(highScore, GameMainActivity.lowerHalfScreen, 70, Typeface.DEFAULT_BOLD, Align.CENTER, Color.WHITE, true, 0);
+
 		}
 		else{
-			g.drawString("No high Score submitted!", 370, 260);
+			//g.drawString("No high Score submitted!", 370, 260);
+			g.drawRectTextAligned("No high Score submitted!", GameMainActivity.lowerHalfScreen, 70, Typeface.DEFAULT_BOLD, Align.CENTER, Color.WHITE, true, 0);
+
 		}		
 		
-		g.setFont(Typeface.DEFAULT_BOLD, 50);
+		//g.setFont(Typeface.DEFAULT_BOLD, 50);
 		
-		g.drawString("Touch the Screen", 220, 350);
+	//	g.drawString("Touch the Screen", 220, 350);
 
 	}
 

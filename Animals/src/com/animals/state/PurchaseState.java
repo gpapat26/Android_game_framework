@@ -32,9 +32,11 @@ public class PurchaseState extends State {
 		// TODO Auto-generated method stub
 		 Assets.loadGalleryImage("cartoon-rural-scene-farm-animals-24447502_2");
 		 back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
-		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.buyItemUp2 , Assets.buyItemDown2);		
+		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)-50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+50, Assets.buyItemUp2 , Assets.buyItemDown2);		
 		 rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
+		 Assets.onResume();
+	
 	}
 
 	@Override
@@ -51,15 +53,15 @@ public class PurchaseState extends State {
 	
 		
 		if(GameMainActivity.mIsPremium){
-			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true);
+			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true,80);
 			displayAlreadyPurhcace.render(g);
 		}
 		else if(!pleaseWaitLocal){
-			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0), true);
+			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0), true,80);
 			buyPremiumItem.render(g);
 		}
 		else{
-			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true);
+			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true,80);
 
 		}
 
@@ -100,6 +102,8 @@ public class PurchaseState extends State {
 							try {
 								GameMainActivity.onUpgradeAppButtonClicked();
 								sleep(10000);
+								//GameMainActivity.mIsPremium= true;
+								//Assets.load();
 							} catch (Exception e) {
 								
 								// TODO Auto-generated catch block
@@ -120,6 +124,18 @@ public class PurchaseState extends State {
 			
 		}
 		return true;
+	}
+	
+	@Override
+	public void onPause() {
+		Log.d("MainMenuState", "OnPause is called");
+		Assets.onPause();	
+	}
+	
+	@Override
+	public void onResume() {
+		Log.d("StartState", "OnResume is called");
+		Assets.onResume();		
 	}
 	
 	

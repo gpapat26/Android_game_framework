@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -55,6 +56,11 @@ public class GameMainActivity extends BaseGameActivity{
     // The helper object
     public static IabHelper mHelper;
 	public static boolean waitForPurhcace;
+	
+	public static Rect upperHalfScreen;
+	public static Rect lowerHalfScreen;
+	public static Rect upperLeftScore;
+	public static Rect upperRightTimer;
     
     //**********************************************************************************//
 	//********************* Activity methods           *********************************//
@@ -63,6 +69,12 @@ public class GameMainActivity extends BaseGameActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		upperHalfScreen=new Rect(0,0,GAME_WIDTH,GAME_HEIGHT/2);
+		lowerHalfScreen=new Rect(0,GAME_HEIGHT/2,GAME_WIDTH,GAME_HEIGHT);
+		
+		upperLeftScore=new Rect(0,0,GAME_WIDTH/4,GAME_HEIGHT/12);
+		
+		upperRightTimer=new Rect(4*(GAME_WIDTH/5),0,GAME_WIDTH,GAME_HEIGHT/12);
         String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNgrpfcgNutjrbjzpYOTGSrPCWwoO34B9+2CwXjfTuaahBV06he8epGoI4LPQnnNjnGyXdsBnKTjb0NRir6J96rNihsOUu2uQP5k57xDMFy6uVmvNKs9eSpeW249JoqgjDhDxATcXSxg+HOjWnEBCwlE5TWk7eMuUdWOCHOKty/m4NQIlK+a1n5YwFFRhF0ynbmvquWAXs1C96RNdr/kBvRvxPGMSqYC3mFzhNWTR/6i2TZuTF9oDvK+lRZ4LK+dIkdIMKolTLnTaE8rHItCn53dn9KP/dH9Ncp1hYr/dRlnf10lLTE/DpQQ/zKnpKa0aEjKlUd0Vm66PLhsxAQNtwIDAQAB";
         // Create the helper, passing it our context and the public key to verify signatures with
         Log.d(TAG, "Creating IAB helper.");              
@@ -413,11 +425,13 @@ public class GameMainActivity extends BaseGameActivity{
                 Log.d(TAG, "Purchase is premium upgrade. Congratulating user.");
                 alert("Thank you for upgrading to premium!");
                 Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
-                mIsPremium = true;           
+                mIsPremium = true; 
+                Assets.loadCarouzelMap();
                 setWaitScreen(false);
             }
         }
     };
+
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
