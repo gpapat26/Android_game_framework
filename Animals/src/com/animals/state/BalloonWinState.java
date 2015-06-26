@@ -44,7 +44,11 @@ public class BalloonWinState extends State{
 		cloud = new Cloud(100, 100);
 		cloud2 = new Cloud(500, 50);
 		replay = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)-50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+50, Assets.replay, Assets.replayDown);
-		
+		streamMusic("audience_clapping_whistling_and_cheering");	
+	}
+
+	private void streamMusic(String fileName) {
+		Assets.playMusic2(fileName+".mp3",false);
 		
 	}
 

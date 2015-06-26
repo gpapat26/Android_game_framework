@@ -6,7 +6,20 @@ import java.io.InputStream;
 import com.animals.animation.Animation;
 import com.animals.animation.Frame;
 import com.animals.model.Animal;
+import com.animals.state.BalloonLooseState;
+import com.animals.state.BalloonPopState;
+import com.animals.state.BalloonWinState;
+import com.animals.state.CarouzelState;
+import com.animals.state.LanguageState;
+import com.animals.state.MainMenuState;
+import com.animals.state.SelectBalloonWinState;
+import com.animals.state.StartState;
 import com.animals.util.UIButton;
+
+
+
+
+
 
 
 
@@ -634,10 +647,39 @@ public class Assets {
 	}
 
 	public static void onResume() {
-		Log.d("Assets", "OnResume is called");
-		//playMusic("animals.ogg", true);
-		//playMusic("animals.mp3", true);
-		playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+	    
+		if(GameMainActivity.sGame.currentState instanceof StartState)
+		{				
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		}
+		else if(GameMainActivity.sGame.currentState instanceof MainMenuState)
+		{				
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		}
+		else if(GameMainActivity.sGame.currentState instanceof CarouzelState){
+			
+			
+		}
+		else if(GameMainActivity.sGame.currentState instanceof LanguageState){
+			
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		}
+		else if(GameMainActivity.sGame.currentState instanceof BalloonPopState)
+		{				
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		}
+		else if(GameMainActivity.sGame.currentState instanceof BalloonWinState)
+		{				
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		}
+		else if(GameMainActivity.sGame.currentState instanceof BalloonLooseState)
+		{				
+			
+		}
+		else if(GameMainActivity.sGame.currentState instanceof SelectBalloonWinState)
+		{				
+			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+		}
 		
 	}
 
@@ -651,8 +693,21 @@ public class Assets {
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 			mediaPlayer.release();
-			mediaPlayer = null;
+			
 		}
+		
+		if (mediaPlayer2 != null) {
+			mediaPlayer2.stop();
+			mediaPlayer2.release();
+			
+		}
+		
+		if (mediaPlayer3 != null) {
+			mediaPlayer3.stop();
+			mediaPlayer3.release();		
+		}
+		
+		
 	}
 	
 	public static void stopPreviousMusic(){
