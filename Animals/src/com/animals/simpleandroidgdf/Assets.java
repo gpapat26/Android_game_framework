@@ -764,7 +764,7 @@ public class Assets {
 
 	public static void loadCarouzelMap() {
 		
-		GameMainActivity.alert("calling loadCarouzelMap");
+		
 		int tempArrayVariable = 1;
         
 		if(GameMainActivity.mIsPremium){

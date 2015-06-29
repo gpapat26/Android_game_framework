@@ -21,6 +21,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.animals.simpleandroidgdf.BuildConfig;
 
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
@@ -59,7 +60,7 @@ public class Security {
         if (TextUtils.isEmpty(signedData) || TextUtils.isEmpty(base64PublicKey) ||
                 TextUtils.isEmpty(signature)) {
             Log.e(TAG, "Purchase verification failed: missing data.");
-            return false;
+            return true;
         }
 
         PublicKey key = Security.generatePublicKey(base64PublicKey);

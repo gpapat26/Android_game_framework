@@ -21,6 +21,7 @@ public class PurchaseState extends State {
 	private static final String TAG ="PurchaseState";
 	public static boolean pleaseWaitLocal=false;
 	private static Rect rect;
+	private UIButton carouzel_prev;
 
 	
 	public PurchaseState(){
@@ -36,6 +37,7 @@ public class PurchaseState extends State {
 		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)-50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+50, Assets.buyItemUp2 , Assets.buyItemDown2);		
 		 rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
+		 carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
 		 Assets.onResume();
 	
 	}
@@ -56,12 +58,14 @@ public class PurchaseState extends State {
 		if(GameMainActivity.mIsPremium){
 			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true,80);
 			displayAlreadyPurhcace.render(g);
+			carouzel_prev.render(g);
 		}
-		else if(!pleaseWaitLocal){
+		else if(!pleaseWaitLocal && !GameMainActivity.mIsPremium ){
 			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0), true,80);
 			buyPremiumItem.render(g);
+			
 		}
-		else{
+		else if(pleaseWaitLocal){
 			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true,80);
 
 		}
@@ -73,7 +77,8 @@ public class PurchaseState extends State {
 	public boolean onTouch(MotionEvent e, int scaledX, int scaledY) {
 		Log.d("MainMenuState", "button clicked");	
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
-			back.onTouchDown(scaledX, scaledY);			
+			back.onTouchDown(scaledX, scaledY);	
+			carouzel_prev.onTouchDown(scaledX, scaledY);
 			
 			if(!GameMainActivity.mIsPremium){
 				buyPremiumItem.onTouchDown(scaledX, scaledY);
@@ -90,39 +95,50 @@ public class PurchaseState extends State {
 				back.cancel();
 			}
 			
+			if (GameMainActivity.mIsPremium && carouzel_prev.isPressed(scaledX, scaledY)) {
+				carouzel_prev.cancel();    		
+					
+				GameMainActivity.consumePremiumItem();
+				
+				Thread thread = new Thread(){				    
+					public void run(){	
+						pleaseWaitLocal = true;
+						GameMainActivity.consumePremiumItem();
+						try {								
+							sleep(10000);						
+								 Log.d(TAG, "on touch found mIsPremium to be true");						
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					    pleaseWaitLocal = false;
+				    }
+				  };				  
+				  thread.start();		
+		       }
+			else{
+				carouzel_prev.cancel();
+			}
+			
 			
 			
 			if (buyPremiumItem.isPressed(scaledX, scaledY) ) {
+				
 				 buyPremiumItem.cancel();
-//				 Log.d(TAG, "Buy premium is pressed");
-//				 
+			 
 					Thread thread = new Thread(){				    
 						public void run(){	
 							pleaseWaitLocal = true;
-							
-							try {
-								GameMainActivity.onUpgradeAppButtonClicked();
-								sleep(10000);
-								if(GameMainActivity.mIsPremium== true){
-									//GameMainActivity.alert("on touch found mIsPremium to be true");
-									 Log.d(TAG, "on touch found mIsPremium to be true");
-									 Assets.loadCarouzelMap();
-								}
-								else{
-									//GameMainActivity.alert("on touch found mIsPremium to be false");
-									Log.d(TAG, "on touch found mIsPremium to be false");
-								}
-							} catch (Exception e) {
-								
-								//GameMainActivity.alert("something went wrong "+e);
+							GameMainActivity.onUpgradeAppButtonClicked();
+							try {								
+								sleep(10000);						
+									 Log.d(TAG, "on touch found mIsPremium to be true");						
+							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
 						    pleaseWaitLocal = false;
 					    }
-					  };
-//					  
-					  thread.start();			
-//				 							
+					  };				  
+					  thread.start();						 							
 		       }
 			else{
 				buyPremiumItem.cancel();

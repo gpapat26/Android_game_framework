@@ -46,8 +46,109 @@ public class Purchase {
         mToken = o.optString("token", o.optString("purchaseToken"));
         mSignature = signature;
     }
+    
+    
+    public String getmItemType() {
+		return mItemType;
+	}
 
-    public String getItemType() { return mItemType; }
+
+	public void setmItemType(String mItemType) {
+		this.mItemType = mItemType;
+	}
+
+
+	public String getmOrderId() {
+		return mOrderId;
+	}
+
+
+	public void setmOrderId(String mOrderId) {
+		this.mOrderId = mOrderId;
+	}
+
+
+	public String getmPackageName() {
+		return mPackageName;
+	}
+
+
+	public void setmPackageName(String mPackageName) {
+		this.mPackageName = mPackageName;
+	}
+
+
+	public String getmSku() {
+		return mSku;
+	}
+
+
+	public void setmSku(String mSku) {
+		this.mSku = mSku;
+	}
+
+
+	public long getmPurchaseTime() {
+		return mPurchaseTime;
+	}
+
+
+	public void setmPurchaseTime(long mPurchaseTime) {
+		this.mPurchaseTime = mPurchaseTime;
+	}
+
+
+	public int getmPurchaseState() {
+		return mPurchaseState;
+	}
+
+
+	public void setmPurchaseState(int mPurchaseState) {
+		this.mPurchaseState = mPurchaseState;
+	}
+
+
+	public String getmDeveloperPayload() {
+		return mDeveloperPayload;
+	}
+
+
+	public void setmDeveloperPayload(String mDeveloperPayload) {
+		this.mDeveloperPayload = mDeveloperPayload;
+	}
+
+
+	public String getmToken() {
+		return mToken;
+	}
+
+
+	public void setmToken(String mToken) {
+		this.mToken = mToken;
+	}
+
+
+	public String getmOriginalJson() {
+		return mOriginalJson;
+	}
+
+
+	public void setmOriginalJson(String mOriginalJson) {
+		this.mOriginalJson = mOriginalJson;
+	}
+
+
+	public String getmSignature() {
+		return mSignature;
+	}
+
+
+	public void setmSignature(String mSignature) {
+		this.mSignature = mSignature;
+	}
+
+
+	public String getItemType() { return mItemType; }
     public String getOrderId() { return mOrderId; }
     public String getPackageName() { return mPackageName; }
     public String getSku() { return mSku; }

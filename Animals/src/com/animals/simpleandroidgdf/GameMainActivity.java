@@ -1,11 +1,11 @@
 package com.animals.simpleandroidgdf;
 
+import org.json.JSONException;
 import com.animals.state.CarouzelState;
 import com.animals.state.LanguageState;
 import com.animals.state.MainMenuState;
 import com.animals.state.StartState;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.wearable.Asset;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.animals.billing.*;
 
@@ -37,7 +37,12 @@ public class GameMainActivity extends BaseGameActivity{
 	public static int languageId=1;
 	private static final String languageCodeKey = "languageCodeKey";
 	private static final String highScoreKey = "highScoreAnimalKey";
-	private static final String premiumKey = "premium";
+	private static final String premiumKey = "premiumkey";
+	//Purhcase Data
+	private static final String itemTypeKey ="itemTypeKey";
+	private static final String jsonPurchaseInfoKey ="jsonPurchaseInfoKey";
+	private static final String signatureKey ="signatureKey";
+	
 	private static int highScore;
 	
 	public static boolean testingMode = false;
@@ -49,10 +54,10 @@ public class GameMainActivity extends BaseGameActivity{
 	 // Does the user have the premium upgrade?
     public static boolean mIsPremium = false;
     
-    public static final String SKU_PREMIUM = "premiumkey";
+    public static final String SKU_PREMIUM = "sku_prem";
     
     // (arbitrary) request code for the purchase flow
-    static final int RC_REQUEST = 10001;
+    static final int RC_REQUEST = 10002;
     
     // The helper object
     public static IabHelper mHelper;
@@ -109,12 +114,15 @@ public class GameMainActivity extends BaseGameActivity{
 		assets=getAssets();
 		prefs = getPreferences(Activity.MODE_PRIVATE);
 		highScore = retrieveHighScore(); //Access only on start up.
-		
-		mIsPremium = retrievePremiumStatus();
-		
+						
 		if(mIsPremium){
-			alert(" app is premium");
+			//alert("app is premium onCreate");
+			Log.d(TAG, "app is  premium onCreate");
 			Assets.loadCarouzelMap();
+		}
+		else{
+			//alert("app is NOT premium onCreate");
+			Log.d(TAG, "app is NOT premium onCreate");
 		}
 		
 		Log.d("Activity", "Activity is onCreate status");
@@ -320,6 +328,9 @@ public class GameMainActivity extends BaseGameActivity{
             // Is it a failure?
             if (result.isFailure()) {
                 complain("Failed to query inventory: " + result);
+                if (inventory.hasPurchase(SKU_PREMIUM)) {  
+                	   mHelper.consumeAsync(inventory.getPurchase(SKU_PREMIUM),null);
+                	   }
                 return;
             }
 
@@ -335,15 +346,18 @@ public class GameMainActivity extends BaseGameActivity{
             Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
             GameMainActivity.mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
             if(mIsPremium){
+            	
             	Log.d(TAG,"re-loading carouzel map since mIsPremium ="+mIsPremium);
             	Assets.loadCarouzelMap();
             }
             else{
+            	
             	Log.d(TAG,"mIsPremium was found="+mIsPremium);
             }
             //setPremiumStatus(mIsPremium);
             
             Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+           // setPremiumStatus(mIsPremium);
            //here store key
             //Other payment options can be placed here ,consumption plans
             
@@ -450,12 +464,85 @@ public class GameMainActivity extends BaseGameActivity{
                 Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
                
                 setPremiumStatus(true);
+                GameMainActivity.mIsPremium = true;
                 Assets.loadCarouzelMap();
+                storePurhcaseInformationLocaly(purchase);             
                 setWaitScreen(false);
             }
             	else if(!purchase.getSku().equals(SKU_PREMIUM)){
                     alert("This is not premium!!!!");
             	}
+        }
+
+
+    };
+    
+	public static void storePurhcaseInformationLocaly(Purchase purchase) {		
+		Editor editor = prefs.edit();
+		editor.putString(itemTypeKey, purchase.getmItemType());
+		editor.putString(jsonPurchaseInfoKey, purchase.getmOriginalJson());
+		editor.putString(signatureKey, purchase.getmSignature());		
+		editor.commit();	
+	}
+	
+	public static Purchase retrievePurchase(){	
+		Purchase purhcace = null;
+		try {
+			 purhcace = new Purchase(prefs.getString(itemTypeKey, null),
+					 				prefs.getString(jsonPurchaseInfoKey, null),
+					 				prefs.getString(signatureKey, null));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(purhcace.getmItemType()== null){
+			
+			alert("getmItemType is empty");
+		}
+		if( purhcace.getmOriginalJson() == null ){
+			alert("getmOriginalJson is empty");
+			
+		}
+		if( purhcace.getmSignature() == null){
+			alert("getmSignature is empty");
+			 
+		}
+		
+		
+		return purhcace;
+	}
+	
+	
+    
+	public static void consumePremiumItem() {
+		Purchase purchase = retrievePurchase();		
+		 mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+	}
+	
+    // Called when consumption is complete
+    static IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
+        public void onConsumeFinished(Purchase purchase, IabResult result) {
+            Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+
+            // if we were disposed of in the meantime, quit.
+            if (mHelper == null) return;
+
+            // We know this is the "gas" sku because it's the only one we consume,
+            // so we don't check which sku was consumed. If you have more than one
+            // sku, you probably should check...
+            if (result.isSuccess()) {
+            	GameMainActivity.mIsPremium = false;
+            	setPremiumStatus(false);            
+                Log.d(TAG, "Consumption successful. Provisioning.");                            
+                alert(" Consumption is successfull");
+            }
+            else {
+                complain("Error while consuming: " + result);
+            }
+           
+            setWaitScreen(false);
+            Log.d(TAG, "End consumption flow.");
         }
     };
 
@@ -528,6 +615,8 @@ public class GameMainActivity extends BaseGameActivity{
 			instance.beginUserInitiatedSignIn();
 		}
 	}
+
+
 	
   
 }
