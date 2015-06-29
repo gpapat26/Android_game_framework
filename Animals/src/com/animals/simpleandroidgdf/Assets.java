@@ -15,6 +15,8 @@ import com.animals.state.MainMenuState;
 import com.animals.state.SelectBalloonWinState;
 import com.animals.state.StartState;
 import com.animals.util.UIButton;
+import android.app.AlertDialog;
+
 
 
 
@@ -26,6 +28,7 @@ import com.animals.util.UIButton;
 
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -647,40 +650,40 @@ public class Assets {
 	}
 
 	public static void onResume() {
-	    
-		if(GameMainActivity.sGame.currentState instanceof StartState)
-		{				
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		else if(GameMainActivity.sGame.currentState instanceof MainMenuState)
-		{				
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		else if(GameMainActivity.sGame.currentState instanceof CarouzelState){
-			
-			
-		}
-		else if(GameMainActivity.sGame.currentState instanceof LanguageState){
-			
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		else if(GameMainActivity.sGame.currentState instanceof BalloonPopState)
-		{				
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		else if(GameMainActivity.sGame.currentState instanceof BalloonWinState)
-		{				
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		else if(GameMainActivity.sGame.currentState instanceof BalloonLooseState)
-		{				
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		else if(GameMainActivity.sGame.currentState instanceof SelectBalloonWinState)
-		{				
-			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
-		}
-		
+		playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		if(GameMainActivity.sGame.currentState instanceof StartState)
+//		{				
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof MainMenuState)
+//		{				
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof CarouzelState){
+//			
+//			
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof LanguageState){
+//			
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof BalloonPopState)
+//		{				
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof BalloonWinState)
+//		{				
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof BalloonLooseState)
+//		{				
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		else if(GameMainActivity.sGame.currentState instanceof SelectBalloonWinState)
+//		{				
+//			playMusic("179_full_rollercoaster-fun_0121.mp3", true);
+//		}
+//		
 	}
 
 	public static void onPause() {
@@ -693,19 +696,19 @@ public class Assets {
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 			mediaPlayer.release();
-			
+			mediaPlayer= null;
 		}
 		
-		if (mediaPlayer2 != null) {
-			mediaPlayer2.stop();
-			mediaPlayer2.release();
-			
-		}
-		
-		if (mediaPlayer3 != null) {
-			mediaPlayer3.stop();
-			mediaPlayer3.release();		
-		}
+//		if (mediaPlayer2 != null) {
+//			mediaPlayer2.stop();
+//			mediaPlayer2.release();
+//			
+//		}
+//		
+//		if (mediaPlayer3 != null) {
+//			mediaPlayer3.stop();
+//			mediaPlayer3.release();		
+//		}
 		
 		
 	}
@@ -760,18 +763,13 @@ public class Assets {
 	}
 
 	public static void loadCarouzelMap() {
-
+		
+		GameMainActivity.alert("calling loadCarouzelMap");
 		int tempArrayVariable = 1;
-
+        
 		if(GameMainActivity.mIsPremium){
-			// 1 ANT
-			Animal ant = new Animal();
-			ant.addAnimalName(R.string.ant);
-			ant.addAnimalName(R.string.ant_gr);
-			ant.setAnimalVisualFile("ant");
-			ant.setAnimalVisualFileSoundLang("ant");
-			ant.addAudioFile("empty");
-			animals.put(tempArrayVariable++, ant);
+			animals = new SparseArray<Animal>();
+			
 
 			// 2 DEER
 			Animal baby_dear = new Animal();
@@ -1189,6 +1187,15 @@ public class Assets {
 			ladybug.addAudioFile("fly");
 
 			animals.put(tempArrayVariable++, ladybug);
+			
+			// 1 ANT
+			Animal ant = new Animal();
+			ant.addAnimalName(R.string.ant);
+			ant.addAnimalName(R.string.ant_gr);
+			ant.setAnimalVisualFile("ant");
+			ant.setAnimalVisualFileSoundLang("ant");
+			ant.addAudioFile("empty");
+			animals.put(tempArrayVariable++, ant);
 
 			// 48 LAMB
 			Animal lamb = new Animal();

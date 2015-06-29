@@ -5,6 +5,7 @@ import com.animals.state.LanguageState;
 import com.animals.state.MainMenuState;
 import com.animals.state.StartState;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.wearable.Asset;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.animals.billing.*;
 
@@ -48,7 +49,7 @@ public class GameMainActivity extends BaseGameActivity{
 	 // Does the user have the premium upgrade?
     public static boolean mIsPremium = false;
     
-    public static final String SKU_PREMIUM = "premium2";
+    public static final String SKU_PREMIUM = "premiumkey";
     
     // (arbitrary) request code for the purchase flow
     static final int RC_REQUEST = 10001;
@@ -108,7 +109,13 @@ public class GameMainActivity extends BaseGameActivity{
 		assets=getAssets();
 		prefs = getPreferences(Activity.MODE_PRIVATE);
 		highScore = retrieveHighScore(); //Access only on start up.
+		
 		mIsPremium = retrievePremiumStatus();
+		
+		if(mIsPremium){
+			alert(" app is premium");
+			Assets.loadCarouzelMap();
+		}
 		
 		Log.d("Activity", "Activity is onCreate status");
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
@@ -262,12 +269,19 @@ public class GameMainActivity extends BaseGameActivity{
 	}
 	
 	
-	private int retrieveHighScore() {
+	public static int retrieveHighScore() {
 		return prefs.getInt(highScoreKey, 0);
 	}
 	
-	private boolean retrievePremiumStatus() {
-		return prefs.getBoolean(premiumKey, false);
+	public static boolean retrievePremiumStatus() {
+		boolean value =prefs.getBoolean(premiumKey, false);
+		try{
+			alert("retrieving premium status from shared preferences "+value);
+		}catch(Exception e){
+			
+		}
+		
+		return value;
 		
 	}
 	
@@ -286,7 +300,9 @@ public class GameMainActivity extends BaseGameActivity{
 	//********************* Google Play Payment Methods*********************************//
     //**********************************************************************************//
 
-	private void setPremiumStatus(boolean value){
+	private static void setPremiumStatus(boolean value){
+		alert("setting premium status to "+value);
+		GameMainActivity.mIsPremium = value; 
 		Editor editor = prefs.edit();
 		editor.putBoolean(premiumKey, value);
 		editor.commit();
@@ -317,9 +333,15 @@ public class GameMainActivity extends BaseGameActivity{
 
             // Do we have the premium upgrade?
             Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
-            mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
-            
-            setPremiumStatus(mIsPremium);
+            GameMainActivity.mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
+            if(mIsPremium){
+            	Log.d(TAG,"re-loading carouzel map since mIsPremium ="+mIsPremium);
+            	Assets.loadCarouzelMap();
+            }
+            else{
+            	Log.d(TAG,"mIsPremium was found="+mIsPremium);
+            }
+            //setPremiumStatus(mIsPremium);
             
             Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
            //here store key
@@ -347,12 +369,12 @@ public class GameMainActivity extends BaseGameActivity{
     }
 
 
-    static void alert(String message) {
-//        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
-//        bld.setMessage(message);
-//        bld.setNeutralButton("OK", null);
-//        Log.d(TAG, "Showing alert dialog: " + message);
-//        bld.create().show();
+   public static void alert(String message) {
+        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
+        bld.setMessage(message);
+        bld.setNeutralButton("OK", null);
+        Log.d(TAG, "Showing alert dialog: " + message);
+        bld.create().show();
     }
     
 
@@ -390,6 +412,7 @@ public class GameMainActivity extends BaseGameActivity{
     public static void onUpgradeAppButtonClicked() {
         Log.d(TAG, "Upgrade button clicked; launching purchase flow for upgrade.");
         setWaitScreen(true);
+       // alert("on upgrade button clicked");
 
         /* TODO: for security, generate your payload here for verification. See the comments on
          *        verifyDeveloperPayload() for more info. Since this is a SAMPLE, we just use
@@ -404,7 +427,7 @@ public class GameMainActivity extends BaseGameActivity{
     static IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
             Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
-
+           // alert("mPurchaseFinishedListener");
             // if we were disposed of in the meantime, quit.
             if (mHelper == null) return;
 
@@ -425,10 +448,14 @@ public class GameMainActivity extends BaseGameActivity{
                 Log.d(TAG, "Purchase is premium upgrade. Congratulating user.");
                 alert("Thank you for upgrading to premium!");
                 Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
-                mIsPremium = true; 
+               
+                setPremiumStatus(true);
                 Assets.loadCarouzelMap();
                 setWaitScreen(false);
             }
+            	else if(!purchase.getSku().equals(SKU_PREMIUM)){
+                    alert("This is not premium!!!!");
+            	}
         }
     };
 

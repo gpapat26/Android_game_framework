@@ -1,5 +1,6 @@
 package com.animals.state;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -102,11 +103,18 @@ public class PurchaseState extends State {
 							try {
 								GameMainActivity.onUpgradeAppButtonClicked();
 								sleep(10000);
-								//GameMainActivity.mIsPremium= true;
-								//Assets.load();
+								if(GameMainActivity.mIsPremium== true){
+									//GameMainActivity.alert("on touch found mIsPremium to be true");
+									 Log.d(TAG, "on touch found mIsPremium to be true");
+									 Assets.loadCarouzelMap();
+								}
+								else{
+									//GameMainActivity.alert("on touch found mIsPremium to be false");
+									Log.d(TAG, "on touch found mIsPremium to be false");
+								}
 							} catch (Exception e) {
 								
-								// TODO Auto-generated catch block
+								//GameMainActivity.alert("something went wrong "+e);
 								e.printStackTrace();
 							}
 						    pleaseWaitLocal = false;
