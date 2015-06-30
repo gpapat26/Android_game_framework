@@ -32,6 +32,7 @@ import android.util.Log;
 import com.android.vending.billing.IInAppBillingService;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,7 @@ public class IabHelper {
     Context mContext;
 
     // Connection to the service
-    IInAppBillingService mService;
+    public IInAppBillingService mService;
     ServiceConnection mServiceConn;
 
     // The request code used to launch purchase flow

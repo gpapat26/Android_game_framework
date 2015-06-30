@@ -1,6 +1,10 @@
 package com.animals.simpleandroidgdf;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.animals.state.CarouzelState;
 import com.animals.state.LanguageState;
 import com.animals.state.MainMenuState;
@@ -20,6 +24,8 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -115,15 +121,7 @@ public class GameMainActivity extends BaseGameActivity{
 		prefs = getPreferences(Activity.MODE_PRIVATE);
 		highScore = retrieveHighScore(); //Access only on start up.
 						
-		if(mIsPremium){
-			//alert("app is premium onCreate");
-			Log.d(TAG, "app is  premium onCreate");
-			Assets.loadCarouzelMap();
-		}
-		else{
-			//alert("app is NOT premium onCreate");
-			Log.d(TAG, "app is NOT premium onCreate");
-		}
+
 		
 		Log.d("Activity", "Activity is onCreate status");
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
@@ -283,7 +281,7 @@ public class GameMainActivity extends BaseGameActivity{
 	
 	public static boolean retrievePremiumStatus() {
 		boolean value =prefs.getBoolean(premiumKey, false);
-		try{
+		try{			
 			alert("retrieving premium status from shared preferences "+value);
 		}catch(Exception e){
 			
@@ -328,9 +326,9 @@ public class GameMainActivity extends BaseGameActivity{
             // Is it a failure?
             if (result.isFailure()) {
                 complain("Failed to query inventory: " + result);
-                if (inventory.hasPurchase(SKU_PREMIUM)) {  
-                	   mHelper.consumeAsync(inventory.getPurchase(SKU_PREMIUM),null);
-                	   }
+//                if (inventory.hasPurchase(SKU_PREMIUM)) {  
+ //               	   mHelper.consumeAsync(inventory.getPurchase(SKU_PREMIUM),null);
+//                	   }
                 return;
             }
 
@@ -344,24 +342,22 @@ public class GameMainActivity extends BaseGameActivity{
 
             // Do we have the premium upgrade?
             Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
+            
             GameMainActivity.mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
+           
             if(mIsPremium){
-            	
+            	complain(TAG+" OnQuery " + mIsPremium);
             	Log.d(TAG,"re-loading carouzel map since mIsPremium ="+mIsPremium);
             	Assets.loadCarouzelMap();
             }
             else{
-            	
+            	complain(TAG+" OnQuery " + mIsPremium);
             	Log.d(TAG,"mIsPremium was found="+mIsPremium);
             }
             //setPremiumStatus(mIsPremium);
             
             Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
-           // setPremiumStatus(mIsPremium);
-           //here store key
-            //Other payment options can be placed here ,consumption plans
-            
-            
+                    
           //  updateUi();
             setWaitScreen(false);
             Log.d(TAG, "Initial inventory query finished; enabling main UI.");
@@ -372,30 +368,53 @@ public class GameMainActivity extends BaseGameActivity{
     // Enables or disables the "please wait" screen.
     static void setWaitScreen(boolean set) {
     	// TODO add a blur allover the screen...
-    	if(set){
-    		waitForPurhcace = set;
-    		//Toast.makeText(sGame.getContext(), "please wait payment to complete",Toast.LENGTH_SHORT).show();
-    	}
-    	else{
-    		waitForPurhcace = set;
-    	}
-    	  
+    		waitForPurhcace = set;	  
     }
 
 
    public static void alert(String message) {
+	       
         AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
         bld.setMessage(message);
         bld.setNeutralButton("OK", null);
         Log.d(TAG, "Showing alert dialog: " + message);
         bld.create().show();
     }
+   
+   
+   
+   public void alertNonStatic(final String message){
+	   new Thread()
+	   {
+	       public void run()
+	       {
+	    	  
+	           runOnUiThread(new Runnable()
+	           {
+	               public void run()
+	               {
+	            	   
+	            	   AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
+	                   bld.setMessage(message);
+	                   bld.setNeutralButton("OK", null);
+	                   Log.d(TAG, "Showing alert dialog: " + message);
+	                   bld.create().show();
+	                   
+	               }
+	           });
+	       }
+	   }.start();
+   }
+   
+  
     
 
     /** Verifies the developer payload of a purchase. */
     static boolean verifyDeveloperPayload(Purchase p) {
         String payload = p.getDeveloperPayload();
-
+        if(payload.equals("test")){
+        	return true;
+        }
         /*
          * TODO: verify that the developer payload of the purchase is correct. It will be
          * the same one that you sent when initiating the purchase.
@@ -419,7 +438,7 @@ public class GameMainActivity extends BaseGameActivity{
          * installations is recommended.
          */
 
-        return true;
+        return false;
     }
     
     // User clicked the "Upgrade to Premium" button.
@@ -431,7 +450,7 @@ public class GameMainActivity extends BaseGameActivity{
         /* TODO: for security, generate your payload here for verification. See the comments on
          *        verifyDeveloperPayload() for more info. Since this is a SAMPLE, we just use
          *        an empty string, but on a production app you should carefully generate this. */
-        String payload = "";
+        String payload = "test";
 
         mHelper.launchPurchaseFlow(instance, SKU_PREMIUM, RC_REQUEST,
                 mPurchaseFinishedListener, payload);
@@ -440,10 +459,15 @@ public class GameMainActivity extends BaseGameActivity{
     // Callback for when a purchase is finished
     static IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+        	
+        	try{
             Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
            // alert("mPurchaseFinishedListener");
             // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
+            if (mHelper == null) {
+            	setWaitScreen(false);
+            	return;
+            }
 
             if (result.isFailure()) {
                 complain("Error purchasing: " + result);
@@ -471,7 +495,12 @@ public class GameMainActivity extends BaseGameActivity{
             }
             	else if(!purchase.getSku().equals(SKU_PREMIUM)){
                     alert("This is not premium!!!!");
+                    setWaitScreen(false);
             	}
+        	}catch(Exception e){
+        		alert("Something went wrong in onIabPurchaseFinished "+e.getMessage());
+        		setWaitScreen(false);
+        	}
         }
 
 
@@ -509,36 +538,133 @@ public class GameMainActivity extends BaseGameActivity{
 			 
 		}
 		
+		if(purhcace.getmItemType() == null || purhcace.getmOriginalJson()== null){
+			purhcace = null;
+		}
+		
 		
 		return purhcace;
 	}
 	
 	
     
-	public static void consumePremiumItem() {
-		Purchase purchase = retrievePurchase();		
-		 mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+	public void onConsumePremiumItems() {
+		setWaitScreen(true);
+		Purchase purchase=null;
+		try{
+		 purchase = retrievePurchase();	
+		 
+		if(purchase != null ){
+			alertNonStatic("onConsumePremiumItems : purchace is not null");
+			mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+		}
+		else{
+			alertNonStatic("onConsumePremiumItems : purchace is null");
+		}
+		
+		}catch(Exception e){
+			alertNonStatic("Consume premium item failed with "+ e.getMessage());
+			setWaitScreen(false);
+		}
+		try{
+			consumeAllOlderItems();	
+		}catch(Exception e){
+			alertNonStatic("Consume All older premium item failed with "+ e.getMessage());
+			setWaitScreen(false);
+		}
+						 
 	}
 	
-    // Called when consumption is complete
+    public  void consumeAllOlderItems() {
+    	Bundle ownedItems = null;
+		try {
+			ownedItems = mHelper.mService.getPurchases(3, sGame.getContext().getPackageName(), "inapp", null);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	int response = ownedItems.getInt("RESPONSE_CODE");
+    	
+    	if (response == 0)
+    	{
+    		alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
+    	    ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+    	    ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+    	    ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
+    	    //String continuationToken = ownedItems.getString("INAPP_CONTINUATION_TOKEN");
+    	    if(purchaseDataList != null && purchaseDataList.size() > 0)
+    	    for (int i = 0; i < purchaseDataList.size(); ++i) {
+    	        try {
+    	            String purchaseData = purchaseDataList.get(i);
+    	            JSONObject jo = new JSONObject(purchaseData);
+    	            if(jo != null && jo.length() > 0);
+    	            final String token = jo.getString("purchaseToken");
+    	            String sku = null;
+    	            String sig = null;
+    	            if (ownedSkus != null){
+    	                sku = ownedSkus.get(i);
+        	            if (signatureList != null && signatureList.size() > 0){
+        	            	 sig = signatureList.get(i);
+        	            }
+        	                
+        	            consume(sku, token, purchaseData,sig);
+    	            	
+    	            }
+    	         
+    	        } catch (JSONException e) {
+    	            e.printStackTrace();
+    	        }
+
+    	    }
+    	}
+    	else if(response != 0){
+    		alertNonStatic("Response for older items is "+response);
+    	}
+		
+	}
+	
+
+
+	private  void consume(String sku, String token, String purchaseData,String sig) {
+		alertNonStatic("consume is trying to consume an item");
+		Purchase purchace = null;
+		try {
+			purchace = new Purchase("inapp", purchaseData, sig);
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+		
+		mHelper.consumeAsync(purchace,mConsumeFinishedListener);
+		
+	}
+
+	// Called when consumption is complete
     static IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
         public void onConsumeFinished(Purchase purchase, IabResult result) {
             Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
 
             // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
+            if (mHelper == null){
+            	alert(" onConsumeFinished failed due to null helper");
+            	setWaitScreen(false);
+            	return;
+            }
 
             // We know this is the "gas" sku because it's the only one we consume,
             // so we don't check which sku was consumed. If you have more than one
             // sku, you probably should check...
             if (result.isSuccess()) {
             	GameMainActivity.mIsPremium = false;
+            	Assets.loadCarouzelMap();
             	setPremiumStatus(false);            
-                Log.d(TAG, "Consumption successful. Provisioning.");                            
+                Log.d(TAG, "Consumption successful.");                            
                 alert(" Consumption is successfull");
+                setWaitScreen(false);
             }
             else {
                 complain("Error while consuming: " + result);
+                setWaitScreen(false);
             }
            
             setWaitScreen(false);
@@ -615,6 +741,9 @@ public class GameMainActivity extends BaseGameActivity{
 			instance.beginUserInitiatedSignIn();
 		}
 	}
+	
+	
+
 
 
 	
