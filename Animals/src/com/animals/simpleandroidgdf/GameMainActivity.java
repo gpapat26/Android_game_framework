@@ -498,7 +498,7 @@ public class GameMainActivity extends BaseGameActivity{
                     setWaitScreen(false);
             	}
         	}catch(Exception e){
-        		alert("Something went wrong in onIabPurchaseFinished "+e.getMessage());
+        		alert("Something went wrong in onIabPurchaseFinished "+e );
         		setWaitScreen(false);
         	}
         }
@@ -514,35 +514,37 @@ public class GameMainActivity extends BaseGameActivity{
 		editor.commit();	
 	}
 	
-	public static Purchase retrievePurchase(){	
+	public  Purchase retrievePurchase(){	
 		Purchase purhcace = null;
-		try {
-			 purhcace = new Purchase(prefs.getString(itemTypeKey, null),
-					 				prefs.getString(jsonPurchaseInfoKey, null),
-					 				prefs.getString(signatureKey, null));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		if(purhcace.getmItemType()== null){
+		    String itemTypeKeyvar =prefs.getString(itemTypeKey, null);
+			String jsonPurchaseInfoKeyvar =prefs.getString(jsonPurchaseInfoKey, null);
+			String signatureKeyvar =prefs.getString(signatureKey, null);
 			
-			alert("getmItemType is empty");
-		}
-		if( purhcace.getmOriginalJson() == null ){
-			alert("getmOriginalJson is empty");
+			if( itemTypeKeyvar== null){
+				
+				alertNonStatic("itemTypeKeyvar is empty");
+			}
+			if( jsonPurchaseInfoKeyvar == null ){
+				alertNonStatic("getmOriginalJson is empty");
+				
+			}
 			
-		}
-		if( purhcace.getmSignature() == null){
-			alert("getmSignature is empty");
-			 
-		}
-		
-		if(purhcace.getmItemType() == null || purhcace.getmOriginalJson()== null){
-			purhcace = null;
-		}
-		
-		
+			if( signatureKeyvar == null ){
+				alertNonStatic("signatureKeyvar is empty");
+				
+			}
+			
+			if(itemTypeKeyvar != null && jsonPurchaseInfoKeyvar != null){
+				
+				 try {
+					purhcace = new Purchase(itemTypeKeyvar, jsonPurchaseInfoKeyvar, signatureKeyvar);
+				} catch (JSONException e) {
+					alertNonStatic("Error while re-creating purchase to access prefs " +e);
+					
+				}
+			}
+	
 		return purhcace;
 	}
 	
@@ -551,9 +553,14 @@ public class GameMainActivity extends BaseGameActivity{
 	public void onConsumePremiumItems() {
 		setWaitScreen(true);
 		Purchase purchase=null;
+		
 		try{
-		 purchase = retrievePurchase();	
-		 
+		 purchase = retrievePurchase();			 			
+		}catch(Exception e){
+			alertNonStatic("Consume premium item failed with "+ e);
+			setWaitScreen(false);
+		}
+		
 		if(purchase != null ){
 			alertNonStatic("onConsumePremiumItems : purchace is not null");
 			mHelper.consumeAsync(purchase, mConsumeFinishedListener);
@@ -562,14 +569,12 @@ public class GameMainActivity extends BaseGameActivity{
 			alertNonStatic("onConsumePremiumItems : purchace is null");
 		}
 		
-		}catch(Exception e){
-			alertNonStatic("Consume premium item failed with "+ e.getMessage());
-			setWaitScreen(false);
-		}
+		
+		
 		try{
 			consumeAllOlderItems();	
 		}catch(Exception e){
-			alertNonStatic("Consume All older premium item failed with "+ e.getMessage());
+			alertNonStatic("Consume All older premium item failed with "+ e );
 			setWaitScreen(false);
 		}
 						 
@@ -588,23 +593,38 @@ public class GameMainActivity extends BaseGameActivity{
     	if (response == 0)
     	{
     		alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
+    		
     	    ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+    	    if(ownedSkus != null && ownedSkus.size() > 0)    	    	
+    	    alertNonStatic("consumeAllOlderItems() ownedSkus is not empty");
+    	    
     	    ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
-    	    ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
-    	    //String continuationToken = ownedItems.getString("INAPP_CONTINUATION_TOKEN");
     	    if(purchaseDataList != null && purchaseDataList.size() > 0)
+        	alertNonStatic("consumeAllOlderItems() purchaseDataList is not empty");
+    	      	    
+    	    ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
+    	    if(signatureList != null && signatureList.size() > 0)
+            	alertNonStatic("consumeAllOlderItems() signatureList is not empty");
+    	    
+    	    //String continuationToken = ownedItems.getString("INAPP_CONTINUATION_TOKEN");
+    	    
+    	    	alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
     	    for (int i = 0; i < purchaseDataList.size(); ++i) {
     	        try {
     	            String purchaseData = purchaseDataList.get(i);
     	            JSONObject jo = new JSONObject(purchaseData);
+    	            alertNonStatic("consumeAllOlderItems() JSON " +jo);
+    	            
     	            if(jo != null && jo.length() > 0);
     	            final String token = jo.getString("purchaseToken");
     	            String sku = null;
     	            String sig = null;
     	            if (ownedSkus != null){
     	                sku = ownedSkus.get(i);
+    	            	
         	            if (signatureList != null && signatureList.size() > 0){
         	            	 sig = signatureList.get(i);
+        	            	
         	            }
         	                
         	            consume(sku, token, purchaseData,sig);
@@ -616,6 +636,8 @@ public class GameMainActivity extends BaseGameActivity{
     	        }
 
     	    }
+    	    
+    	
     	}
     	else if(response != 0){
     		alertNonStatic("Response for older items is "+response);
@@ -631,8 +653,8 @@ public class GameMainActivity extends BaseGameActivity{
 		try {
 			purchace = new Purchase("inapp", purchaseData, sig);
 		} catch (JSONException e) {
-			
-			e.printStackTrace();
+			alertNonStatic("purchace item failed to be recreated "+e);
+			//e.printStackTrace();
 		}
 		
 		mHelper.consumeAsync(purchace,mConsumeFinishedListener);

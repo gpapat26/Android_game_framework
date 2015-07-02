@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 
 
+
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
@@ -42,6 +44,8 @@ public class CarouzelState extends State {
 	private UIButton purhaceButton2;
 	private Rect wholeScreenRect;
 	private Thread  thread ;
+	MediaPlayer media2 = null;
+	MediaPlayer media3 = null;
 	
 	public  CarouzelState() {
 		init();
@@ -222,15 +226,26 @@ public class CarouzelState extends State {
 	}
 	
 	private  void playAnimalSoundsAndVoice(){
-		if(thread != null){
-			thread.interrupt();
+		
+		if(media2 != null && media2.isPlaying()){		
+			media2.stop();
 		}
+		
+		if(media3 != null && media3.isPlaying()){		
+			media3.stop();
+		}
+		
+		if(thread != null){		
+		thread.interrupt();			
+		}
+		
+					
 		try{
 					thread = new Thread(){					
 					public void run(){						
 						
 						try {
-							Assets.playMusic2(Assets.animals.get(carouzelIndex).getAnimalAudioFile().get(0)+".mp3",false);
+							media2 = Assets.playMusic2(Assets.animals.get(carouzelIndex).getAnimalAudioFile().get(0)+".mp3",false);
 							thread.sleep(3000);
 							resolveLinguisticSoundAndPlay();
 						} catch (InterruptedException e) {
@@ -252,12 +267,12 @@ public class CarouzelState extends State {
 		switch(languageCode){
 		case 0 : 
 			Log.d("CarouzelState", "starting second media player");
-	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.mp3",false);
+	    	media3=Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-en.mp3",false);
 		break;
 		
 		case 1 : 
 			Log.d("CarouzelState", "starting second media player");
-	    	Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.mp3",false);
+			media3=Assets.playMusic3(Assets.animals.get(carouzelIndex).getAnimalVisualFileSoundLang()+"-gr.mp3",false);
 		break;
 		}
 	}

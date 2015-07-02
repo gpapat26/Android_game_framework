@@ -490,7 +490,7 @@ public class Assets {
 	
 	
 
-	public static void playMusic2(String filename, boolean looping) {
+	public static MediaPlayer playMusic2(String filename, boolean looping) {
 		
 		AssetFileDescriptor afd = null;
 
@@ -566,9 +566,11 @@ public class Assets {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return mediaPlayer2;
 	}
 
-	public static void playMusic3(String filename, boolean looping) {
+	public static MediaPlayer playMusic3(String filename, boolean looping) {
 	
 
 		AssetFileDescriptor afd = null;
@@ -643,10 +645,13 @@ public class Assets {
 				}
 
 			});
-
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return mediaPlayer3;
 	}
 
 	public static void onResume() {
