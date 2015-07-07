@@ -885,22 +885,22 @@ public class Assets {
 			animals.put(tempArrayVariable++, cat);
 
 			// 14 CAT FACE
-			Animal cat_face = new Animal();
-			cat_face.addAnimalName(R.string.cat_face);
-			cat_face.addAnimalName(R.string.cat_face_gr);
-			cat_face.setAnimalVisualFile("cat_face");
-			cat_face.setAnimalVisualFileSoundLang("cat");
-			cat_face.addAudioFile("cat");
-			animals.put(tempArrayVariable++, cat_face);
+//			Animal cat_face = new Animal();
+//			cat_face.addAnimalName(R.string.cat_face);
+//			cat_face.addAnimalName(R.string.cat_face_gr);
+//			cat_face.setAnimalVisualFile("cat_face");
+//			cat_face.setAnimalVisualFileSoundLang("cat");
+//			cat_face.addAudioFile("cat");
+//			animals.put(tempArrayVariable++, cat_face);
 
 			// 15 CAT SIAM
-			Animal cat_siam = new Animal();
-			cat_siam.addAnimalName(R.string.cat_siam);
-			cat_siam.addAnimalName(R.string.cat_siam_gr);
-			cat_siam.setAnimalVisualFile("cat_siam");
-			cat_siam.setAnimalVisualFileSoundLang("cat");
-			cat_siam.addAudioFile("cat");
-			animals.put(tempArrayVariable++, cat_siam);
+//			Animal cat_siam = new Animal();
+//			cat_siam.addAnimalName(R.string.cat_siam);
+//			cat_siam.addAnimalName(R.string.cat_siam_gr);
+//			cat_siam.setAnimalVisualFile("cat_siam");
+//			cat_siam.setAnimalVisualFileSoundLang("cat");
+//			cat_siam.addAudioFile("cat");
+//			animals.put(tempArrayVariable++, cat_siam);
 
 			// 16 CHIKEN
 			Animal chicken = new Animal();
@@ -912,13 +912,13 @@ public class Assets {
 			animals.put(tempArrayVariable++, chicken);
 
 			// 17 CHICKS
-			Animal chicks = new Animal();
-			chicks.addAnimalName(R.string.chicks);
-			chicks.addAnimalName(R.string.chicks_gr);
-			chicks.setAnimalVisualFile("chicks");
-			chicks.setAnimalVisualFileSoundLang("chicks");
-			chicks.addAudioFile("chiken");
-			animals.put(tempArrayVariable++, chicks);
+//			Animal chicks = new Animal();
+//			chicks.addAnimalName(R.string.chicks);
+//			chicks.addAnimalName(R.string.chicks_gr);
+//			chicks.setAnimalVisualFile("chicks");
+//			chicks.setAnimalVisualFileSoundLang("chicks");
+//			chicks.addAudioFile("chiken");
+//			animals.put(tempArrayVariable++, chicks);
 
 			// 18 CHIPMANK
 			Animal chipmank = new Animal();
