@@ -45,9 +45,10 @@ public class GameMainActivity extends BaseGameActivity{
 	private static final String highScoreKey = "highScoreAnimalKey";
 	private static final String premiumKey = "premiumkey";
 	//Purhcase Data
-	private static final String itemTypeKey ="itemTypeKey";
-	private static final String jsonPurchaseInfoKey ="jsonPurchaseInfoKey";
-	private static final String signatureKey ="signatureKey";
+//	private static final String itemTypeKey ="itemTypeKey";
+//	private static final String jsonPurchaseInfoKey ="jsonPurchaseInfoKey";
+//	private static final String signatureKey ="signatureKey";
+	private static final String purchaseTokenKey = "purchaseTokenKey";
 	
 	private static int highScore;
 	
@@ -120,6 +121,13 @@ public class GameMainActivity extends BaseGameActivity{
 		assets=getAssets();
 		prefs = getPreferences(Activity.MODE_PRIVATE);
 		highScore = retrieveHighScore(); //Access only on start up.
+		
+		if(retrievePremiumStatus()){
+			mIsPremium = true;
+		}
+		else{
+			mIsPremium = false;
+		}
 						
 
 		
@@ -279,17 +287,7 @@ public class GameMainActivity extends BaseGameActivity{
 		return prefs.getInt(highScoreKey, 0);
 	}
 	
-	public static boolean retrievePremiumStatus() {
-		boolean value =prefs.getBoolean(premiumKey, false);
-		try{			
-			alert("retrieving premium status from shared preferences "+value);
-		}catch(Exception e){
-			
-		}
-		
-		return value;
-		
-	}
+
 	
 	public static void setLanguageCode(int languageId) {
 		GameMainActivity.languageId = languageId;
@@ -306,14 +304,53 @@ public class GameMainActivity extends BaseGameActivity{
 	//********************* Google Play Payment Methods*********************************//
     //**********************************************************************************//
 
-	private static void setPremiumStatus(boolean value){
-		alert("setting premium status to "+value);
+	private  void setPremiumStatus(boolean value , String token){
+		try{
 		GameMainActivity.mIsPremium = value; 
+		
 		Editor editor = prefs.edit();
-		editor.putBoolean(premiumKey, value);
+		editor.putString(premiumKey, value+"");
+		editor.putString(purchaseTokenKey, token);
 		editor.commit();
-		Log.d("GameMainActivity", "premium is "+value);	
+		Log.d("GameMainActivity", "premium is "+value + " and token is "+token);	
+		}
+		catch(Exception e){
+			alertNonStatic("something went wrong while storing data");
+			setWaitScreen(false);
+		}
+		alertNonStatic("Data is persisted OK!");
 	}
+	
+	public static Boolean retrievePremiumStatus() {
+		String  value = null;
+		try{
+		  value =prefs.getString(premiumKey, "");				
+		 
+		}catch(Exception e){
+			alert("something went wrong while accessing data");
+		}
+		alert("retrieving premiumKey "+value);
+		
+		if(value!= null && value.length() > 0 &&  value.equals("true")){
+			return true;
+		}
+		
+		return false;	
+	}
+	
+	public static String retrievePremiumToken() {
+		String  value = null;
+		try{
+			 value =prefs.getString(purchaseTokenKey, "");
+			
+		}catch(Exception e){
+			 alert("something went wrong while accessing data");
+		}
+		alert("retrieving purchaseTokenKey "+value);
+		return value;	
+	}
+	
+	
 	
     // Listener that's called when we finish querying the items and subscriptions we own
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
@@ -326,9 +363,6 @@ public class GameMainActivity extends BaseGameActivity{
             // Is it a failure?
             if (result.isFailure()) {
                 complain("Failed to query inventory: " + result);
-//                if (inventory.hasPurchase(SKU_PREMIUM)) {  
- //               	   mHelper.consumeAsync(inventory.getPurchase(SKU_PREMIUM),null);
-//                	   }
                 return;
             }
 
@@ -343,23 +377,21 @@ public class GameMainActivity extends BaseGameActivity{
             // Do we have the premium upgrade?
             Purchase premiumPurchase = inventory.getPurchase(SKU_PREMIUM);
             
-            GameMainActivity.mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
+          //  GameMainActivity.mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
            
-            if(mIsPremium){
-            	complain(TAG+" OnQuery " + mIsPremium);
+            if(premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)){
+            	complain(TAG+" OnQuery is premium : " + mIsPremium);
             	Log.d(TAG,"re-loading carouzel map since mIsPremium ="+mIsPremium);
-            	Assets.loadCarouzelMap();
+            	//preparePremiumStatus(premiumPurchase);
+            	preparePremiumStatus(premiumPurchase.getmToken(), true);
             }
             else{
-            	complain(TAG+" OnQuery " + mIsPremium);
+            	complain(TAG+" OnQuery is not premium : " + mIsPremium);
             	Log.d(TAG,"mIsPremium was found="+mIsPremium);
             }
-            //setPremiumStatus(mIsPremium);
-            
+                     
             Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
-                    
-          //  updateUi();
-            setWaitScreen(false);
+                       
             Log.d(TAG, "Initial inventory query finished; enabling main UI.");
         }
     };
@@ -442,7 +474,7 @@ public class GameMainActivity extends BaseGameActivity{
     }
     
     // User clicked the "Upgrade to Premium" button.
-    public static void onUpgradeAppButtonClicked() {
+    public  void onUpgradeAppButtonClicked() {
         Log.d(TAG, "Upgrade button clicked; launching purchase flow for upgrade.");
         setWaitScreen(true);
        // alert("on upgrade button clicked");
@@ -457,7 +489,7 @@ public class GameMainActivity extends BaseGameActivity{
     }
     
     // Callback for when a purchase is finished
-    static IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
         	
         	try{
@@ -470,35 +502,36 @@ public class GameMainActivity extends BaseGameActivity{
             }
 
             if (result.isFailure()) {
-                complain("Error purchasing: " + result);
+            	alertNonStatic("Error purchasing: " + result);
                 setWaitScreen(false);
                 return;
             }
             if (!verifyDeveloperPayload(purchase)) {
-                complain("Error purchasing. Authenticity verification failed.");
+            	alertNonStatic("Error purchasing. Authenticity verification failed.");
                 setWaitScreen(false);
                 return;
             }
 
-            Log.d(TAG, "Purchase successful.");
-            	if (purchase.getSku().equals(SKU_PREMIUM)) {
+             Log.d(TAG, "Purchase successful.");
+             
+            if (purchase.getSku().equals(SKU_PREMIUM)) {
                 // bought the premium upgrade!
                 Log.d(TAG, "Purchase is premium upgrade. Congratulating user.");
-                alert("Thank you for upgrading to premium!");
-                Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
-               
-                setPremiumStatus(true);
-                GameMainActivity.mIsPremium = true;
-                Assets.loadCarouzelMap();
-                storePurhcaseInformationLocaly(purchase);             
+                alertNonStatic("Thank you for upgrading to premium!");
+                //Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
+                alertNonStatic("properties stored : " +true + " "+purchase.getmToken());
+                          
+                preparePremiumStatus(purchase.getmToken(), true);
+                
                 setWaitScreen(false);
             }
-            	else if(!purchase.getSku().equals(SKU_PREMIUM)){
-                    alert("This is not premium!!!!");
-                    setWaitScreen(false);
+            else if(!purchase.getSku().equals(SKU_PREMIUM)){
+            	alertNonStatic("This is not premium!!!!");
+            	GameMainActivity.mIsPremium = false;
+                setWaitScreen(false);
             	}
         	}catch(Exception e){
-        		alert("Something went wrong in onIabPurchaseFinished "+e );
+        		alertNonStatic("Something went wrong in onIabPurchaseFinished "+e );
         		setWaitScreen(false);
         	}
         }
@@ -506,210 +539,238 @@ public class GameMainActivity extends BaseGameActivity{
 
     };
     
-	public static void storePurhcaseInformationLocaly(Purchase purchase) {		
-		Editor editor = prefs.edit();
-		editor.putString(itemTypeKey, purchase.getmItemType());
-		editor.putString(jsonPurchaseInfoKey, purchase.getmOriginalJson());
-		editor.putString(signatureKey, purchase.getmSignature());		
-		editor.commit();	
-	}
-	
-	public  Purchase retrievePurchase(){	
-		Purchase purhcace = null;
-		
-		    String itemTypeKeyvar =prefs.getString(itemTypeKey, null);
-			String jsonPurchaseInfoKeyvar =prefs.getString(jsonPurchaseInfoKey, null);
-			String signatureKeyvar =prefs.getString(signatureKey, null);
-			
-			if( itemTypeKeyvar== null){
-				
-				alertNonStatic("itemTypeKeyvar is empty");
-			}
-			if( jsonPurchaseInfoKeyvar == null ){
-				alertNonStatic("getmOriginalJson is empty");
-				
-			}
-			
-			if( signatureKeyvar == null ){
-				alertNonStatic("signatureKeyvar is empty");
-				
-			}
-			
-			if(itemTypeKeyvar != null && jsonPurchaseInfoKeyvar != null){
-				
-				 try {
-					purhcace = new Purchase(itemTypeKeyvar, jsonPurchaseInfoKeyvar, signatureKeyvar);
-				} catch (JSONException e) {
-					alertNonStatic("Error while re-creating purchase to access prefs " +e);
-					
-				}
-			}
-	
-		return purhcace;
-	}
-	
-	
+    public void preparePremiumStatus(String  purchaseToken , Boolean isPremium){
+        setPremiumStatus(isPremium,purchaseToken);               
+        Assets.loadCarouzelMap();                                
+    }
+    
+
     
 	public void onConsumePremiumItems() {
 		setWaitScreen(true);
-		Purchase purchase=null;
-		
-		try{
-		 purchase = retrievePurchase();			 			
-		}catch(Exception e){
-			alertNonStatic("Consume premium item failed with "+ e);
-			setWaitScreen(false);
-		}
-		
-		if(purchase != null ){
-			alertNonStatic("onConsumePremiumItems : purchace is not null");
-			mHelper.consumeAsync(purchase, mConsumeFinishedListener);
-		}
-		else{
-			alertNonStatic("onConsumePremiumItems : purchace is null");
-		}
-		
-		
-		
-		try{
-			consumeAllOlderItems();	
-		}catch(Exception e){
-			alertNonStatic("Consume All older premium item failed with "+ e );
-			setWaitScreen(false);
-		}
-						 
+		queryforPremiumsAndConsumeWithContinuationToken(null);				 
 	}
 	
-    public  void consumeAllOlderItems() {
+    private void queryforPremiumsAndConsumeWithContinuationToken(String continuationToken) {
+    	
     	Bundle ownedItems = null;
-		try {
-			ownedItems = mHelper.mService.getPurchases(3, sGame.getContext().getPackageName(), "inapp", null);
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-    	int response = ownedItems.getInt("RESPONSE_CODE");
     	
-    	if (response == 0)
-    	{
-    		alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
+    	try {
     		
-    	    ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
-    	    if(ownedSkus != null && ownedSkus.size() > 0)    	    	
-    	    alertNonStatic("consumeAllOlderItems() ownedSkus is not empty");
-    	    
-    	    ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
-    	    if(purchaseDataList != null && purchaseDataList.size() > 0)
-        	alertNonStatic("consumeAllOlderItems() purchaseDataList is not empty");
-    	      	    
-    	    ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
-    	    if(signatureList != null && signatureList.size() > 0)
-            	alertNonStatic("consumeAllOlderItems() signatureList is not empty");
-    	    
-    	    //String continuationToken = ownedItems.getString("INAPP_CONTINUATION_TOKEN");
-    	    
-    	    	alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
-    	    for (int i = 0; i < purchaseDataList.size(); ++i) {
-    	        try {
-    	            String purchaseData = purchaseDataList.get(i);
-    	            JSONObject jo = new JSONObject(purchaseData);
-    	            alertNonStatic("consumeAllOlderItems() JSON " +jo);
-    	            
-    	            if(jo != null && jo.length() > 0);
-    	            final String token = jo.getString("purchaseToken");
-    	            String sku = null;
-    	            String sig = null;
-    	            if (ownedSkus != null){
-    	                sku = ownedSkus.get(i);
-    	            	
-        	            if (signatureList != null && signatureList.size() > 0){
-        	            	 sig = signatureList.get(i);
-        	            	
-        	            }
-        	                
-        	            consume(sku, token, purchaseData,sig);
-    	            	
-    	            }
-    	         
-    	        } catch (JSONException e) {
-    	            e.printStackTrace();
-    	        }
-
-    	    }
-    	    
-    	
-    	}
-    	else if(response != 0){
-    		alertNonStatic("Response for older items is "+response);
-    	}
-		
-	}
-	
-
-
-	private  void consume(String sku, String token, String purchaseData,String sig) {
-		alertNonStatic("consume is trying to consume an item");
-		Purchase purchace = null;
-		try {
-			purchace = new Purchase("inapp", purchaseData, sig);
-		} catch (JSONException e) {
-			alertNonStatic("purchace item failed to be recreated "+e);
-			//e.printStackTrace();
+    		ownedItems = mHelper.mService.getPurchases(3, sGame.getContext().getPackageName(), "inapp", continuationToken);
+			
+		} catch (RemoteException e) {
+			alertNonStatic("Something went wrong when calling getPurcases");		
 		}
-		
-		mHelper.consumeAsync(purchace,mConsumeFinishedListener);
-		
+    	
+    	int response = ownedItems.getInt("RESPONSE_CODE");
+    	if (response == 0) {
+//    	   ArrayList<String> ownedSkus =
+//    	      ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+    	   ArrayList<String>  purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+//    	   ArrayList<String>  signatureList =
+//    	      ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE_LIST");
+    	   String continuationTokenFetced =ownedItems.getString("INAPP_CONTINUATION_TOKEN");
+
+    	   for (int i = 0; i < purchaseDataList.size(); ++i) {
+    	      String purchaseData = purchaseDataList.get(i);
+ 
+    	      String token = null;
+			  String sku = null;
+			  
+    	      try {
+				JSONObject jo = new JSONObject(purchaseData);
+				  token = jo.getString("purchaseToken");
+				  sku = jo.getString("productId");
+				  alertNonStatic("fetched sku :" + sku + " and token "+ token);				 	      
+    	      } catch (JSONException e) {
+				alertNonStatic("unable to parse fetched json for consumption");
+			}
+    	      if(token != null && sku != null &&  token.length() > 0 ){
+       	       try {
+       	    	   
+					response = mHelper.mService.consumePurchase(3, getPackageName(), token);					
+					response = ownedItems.getInt("RESPONSE_CODE");
+					
+					if (response == 0) {
+						alertNonStatic(" You have successfully consumed sku " +sku + " with token "+  token);					
+						preparePremiumStatus(token, false);						
+					}
+
+				} catch (RemoteException e) {
+					alertNonStatic("unable to consume sku :"+ sku + " token "+token);
+				}  
+
+    	      }
+    	        
+    	   }
+
+    	   // if continuationToken != null, call getPurchases again
+    	   // and pass in the token to retrieve more items
+    	   if(continuationTokenFetced != null && continuationTokenFetced.length() > 0)
+    	       queryforPremiumsAndConsumeWithContinuationToken(continuationTokenFetced);
+    	   
+    	   setWaitScreen(false);
+    	   
+    	}
+
+    	
+    	
+    	
+    	
 	}
+
+//	public  void consumeAllOlderItems() {
+//    	Bundle ownedItems = null;
+//		try {
+//			ownedItems = mHelper.mService.getPurchases(3, sGame.getContext().getPackageName(), "inapp", null);
+//			
+//		} catch (RemoteException e1) {
+//			
+//			e1.printStackTrace();
+//		}
+//    	int response = ownedItems.getInt("RESPONSE_CODE");
+//    	
+//    	if (response == 0)
+//    	{
+//    		alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
+//    		
+//    	    ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+//    	    if(ownedSkus != null && ownedSkus.size() > 0)    	    	
+//    	    alertNonStatic("consumeAllOlderItems() ownedSkus is not empty");
+//    	    
+//    	    ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+//    	    if(purchaseDataList != null && purchaseDataList.size() > 0)
+//        	alertNonStatic("consumeAllOlderItems() purchaseDataList is not empty");
+//    	      	    
+//    	    ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
+//    	    if(signatureList != null && signatureList.size() > 0)
+//            	alertNonStatic("consumeAllOlderItems() signatureList is not empty");
+//    	    
+//    	    //String continuationToken = ownedItems.getString("INAPP_CONTINUATION_TOKEN");
+//    	    
+//    	    	alertNonStatic("consumeAllOlderItems() google responded ok to our consumables");
+//    	    for (int i = 0; i < purchaseDataList.size(); ++i) {
+//    	        try {
+//    	            String purchaseData = purchaseDataList.get(i);
+//    	            JSONObject jo = new JSONObject(purchaseData);
+//    	            alertNonStatic("consumeAllOlderItems() JSON " +jo);
+//    	            
+//    	            if(jo != null && jo.length() > 0);
+//    	            final String token = jo.getString("purchaseToken");
+//    	            String sku = null;
+//    	            String sig = null;
+//    	            if (ownedSkus != null){
+//    	                sku = ownedSkus.get(i);
+//    	            	
+//        	            if (signatureList != null && signatureList.size() > 0){
+//        	            	 sig = signatureList.get(i);
+//        	            	
+//        	            }
+//        	                
+//        	            consume(sku, token, purchaseData,sig);
+//    	            	
+//    	            }
+//    	         
+//    	        } catch (JSONException e) {
+//    	            e.printStackTrace();
+//    	        }
+//
+//    	    }
+//    	    
+//    	
+//    	}
+//    	else if(response != 0){
+//    		alertNonStatic("Response for older items is "+response);
+//    	}
+//		
+//	}
+//	
+//
+//
+//	private  void consume(String sku, String token, String purchaseData,String sig) {
+//		alertNonStatic("consume is trying to consume an item");
+//		Purchase purchace = null;
+//		try {
+//			purchace = new Purchase("inapp", purchaseData, sig);
+//		} catch (JSONException e) {
+//			alertNonStatic("purchace item failed to be recreated "+e);
+//			//e.printStackTrace();
+//		}
+//		
+//		mHelper.consumeAsync(purchace,mConsumeFinishedListener);
+//		
+//	}
 
 	// Called when consumption is complete
-    static IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
-        public void onConsumeFinished(Purchase purchase, IabResult result) {
-            Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
-
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null){
-            	alert(" onConsumeFinished failed due to null helper");
-            	setWaitScreen(false);
-            	return;
-            }
-
-            // We know this is the "gas" sku because it's the only one we consume,
-            // so we don't check which sku was consumed. If you have more than one
-            // sku, you probably should check...
-            if (result.isSuccess()) {
-            	GameMainActivity.mIsPremium = false;
-            	Assets.loadCarouzelMap();
-            	setPremiumStatus(false);            
-                Log.d(TAG, "Consumption successful.");                            
-                alert(" Consumption is successfull");
-                setWaitScreen(false);
-            }
-            else {
-                complain("Error while consuming: " + result);
-                setWaitScreen(false);
-            }
-           
-            setWaitScreen(false);
-            Log.d(TAG, "End consumption flow.");
-        }
-    };
+//     IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
+//        public void onConsumeFinished(Purchase purchase, IabResult result) {
+//            Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+//
+//            // if we were disposed of in the meantime, quit.
+//            if (mHelper == null){
+//            	alert(" onConsumeFinished failed due to null helper");
+//            	setWaitScreen(false);
+//            	return;
+//            }
+//
+//            // We know this is the "gas" sku because it's the only one we consume,
+//            // so we don't check which sku was consumed. If you have more than one
+//            // sku, you probably should check...
+//            if (result.isSuccess()) {           	           	
+//            	setPremiumStatus(false, purchase.getmToken());             	
+//                Log.d(TAG, "Consumption successful.");                            
+//                alert(" Consumption is successfull");
+//                setWaitScreen(false);
+//            }
+//            else {
+//                complain("Error while consuming: " + result);
+//                setWaitScreen(false);
+//            }
+//           
+//            setWaitScreen(false);
+//            Log.d(TAG, "End consumption flow.");
+//        }
+//    };
 
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-        if (mHelper == null) return;
+    	
+    	if (requestCode == 1001) {
+    	      int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+    	      String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+    	      String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
 
-        // Pass on the activity result to the helper for handling
-        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
-            // not handled, so handle it ourselves (here's where you'd
-            // perform any handling of activity results not related to in-app
-            // billing...
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-        else {
-            Log.d(TAG, "onActivityResult handled by IABUtil.");
-        }
+    	      if (resultCode == RESULT_OK) {
+    	         try {
+    	            JSONObject jo = new JSONObject(purchaseData);
+    	            String sku = jo.getString("productId");
+    	            alertNonStatic("You have bought the " + sku + ". Excellent choice,adventurer!");
+    	            String token = jo.getString("purchaseToken");
+    	            alertNonStatic("You have bought the " + token + ". Excellent choice,adventurer!");
+    	          }
+    	          catch (JSONException e) {
+    	        	  alertNonStatic("Failed to parse purchase data.");
+    	             e.printStackTrace();
+    	          }
+    	      }
+    	   }
+
+    	
+//        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
+//        if (mHelper == null) return;
+//
+//        // Pass on the activity result to the helper for handling
+//        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
+//            // not handled, so handle it ourselves (here's where you'd
+//            // perform any handling of activity results not related to in-app
+//            // billing...
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//        else {
+//            Log.d(TAG, "onActivityResult handled by IABUtil.");
+//        }
     }
     
 	

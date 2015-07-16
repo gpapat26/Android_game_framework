@@ -53,20 +53,20 @@ public class PurchaseState extends State {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		
 		back.render(g);
-		carouzel_prev.render(g);
+		
 		
 		if(GameMainActivity.mIsPremium){
 			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true,80);
-			displayAlreadyPurhcace.render(g);			
+			displayAlreadyPurhcace.render(g);	
+			carouzel_prev.render(g);
 		}
-		else if((!pleaseWaitLocal && !GameMainActivity.mIsPremium) || !GameMainActivity.waitForPurhcace ){
+		if((!pleaseWaitLocal && (!GameMainActivity.mIsPremium) || !GameMainActivity.waitForPurhcace) ){
 			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0), true,80);
 			buyPremiumItem.render(g);
-			
+					
 		}
-		else if(pleaseWaitLocal || GameMainActivity.waitForPurhcace){
+	     if(pleaseWaitLocal || GameMainActivity.waitForPurhcace){
 			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true,80);
-
 		}
 
 	}
@@ -93,16 +93,17 @@ public class PurchaseState extends State {
 			else{
 				back.cancel();
 			}
-			
+			//Consume All items
 			if (carouzel_prev.isPressed(scaledX, scaledY)) {
 				carouzel_prev.cancel();    					
 				Thread thread = new Thread(){				    
 					public void run(){	
 						pleaseWaitLocal = true;
 						GameMainActivity.instance.onConsumePremiumItems();
-						try {								
-							sleep(10000);						
-														
+						try {
+							while(GameMainActivity.waitForPurhcace){
+								sleep(5000);						
+						    }							
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -124,9 +125,10 @@ public class PurchaseState extends State {
 					Thread thread = new Thread(){				    
 						public void run(){	
 							pleaseWaitLocal = true;
-							GameMainActivity.onUpgradeAppButtonClicked();
-							try {								
-								sleep(10000);						
+							GameMainActivity.instance.onUpgradeAppButtonClicked();
+							try {
+								while(GameMainActivity.waitForPurhcace)
+								sleep(1000);						
 									 Log.d(TAG, "on touch found mIsPremium to be true");						
 							} catch (InterruptedException e) {
 								e.printStackTrace();

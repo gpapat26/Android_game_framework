@@ -773,7 +773,8 @@ public class Assets {
 		int tempArrayVariable = 1;
         
 		if(GameMainActivity.mIsPremium){
-			animals = new SparseArray<Animal>();
+			animals.clear();
+			//animals = new SparseArray<Animal>();
 			
 
 			// 2 DEER
@@ -976,10 +977,10 @@ public class Assets {
 			dog_german_shepard.addAudioFile("dog");
 			animals.put(tempArrayVariable++, dog_german_shepard);
 
-			// 24 DOG LASSIE
+			// 24 DOG LASSIE (Rough_Collie)
 			Animal dog_lassie = new Animal();
 			dog_lassie.addAnimalName(R.string.dog_lassie);
-			dog_lassie.addAnimalName(R.string.dog_lassie_gr);
+			dog_lassie.addAnimalName(R.string.dog_lassie_gr); 
 			dog_lassie.setAnimalVisualFile("dog_lassie");
 			dog_lassie.setAnimalVisualFileSoundLang("dog");
 			dog_lassie.addAudioFile("dog");
@@ -1195,7 +1196,7 @@ public class Assets {
 			
 			// 1 ANT
 			Animal ant = new Animal();
-			ant.addAnimalName(R.string.ant);
+			ant.addAnimalName(R.string.ant	);
 			ant.addAnimalName(R.string.ant_gr);
 			ant.setAnimalVisualFile("ant");
 			ant.setAnimalVisualFileSoundLang("ant");
@@ -1231,7 +1232,7 @@ public class Assets {
 
 			// 51 IGOUANA
 			Animal lizard_Igouana = new Animal();
-			lizard_Igouana.addAnimalName(R.string.lizard_Igouana);
+			lizard_Igouana.addAnimalName(R.string.lizard_Igouana); //<<< --- Here I am
 			lizard_Igouana.addAnimalName(R.string.lizard_Igouana_gr);
 			lizard_Igouana.setAnimalVisualFile("lizard_Igouana");
 			lizard_Igouana.setAnimalVisualFileSoundLang("lizard_Igouana");
