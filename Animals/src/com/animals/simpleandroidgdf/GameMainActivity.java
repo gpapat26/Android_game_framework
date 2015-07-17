@@ -518,7 +518,7 @@ public class GameMainActivity extends BaseGameActivity{
                 // bought the premium upgrade!
                 Log.d(TAG, "Purchase is premium upgrade. Congratulating user.");
                 alertNonStatic("Thank you for upgrading to premium!");
-                //Toast.makeText(sGame.getContext(), "please restart app for changes to take effect",Toast.LENGTH_LONG).show();
+                
                 alertNonStatic("properties stored : " +true + " "+purchase.getmToken());
                           
                 preparePremiumStatus(purchase.getmToken(), true);
@@ -527,7 +527,7 @@ public class GameMainActivity extends BaseGameActivity{
             }
             else if(!purchase.getSku().equals(SKU_PREMIUM)){
             	alertNonStatic("This is not premium!!!!");
-            	GameMainActivity.mIsPremium = false;
+            	preparePremiumStatus(null, false);
                 setWaitScreen(false);
             	}
         	}catch(Exception e){
@@ -548,7 +548,8 @@ public class GameMainActivity extends BaseGameActivity{
     
 	public void onConsumePremiumItems() {
 		setWaitScreen(true);
-		queryforPremiumsAndConsumeWithContinuationToken(null);				 
+		queryforPremiumsAndConsumeWithContinuationToken(null);
+		setWaitScreen(false);
 	}
 	
     private void queryforPremiumsAndConsumeWithContinuationToken(String continuationToken) {
@@ -560,10 +561,17 @@ public class GameMainActivity extends BaseGameActivity{
     		ownedItems = mHelper.mService.getPurchases(3, sGame.getContext().getPackageName(), "inapp", continuationToken);
 			
 		} catch (RemoteException e) {
-			alertNonStatic("Something went wrong when calling getPurcases");		
+			alertNonStatic("Something went wrong when calling getPurcases");
+			return;
 		}
     	
+    	if(ownedItems == null){
+    		alertNonStatic("Android returned null as a response");
+    		return ;
+    	}
+    	
     	int response = ownedItems.getInt("RESPONSE_CODE");
+    	
     	if (response == 0) {
 //    	   ArrayList<String> ownedSkus =
 //    	      ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
@@ -579,22 +587,25 @@ public class GameMainActivity extends BaseGameActivity{
 			  String sku = null;
 			  
     	      try {
-				JSONObject jo = new JSONObject(purchaseData);
+				  JSONObject jo = new JSONObject(purchaseData);
 				  token = jo.getString("purchaseToken");
 				  sku = jo.getString("productId");
 				  alertNonStatic("fetched sku :" + sku + " and token "+ token);				 	      
     	      } catch (JSONException e) {
 				alertNonStatic("unable to parse fetched json for consumption");
+				return;
 			}
     	      if(token != null && sku != null &&  token.length() > 0 ){
        	       try {
-       	    	   
+       	    	alertNonStatic("generating request for consumption of  sku :"+sku + " and token :"+token);
 					response = mHelper.mService.consumePurchase(3, getPackageName(), token);					
 					response = ownedItems.getInt("RESPONSE_CODE");
 					
 					if (response == 0) {
 						alertNonStatic(" You have successfully consumed sku " +sku + " with token "+  token);					
 						preparePremiumStatus(token, false);						
+					}else{
+						alertNonStatic(" You have un successfully tried to consumed sku " +sku + " with token "+  token);					
 					}
 
 				} catch (RemoteException e) {
@@ -607,17 +618,14 @@ public class GameMainActivity extends BaseGameActivity{
 
     	   // if continuationToken != null, call getPurchases again
     	   // and pass in the token to retrieve more items
-    	   if(continuationTokenFetced != null && continuationTokenFetced.length() > 0)
-    	       queryforPremiumsAndConsumeWithContinuationToken(continuationTokenFetced);
+    	   if(continuationTokenFetced != null && continuationTokenFetced.length() > 0){
+    		   queryforPremiumsAndConsumeWithContinuationToken(continuationTokenFetced);   
+    	   } 
     	   
-    	   setWaitScreen(false);
-    	   
+    	   setWaitScreen(false);   	   
     	}
-
-    	
-    	
-    	
-    	
+    	alertNonStatic("Response fron Google is not ok, we did not receive any owned items.");
+    	setWaitScreen(false);  	   	
 	}
 
 //	public  void consumeAllOlderItems() {

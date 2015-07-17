@@ -1232,7 +1232,7 @@ public class Assets {
 
 			// 51 IGOUANA
 			Animal lizard_Igouana = new Animal();
-			lizard_Igouana.addAnimalName(R.string.lizard_Igouana); //<<< --- Here I am
+			lizard_Igouana.addAnimalName(R.string.lizard_Igouana); 
 			lizard_Igouana.addAnimalName(R.string.lizard_Igouana_gr);
 			lizard_Igouana.setAnimalVisualFile("lizard_Igouana");
 			lizard_Igouana.setAnimalVisualFileSoundLang("lizard_Igouana");
@@ -1250,7 +1250,7 @@ public class Assets {
 
 			// 53 LOBSTER
 			Animal lobster = new Animal();
-			lobster.addAnimalName(R.string.lobster);
+			lobster.addAnimalName(R.string.lobster);// < --- havent found yet!!!!!
 			lobster.addAnimalName(R.string.lobster_gr);
 			lobster.setAnimalVisualFile("lobster");
 			lobster.setAnimalVisualFileSoundLang("lobster");
@@ -1266,14 +1266,14 @@ public class Assets {
 			monkey.addAudioFile("monkey");
 			animals.put(tempArrayVariable++, monkey);
 
-			// 55 MOOSE
-			Animal moose = new Animal();
-			moose.addAnimalName(R.string.moose);
-			moose.addAnimalName(R.string.moose_gr);
-			moose.setAnimalVisualFile("moose");
-			moose.setAnimalVisualFileSoundLang("moose");
-			moose.addAudioFile("moose");
-			animals.put(tempArrayVariable++, moose);
+//			// 55 MOOSE
+//			Animal moose = new Animal();
+//			moose.addAnimalName(R.string.moose);
+//			moose.addAnimalName(R.string.moose_gr);
+//			moose.setAnimalVisualFile("moose");
+//			moose.setAnimalVisualFileSoundLang("moose");
+//			moose.addAudioFile("moose");
+//			animals.put(tempArrayVariable++, moose);
 
 			// 56 MOSQUITO
 			Animal mosquito = new Animal();

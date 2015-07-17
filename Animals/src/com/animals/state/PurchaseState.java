@@ -1,13 +1,11 @@
 package com.animals.state;
 
-import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.Paint.Align;
 import android.util.Log;
 import android.view.MotionEvent;
-
 import com.animals.simpleandroidgdf.Assets;
 import com.animals.simpleandroidgdf.GameMainActivity;
 import com.animals.util.Painter;
@@ -22,6 +20,8 @@ public class PurchaseState extends State {
 	public static boolean pleaseWaitLocal=false;
 	private static Rect rect;
 	private UIButton carouzel_prev;
+	private UIButton carouzel_next;
+	private Boolean testMode =true;
 
 	
 	public PurchaseState(){
@@ -38,6 +38,7 @@ public class PurchaseState extends State {
 		 rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
 		 carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
+	     carouzel_next = new UIButton(110, 355, 200, 445, Assets. carouzel_right , Assets.carouzel_right_down);		 
 		 Assets.onResume();
 	
 	}
@@ -53,14 +54,15 @@ public class PurchaseState extends State {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		
 		back.render(g);
-		
+		if(testMode)
+		carouzel_next.render(g);
 		
 		if(GameMainActivity.mIsPremium){
 			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true,80);
 			displayAlreadyPurhcace.render(g);	
-			carouzel_prev.render(g);
+			
 		}
-		if((!pleaseWaitLocal && (!GameMainActivity.mIsPremium) || !GameMainActivity.waitForPurhcace) ){
+		if(!pleaseWaitLocal && !GameMainActivity.mIsPremium  && !GameMainActivity.waitForPurhcace ){
 			g.drawRectTextAligned("Upgrade To Premium",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 255, 0), true,80);
 			buyPremiumItem.render(g);
 					
@@ -68,6 +70,10 @@ public class PurchaseState extends State {
 	     if(pleaseWaitLocal || GameMainActivity.waitForPurhcace){
 			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true,80);
 		}
+	     
+	     if(GameMainActivity.mIsPremium && (!pleaseWaitLocal || !GameMainActivity.waitForPurhcace) && testMode){
+	    	 carouzel_prev.render(g);
+	     }
 
 	}
 	
@@ -77,7 +83,11 @@ public class PurchaseState extends State {
 		Log.d("MainMenuState", "button clicked");	
 		if (e.getAction() == MotionEvent.ACTION_DOWN) {
 			back.onTouchDown(scaledX, scaledY);	
-			carouzel_prev.onTouchDown(scaledX, scaledY);
+			
+			if(testMode){
+				carouzel_prev.onTouchDown(scaledX, scaledY);
+				carouzel_next.onTouchDown(scaledX, scaledY);				
+			}
 			
 			if(!GameMainActivity.mIsPremium){
 				buyPremiumItem.onTouchDown(scaledX, scaledY);
@@ -94,7 +104,7 @@ public class PurchaseState extends State {
 				back.cancel();
 			}
 			//Consume All items
-			if (carouzel_prev.isPressed(scaledX, scaledY)) {
+			if (testMode && carouzel_prev.isPressed(scaledX, scaledY)) {
 				carouzel_prev.cancel();    					
 				Thread thread = new Thread(){				    
 					public void run(){	
@@ -116,9 +126,23 @@ public class PurchaseState extends State {
 				carouzel_prev.cancel();
 			}
 			
+			//carouzel_next.onTouchDown(scaledX, scaledY);
+			if ( testMode && carouzel_next.isPressed(scaledX, scaledY)) {
+				carouzel_next.cancel();  
+				
+				Thread thread = new Thread(){				    
+					public void run(){									
+						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.retrievePremiumStatus() + ":"+GameMainActivity.mIsPremium);
+						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.retrievePremiumToken());				   
+				    }
+				  };				  
+				  thread.start();		
+		       }
+			else{
+				carouzel_next.cancel();
+			}
 			
-			
-			if (buyPremiumItem.isPressed(scaledX, scaledY) ) {
+			if (!GameMainActivity.mIsPremium && buyPremiumItem.isPressed(scaledX, scaledY) ) {
 				
 				 buyPremiumItem.cancel();
 			 
@@ -128,7 +152,7 @@ public class PurchaseState extends State {
 							GameMainActivity.instance.onUpgradeAppButtonClicked();
 							try {
 								while(GameMainActivity.waitForPurhcace)
-								sleep(1000);						
+								sleep(5000);						
 									 Log.d(TAG, "on touch found mIsPremium to be true");						
 							} catch (InterruptedException e) {
 								e.printStackTrace();
