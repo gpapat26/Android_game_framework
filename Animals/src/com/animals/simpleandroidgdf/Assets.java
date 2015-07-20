@@ -772,7 +772,9 @@ public class Assets {
 		
 		int tempArrayVariable = 1;
         
-		if(GameMainActivity.mIsPremium){
+		if( GameMainActivity.mIsPremium  || ((GameMainActivity.instance != null) && GameMainActivity.instance.retrievePremiumStatus()))	
+		{
+			
 			animals.clear();
 			//animals = new SparseArray<Animal>();
 			
@@ -1279,7 +1281,7 @@ public class Assets {
 			Animal mosquito = new Animal();
 			mosquito.addAnimalName(R.string.mosquito);
 			mosquito.addAnimalName(R.string.mosquito_gr);
-			mosquito.setAnimalVisualFile("mosquito");
+			mosquito.setAnimalVisualFile("mosquito");   
 			mosquito.setAnimalVisualFileSoundLang("mosquito");
 			mosquito.addAudioFile("mosquito");
 			animals.put(tempArrayVariable++, mosquito);
@@ -1295,7 +1297,7 @@ public class Assets {
 
 			// 58 ORCA
 			Animal orca = new Animal();
-			orca.addAnimalName(R.string.orca);
+			orca.addAnimalName(R.string.orca); 
 			orca.addAnimalName(R.string.orca_gr);
 			orca.setAnimalVisualFile("orca");
 			orca.setAnimalVisualFileSoundLang("orca");
@@ -1312,7 +1314,7 @@ public class Assets {
 			animals.put(tempArrayVariable++, owl);
 
 			// 60 PANDA
-			Animal panda = new Animal();
+			Animal panda = new Animal();       
 			panda.addAnimalName(R.string.panda);
 			panda.addAnimalName(R.string.panda_gr);
 			panda.setAnimalVisualFile("panda");
@@ -1321,7 +1323,7 @@ public class Assets {
 			animals.put(tempArrayVariable++, panda);
 
 			// 61 PARROT
-			Animal parrot = new Animal();
+			Animal parrot = new Animal(); //< --- here  I am.
 			parrot.addAnimalName(R.string.parrot);
 			parrot.addAnimalName(R.string.parrot_gr);
 			parrot.setAnimalVisualFile("parrot");

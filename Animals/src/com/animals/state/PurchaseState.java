@@ -19,8 +19,9 @@ public class PurchaseState extends State {
 	private static final String TAG ="PurchaseState";
 	public static boolean pleaseWaitLocal=false;
 	private static Rect rect;
-	private UIButton carouzel_prev;
-	private UIButton carouzel_next;
+	private UIButton carouzel_prev; //consume all purch items
+	private UIButton carouzel_next; //display what is writen in database
+	private UIButton english ; // display if any google reports that items are owned.
 	private Boolean testMode =true;
 
 	
@@ -39,7 +40,8 @@ public class PurchaseState extends State {
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
 		 carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
 	     carouzel_next = new UIButton(110, 355, 200, 445, Assets. carouzel_right , Assets.carouzel_right_down);		 
-		 Assets.onResume();
+	     english = new UIButton(210, 355, 300, 445, Assets. english , Assets.english);	
+	     Assets.onResume();
 	
 	}
 
@@ -54,8 +56,12 @@ public class PurchaseState extends State {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		
 		back.render(g);
-		if(testMode)
-		carouzel_next.render(g);
+		
+		if(testMode){
+			carouzel_next.render(g); //display what is writen in database
+			english.render(g); // display if any google reports that items are owned.
+		}
+		
 		
 		if(GameMainActivity.mIsPremium){
 			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true,80);
@@ -72,7 +78,7 @@ public class PurchaseState extends State {
 		}
 	     
 	     if(GameMainActivity.mIsPremium && (!pleaseWaitLocal || !GameMainActivity.waitForPurhcace) && testMode){
-	    	 carouzel_prev.render(g);
+	    	 carouzel_prev.render(g); //consume all purch items
 	     }
 
 	}
@@ -86,7 +92,8 @@ public class PurchaseState extends State {
 			
 			if(testMode){
 				carouzel_prev.onTouchDown(scaledX, scaledY);
-				carouzel_next.onTouchDown(scaledX, scaledY);				
+				carouzel_next.onTouchDown(scaledX, scaledY);
+				english.onTouchDown(scaledX, scaledY);
 			}
 			
 			if(!GameMainActivity.mIsPremium){
@@ -126,13 +133,13 @@ public class PurchaseState extends State {
 				carouzel_prev.cancel();
 			}
 			
-			//carouzel_next.onTouchDown(scaledX, scaledY);
+			//Dispay database premium status
 			if ( testMode && carouzel_next.isPressed(scaledX, scaledY)) {
 				carouzel_next.cancel();  
 				
 				Thread thread = new Thread(){				    
 					public void run(){									
-						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.retrievePremiumStatus() + ":"+GameMainActivity.mIsPremium);
+						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.instance.retrievePremiumStatus() + ":"+GameMainActivity.mIsPremium);
 						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.retrievePremiumToken());				   
 				    }
 				  };				  
@@ -165,6 +172,32 @@ public class PurchaseState extends State {
 			else{
 				buyPremiumItem.cancel();
 			}
+			
+			if ( testMode && english.isPressed(scaledX, scaledY) ) {
+				
+				english.cancel();
+			 
+					Thread thread = new Thread(){				    
+						public void run(){	
+							pleaseWaitLocal = true;
+							GameMainActivity.instance.onQueryForOwnedItems();
+							try {
+								while(GameMainActivity.waitForPurhcace)
+								sleep(5000);						
+									 Log.d(TAG, "woke up");						
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						    pleaseWaitLocal = false;
+					    }
+					  };				  
+					  thread.start();						 							
+		       }
+			else{
+				english.cancel();
+			}
+			
+			
 			
 			
 			

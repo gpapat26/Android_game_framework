@@ -124,13 +124,13 @@ public class GameMainActivity extends BaseGameActivity{
 		
 		if(retrievePremiumStatus()){
 			mIsPremium = true;
+			alertNonStatic("When opening app premium was found true");
 		}
 		else{
 			mIsPremium = false;
+			alertNonStatic("When opening app premium was found false");
 		}
-						
-
-		
+								
 		Log.d("Activity", "Activity is onCreate status");
 		sGame= new GameView(this, GAME_WIDTH, GAME_HEIGHT);
 		setContentView(sGame);	
@@ -321,15 +321,15 @@ public class GameMainActivity extends BaseGameActivity{
 		alertNonStatic("Data is persisted OK!");
 	}
 	
-	public static Boolean retrievePremiumStatus() {
+	public  Boolean retrievePremiumStatus() {
 		String  value = null;
 		try{
 		  value =prefs.getString(premiumKey, "");				
 		 
 		}catch(Exception e){
-			alert("something went wrong while accessing data");
+			alertNonStatic("something went wrong while accessing data");
 		}
-		alert("retrieving premiumKey "+value);
+		alertNonStatic("retrieving premiumKey : "+value);
 		
 		if(value!= null && value.length() > 0 &&  value.equals("true")){
 			return true;
@@ -477,6 +477,9 @@ public class GameMainActivity extends BaseGameActivity{
     public  void onUpgradeAppButtonClicked() {
         Log.d(TAG, "Upgrade button clicked; launching purchase flow for upgrade.");
         setWaitScreen(true);
+        if(!retrievePremiumStatus()){
+        	alertNonStatic("Status is not premium");
+        }
        // alert("on upgrade button clicked");
 
         /* TODO: for security, generate your payload here for verification. See the comments on
@@ -552,6 +555,57 @@ public class GameMainActivity extends BaseGameActivity{
 		setWaitScreen(false);
 	}
 	
+	public void onQueryForOwnedItems(){
+		setWaitScreen(true);
+		queryforOwnedItems();
+		setWaitScreen(false);
+	}
+	
+	  private void queryforOwnedItems() {
+	    	Bundle ownedItems = null;
+	    	
+	    	try {
+	    		
+	    		ownedItems = mHelper.mService.getPurchases(3, sGame.getContext().getPackageName(), "inapp", null);
+				
+			} catch (RemoteException e) {
+				alertNonStatic("Something went wrong when calling getPurcases");				
+				return;
+			}
+	    	
+	    	if(ownedItems == null){
+	    		alertNonStatic("Android returned null as a response");
+	    		return ;
+	    	}
+	    	
+	    	int response = ownedItems.getInt("RESPONSE_CODE");
+	    	
+	    	if (response == 0) {
+
+	    	   ArrayList<String>  purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+
+	    	   for (int i = 0; i < purchaseDataList.size(); ++i) {
+	    	      String purchaseData = purchaseDataList.get(i);
+	 
+	    	      String token = null;
+				  String sku = null;
+				  
+	    	      try {
+					  JSONObject jo = new JSONObject(purchaseData);
+					  token = jo.getString("purchaseToken");
+					  sku = jo.getString("productId");
+					  alertNonStatic("fetched sku :" + sku + " and token "+ token);				 	      
+	    	      } catch (JSONException e) {
+					alertNonStatic("unable to parse fetched json of owned items");
+					return;
+				  }
+	    		    	        
+	    	   }
+
+	    	}	   		  
+	  }
+	  
+	  
     private void queryforPremiumsAndConsumeWithContinuationToken(String continuationToken) {
     	
     	Bundle ownedItems = null;
@@ -594,7 +648,7 @@ public class GameMainActivity extends BaseGameActivity{
     	      } catch (JSONException e) {
 				alertNonStatic("unable to parse fetched json for consumption");
 				return;
-			}
+			  }
     	      if(token != null && sku != null &&  token.length() > 0 ){
        	       try {
        	    	alertNonStatic("generating request for consumption of  sku :"+sku + " and token :"+token);
