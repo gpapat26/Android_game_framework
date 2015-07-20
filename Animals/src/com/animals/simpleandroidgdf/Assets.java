@@ -1323,7 +1323,7 @@ public class Assets {
 			animals.put(tempArrayVariable++, panda);
 
 			// 61 PARROT
-			Animal parrot = new Animal(); //< --- here  I am.
+			Animal parrot = new Animal(); //
 			parrot.addAnimalName(R.string.parrot);
 			parrot.addAnimalName(R.string.parrot_gr);
 			parrot.setAnimalVisualFile("parrot");
@@ -1350,7 +1350,7 @@ public class Assets {
 			animals.put(tempArrayVariable++, penguin);
 
 			// 64 PIG
-			Animal pig = new Animal();
+			Animal pig = new Animal();//< --- here  I am.
 			pig.addAnimalName(R.string.pig);
 			pig.addAnimalName(R.string.pig_gr);
 			pig.addAudioFile("pig");
@@ -1368,13 +1368,13 @@ public class Assets {
 			animals.put(tempArrayVariable++, rabbit);
 
 			// 66 RABBIT2
-			Animal rabbit2 = new Animal();
-			rabbit2.addAnimalName(R.string.rabbit2);
-			rabbit2.addAnimalName(R.string.rabbit2_gr);
-			rabbit2.addAudioFile("rabit");
-			rabbit2.setAnimalVisualFile("rabbit2");
-			rabbit2.setAnimalVisualFileSoundLang("rabbit");
-			animals.put(tempArrayVariable++, rabbit2);
+//			Animal rabbit2 = new Animal();
+//			rabbit2.addAnimalName(R.string.rabbit2);
+//			rabbit2.addAnimalName(R.string.rabbit2_gr);
+//			rabbit2.addAudioFile("rabit");
+//			rabbit2.setAnimalVisualFile("rabbit2");
+//			rabbit2.setAnimalVisualFileSoundLang("rabbit");
+//			animals.put(tempArrayVariable++, rabbit2);
 
 			// 67 RACOON
 			Animal racoon = new Animal();

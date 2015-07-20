@@ -40,7 +40,7 @@ public class PurchaseState extends State {
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
 		 carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
 	     carouzel_next = new UIButton(110, 355, 200, 445, Assets. carouzel_right , Assets.carouzel_right_down);		 
-	     english = new UIButton(210, 355, 300, 445, Assets. english , Assets.english);	
+	     english = new UIButton(210, 355, 300, 445, Assets. english , Assets.english_down);	
 	     Assets.onResume();
 	
 	}
