@@ -772,11 +772,11 @@ public class Assets {
 		
 		int tempArrayVariable = 1;
         
-		if( GameMainActivity.mIsPremium  || ((GameMainActivity.instance != null) && GameMainActivity.instance.retrievePremiumStatus()))	
+		if( GameMainActivity.mIsPremium  || ( (GameMainActivity.instance != null) && GameMainActivity.instance.retrievePremiumStatus() ) )	
 		{
 			
 			animals.clear();
-			//animals = new SparseArray<Animal>();
+			animals = new SparseArray<Animal>();
 			
 
 			// 2 DEER
@@ -1558,6 +1558,9 @@ public class Assets {
 
 		}
 		else{
+			
+			animals.clear();
+			animals = new SparseArray<Animal>();
 			
 			// 2 DEER
 			Animal baby_dear = new Animal();

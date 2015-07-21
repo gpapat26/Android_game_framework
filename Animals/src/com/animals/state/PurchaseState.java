@@ -19,9 +19,12 @@ public class PurchaseState extends State {
 	private static final String TAG ="PurchaseState";
 	public static boolean pleaseWaitLocal=false;
 	private static Rect rect;
-	private UIButton carouzel_prev; //consume all purch items
-	private UIButton carouzel_next; //display what is writen in database
-	private UIButton english ; // display if any google reports that items are owned.
+	private UIButton simulateConsumptionFromGoogle; //consume all purch items
+	private UIButton simulateFetchStatusFromDB; //display what is writen in database
+	private UIButton simulateFetchOwnedFromGoogle ; // display if any google reports that items are owned.
+	
+	private UIButton simulateBuyButtonWithoutGoogle;// buy items without Google. ie record a purchase in db, change carouzel.
+	private UIButton simulateCleanDatabase; //cleans items from database.
 	private Boolean testMode =true;
 
 	
@@ -38,11 +41,12 @@ public class PurchaseState extends State {
 		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)-50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+50, Assets.buyItemUp2 , Assets.buyItemDown2);		
 		 rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
-		 carouzel_prev = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
-	     carouzel_next = new UIButton(110, 355, 200, 445, Assets. carouzel_right , Assets.carouzel_right_down);		 
-	     english = new UIButton(210, 355, 300, 445, Assets. english , Assets.english_down);	
-	     Assets.onResume();
-	
+		 simulateConsumptionFromGoogle = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
+	     simulateFetchStatusFromDB = new UIButton(110, 355, 200, 445, Assets. carouzel_right , Assets.carouzel_right_down);		 
+	     simulateFetchOwnedFromGoogle = new UIButton(210, 355, 300, 445, Assets. english , Assets.english_down);	     
+	     simulateBuyButtonWithoutGoogle = new UIButton(310, 355, 400, 445, Assets. balloons_button , Assets.balloons_button_down);
+	     simulateCleanDatabase = new UIButton(410, 355, 500, 445, Assets. greek , Assets.greek_down);
+	     Assets.onResume();	
 	}
 
 	@Override
@@ -58,8 +62,10 @@ public class PurchaseState extends State {
 		back.render(g);
 		
 		if(testMode){
-			carouzel_next.render(g); //display what is writen in database
-			english.render(g); // display if any google reports that items are owned.
+			simulateFetchStatusFromDB.render(g); 		//display what is writen in database
+			simulateFetchOwnedFromGoogle.render(g); 	// display if any google reports that items are owned.
+			simulateBuyButtonWithoutGoogle.render(g);	// buy items without Google. ie record a purchase in db, change carouzel.
+			simulateCleanDatabase.render(g);			//cleans items from database.
 		}
 		
 		
@@ -78,7 +84,7 @@ public class PurchaseState extends State {
 		}
 	     
 	     if(GameMainActivity.mIsPremium && (!pleaseWaitLocal || !GameMainActivity.waitForPurhcace) && testMode){
-	    	 carouzel_prev.render(g); //consume all purch items
+	    	 simulateConsumptionFromGoogle.render(g); //consume all purch items
 	     }
 
 	}
@@ -91,9 +97,11 @@ public class PurchaseState extends State {
 			back.onTouchDown(scaledX, scaledY);	
 			
 			if(testMode){
-				carouzel_prev.onTouchDown(scaledX, scaledY);
-				carouzel_next.onTouchDown(scaledX, scaledY);
-				english.onTouchDown(scaledX, scaledY);
+				simulateConsumptionFromGoogle.onTouchDown(scaledX, scaledY);
+				simulateFetchStatusFromDB.onTouchDown(scaledX, scaledY);
+				simulateFetchOwnedFromGoogle.onTouchDown(scaledX, scaledY);
+				simulateBuyButtonWithoutGoogle.onTouchDown(scaledX, scaledY);
+				simulateCleanDatabase.onTouchDown(scaledX, scaledY);
 			}
 			
 			if(!GameMainActivity.mIsPremium){
@@ -111,8 +119,8 @@ public class PurchaseState extends State {
 				back.cancel();
 			}
 			//Consume All items
-			if (testMode && carouzel_prev.isPressed(scaledX, scaledY)) {
-				carouzel_prev.cancel();    					
+			if (testMode && simulateConsumptionFromGoogle.isPressed(scaledX, scaledY)) {
+				simulateConsumptionFromGoogle.cancel();    					
 				Thread thread = new Thread(){				    
 					public void run(){	
 						pleaseWaitLocal = true;
@@ -130,12 +138,12 @@ public class PurchaseState extends State {
 				  thread.start();		
 		       }
 			else{
-				carouzel_prev.cancel();
+				simulateConsumptionFromGoogle.cancel();
 			}
 			
 			//Dispay database premium status
-			if ( testMode && carouzel_next.isPressed(scaledX, scaledY)) {
-				carouzel_next.cancel();  
+			if ( testMode && simulateFetchStatusFromDB.isPressed(scaledX, scaledY)) {
+				simulateFetchStatusFromDB.cancel();  
 				
 				Thread thread = new Thread(){				    
 					public void run(){									
@@ -146,7 +154,7 @@ public class PurchaseState extends State {
 				  thread.start();		
 		       }
 			else{
-				carouzel_next.cancel();
+				simulateFetchStatusFromDB.cancel();
 			}
 			
 			if (!GameMainActivity.mIsPremium && buyPremiumItem.isPressed(scaledX, scaledY) ) {
@@ -173,9 +181,9 @@ public class PurchaseState extends State {
 				buyPremiumItem.cancel();
 			}
 			
-			if ( testMode && english.isPressed(scaledX, scaledY) ) {
+			if ( testMode && simulateFetchOwnedFromGoogle.isPressed(scaledX, scaledY) ) {
 				
-				english.cancel();
+				simulateFetchOwnedFromGoogle.cancel();
 			 
 					Thread thread = new Thread(){				    
 						public void run(){	
@@ -194,8 +202,63 @@ public class PurchaseState extends State {
 					  thread.start();						 							
 		       }
 			else{
-				english.cancel();
+				simulateFetchOwnedFromGoogle.cancel();
 			}
+			
+			if ( testMode && simulateBuyButtonWithoutGoogle.isPressed(scaledX, scaledY) ) {
+				
+				simulateBuyButtonWithoutGoogle.cancel();
+			 
+					Thread thread = new Thread(){				    
+						public void run(){	
+							pleaseWaitLocal = true;						
+							try {
+								GameMainActivity.waitForPurhcace= true;														
+								sleep(20000);	
+								GameMainActivity.instance.preparePremiumStatus("123 fake premium", true);
+								sleep(3000);	
+							    Log.d(TAG, "woke up");	
+								GameMainActivity.waitForPurhcace= false;
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+								GameMainActivity.waitForPurhcace= false;
+							}
+						    pleaseWaitLocal = false;
+					    }
+					  };				  
+					  thread.start();						 							
+		       }
+			else{
+				simulateBuyButtonWithoutGoogle.cancel();
+			}
+			
+			
+		if ( testMode && simulateCleanDatabase.isPressed(scaledX, scaledY) ) {
+				
+			simulateCleanDatabase.cancel();
+			 
+					Thread thread = new Thread(){				    
+						public void run(){	
+							pleaseWaitLocal = true;						
+							try {
+								GameMainActivity.waitForPurhcace= true;
+								sleep(20000);
+								GameMainActivity.instance.preparePremiumStatus("", false);																					
+							    Log.d(TAG, "woke up");	
+								GameMainActivity.waitForPurhcace= false;
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+								GameMainActivity.waitForPurhcace= false;
+							}
+						    pleaseWaitLocal = false;
+					    }
+					  };				  
+					  thread.start();						 							
+		       }
+			else{
+				simulateCleanDatabase.cancel();
+			}
+			
 			
 			
 			

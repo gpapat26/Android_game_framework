@@ -3,12 +3,6 @@ package com.animals.state;
 
 import java.util.ArrayList;
 
-
-
-
-
-
-
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
@@ -172,7 +166,7 @@ public class CarouzelState extends State {
 	    		   back.cancel();
 	    	   }else{
 	    		   back.cancel();
-		    		Assets.loadGalleryImage("crab");
+		    		//Assets.loadGalleryImage("crab");
 					GameMainActivity.sGame.setCurrentState(new MainMenuState());
 					backPressedCounter = 0;
 					return true;

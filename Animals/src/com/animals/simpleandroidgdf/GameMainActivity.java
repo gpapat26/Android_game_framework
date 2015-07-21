@@ -312,13 +312,14 @@ public class GameMainActivity extends BaseGameActivity{
 		editor.putString(premiumKey, value+"");
 		editor.putString(purchaseTokenKey, token);
 		editor.commit();
-		Log.d("GameMainActivity", "premium is "+value + " and token is "+token);	
+		Log.d("GameMainActivity", "premium  boolean value is "+value + " and token is "+token);	
 		}
 		catch(Exception e){
 			alertNonStatic("something went wrong while storing data");
 			setWaitScreen(false);
 		}
 		alertNonStatic("Data is persisted OK!");
+		alertNonStatic("prem boolean data is : " + value + " ,token is :"+ token );
 	}
 	
 	public  Boolean retrievePremiumStatus() {
