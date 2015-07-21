@@ -25,7 +25,7 @@ public class PurchaseState extends State {
 	
 	private UIButton simulateBuyButtonWithoutGoogle;// buy items without Google. ie record a purchase in db, change carouzel.
 	private UIButton simulateCleanDatabase; //cleans items from database.
-	private Boolean testMode =true;
+	private Boolean testMode =false;
 
 	
 	public PurchaseState(){
@@ -35,7 +35,7 @@ public class PurchaseState extends State {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
+		 testMode =GameMainActivity.purchaseTestModeOn;		
 		 Assets.loadGalleryImage("cartoon-rural-scene-farm-animals-24447502_2");
 		 back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
 		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)-50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+50, Assets.buyItemUp2 , Assets.buyItemDown2);		
@@ -197,8 +197,12 @@ public class PurchaseState extends State {
 					Thread thread = new Thread(){				    
 						public void run(){	
 							pleaseWaitLocal = true;
-							GameMainActivity.instance.onQueryForOwnedItems();
+							
+								
 							try {
+								GameMainActivity.instance.onQueryForOwnedItems();
+								sleep(5000);
+								
 								while(GameMainActivity.waitForPurhcace)
 								sleep(5000);						
 									 Log.d(TAG, "woke up");						

@@ -2,4 +2,5 @@
 <resources>
     <string name="app_id">886039599197</string>
     <string name="app_id_test">456</string>
+     <string name="purchase_Flow_test">true</string>
 </resources>

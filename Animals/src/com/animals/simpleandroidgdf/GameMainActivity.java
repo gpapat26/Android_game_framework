@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,6 +50,8 @@ public class GameMainActivity extends BaseGameActivity{
 //	private static final String jsonPurchaseInfoKey ="jsonPurchaseInfoKey";
 //	private static final String signatureKey ="signatureKey";
 	private static final String purchaseTokenKey = "purchaseTokenKey";
+	
+	public static Boolean purchaseTestModeOn = false;
 	
 	private static int highScore;
 	
@@ -83,6 +86,11 @@ public class GameMainActivity extends BaseGameActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
+		Resources res = getResources();		
+		
+		purchaseTestModeOn = Boolean.valueOf(res.getString(R.string.purchase_Flow_test));		
+		
 		upperHalfScreen=new Rect(0,0,GAME_WIDTH,GAME_HEIGHT/2);
 		lowerHalfScreen=new Rect(0,GAME_HEIGHT/2,GAME_WIDTH,GAME_HEIGHT);
 		
@@ -333,6 +341,7 @@ public class GameMainActivity extends BaseGameActivity{
 		 
 		}catch(Exception e){
 			alertNonStatic("something went wrong while accessing data");
+			 setWaitScreen(true);
 		}
 		alertNonStatic("retrieving premiumKey : "+value);
 		
@@ -409,23 +418,23 @@ public class GameMainActivity extends BaseGameActivity{
     }
 
 
-   public static void alert(String message) {
-	       
-        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
-        bld.setMessage(message);
-        bld.setNeutralButton("OK", null);
-        Log.d(TAG, "Showing alert dialog: " + message);
-        bld.create().show();
-    }
-   
+//   public static void alert(String message) {
+//	       
+//        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
+//        bld.setMessage(message);
+//        bld.setNeutralButton("OK", null);
+//        Log.d(TAG, "Showing alert dialog: " + message);
+//        bld.create().show();
+//    }
+//   
    
    
    public void alertNonStatic(final String message){
+	   if(purchaseTestModeOn)
 	   new Thread()
 	   {
 	       public void run()
-	       {
-	    	  
+	       {	    	  
 	           runOnUiThread(new Runnable()
 	           {
 	               public void run()
@@ -483,7 +492,7 @@ public class GameMainActivity extends BaseGameActivity{
         Log.d(TAG, "Upgrade button clicked; launching purchase flow for upgrade.");
         setWaitScreen(true);
         if(!retrievePremiumStatus()){
-        	alertNonStatic("Status is not premium");
+        	alertNonStatic("Status is not premium in database");
         }
        // alert("on upgrade button clicked");
 
@@ -496,7 +505,7 @@ public class GameMainActivity extends BaseGameActivity{
                 mPurchaseFinishedListener, payload);
     }
     
-    // Callback for when a purchase is finished
+    // Callback for when a purchase is finished --  > If purchase flow is followed
      IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
         	
@@ -542,6 +551,7 @@ public class GameMainActivity extends BaseGameActivity{
         		alertNonStatic("Something went wrong in onIabPurchaseFinished "+e );
         		setWaitScreen(false);
         	}
+        	 setWaitScreen(false);
         }
 
 
@@ -578,7 +588,7 @@ public class GameMainActivity extends BaseGameActivity{
 				return;
 			}
 	    	
-	    	if(ownedItems == null){
+	    	if(ownedItems == null || ownedItems.getInt("RESPONSE_CODE") !=0 ){
 	    		alertNonStatic("Android returned null as a response");
 	    		return ;
 	    	}
@@ -586,9 +596,16 @@ public class GameMainActivity extends BaseGameActivity{
 	    	int response = ownedItems.getInt("RESPONSE_CODE");
 	    	
 	    	if (response == 0) {
-
+	    		alertNonStatic("Google says request is valid!");
 	    	   ArrayList<String>  purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
-
+	    	   
+	    	   if(purchaseDataList == null){
+	    		   alertNonStatic("Google says that there INAPP_PURCHASE_DATA_LIST does not exist or is empty");
+	    	   }
+	    	   if(purchaseDataList != null && purchaseDataList.size()==0){
+	    		   alertNonStatic("Google says that INAPP_PURCHASE_DATA_LIST exist but there are no items retrieved!!");
+	    	   }
+	    	   
 	    	   for (int i = 0; i < purchaseDataList.size(); ++i) {
 	    	      String purchaseData = purchaseDataList.get(i);
 	 
@@ -607,7 +624,10 @@ public class GameMainActivity extends BaseGameActivity{
 	    		    	        
 	    	   }
 
-	    	}	   		  
+	    	}
+	    	else{
+	    		alertNonStatic("Response from Google was not ok! i.e status == 0");	
+	    	}
 	  }
 	  
 	  
@@ -638,6 +658,13 @@ public class GameMainActivity extends BaseGameActivity{
 //    	   ArrayList<String>  signatureList =
 //    	      ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE_LIST");
     	   String continuationTokenFetced =ownedItems.getString("INAPP_CONTINUATION_TOKEN");
+    	   
+    	   if(purchaseDataList == null){
+    		   alertNonStatic("Google says that there INAPP_PURCHASE_DATA_LIST does not exist or is empty");
+    	   }
+    	   if(purchaseDataList != null && purchaseDataList.size()==0){
+    		   alertNonStatic("Google says that INAPP_PURCHASE_DATA_LIST exist but there are no items retrieved!!");
+    	   }
 
     	   for (int i = 0; i < purchaseDataList.size(); ++i) {
     	      String purchaseData = purchaseDataList.get(i);
@@ -805,11 +832,18 @@ public class GameMainActivity extends BaseGameActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
     	if (requestCode == 1001) {
-    	      int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+    		alertNonStatic("onActivityResult says request code is 1001");
+    		  if(data != null){
+    			  
+    	      int responseCode = data.getIntExtra("RESPONSE_CODE", 0); 	      
     	      String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
     	      String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
+    	      
+    	      alertNonStatic("RESPONSE_CODE : "+responseCode + " purchaseData :"+purchaseData + "dataSignature : "+dataSignature );
+    	      
 
     	      if (resultCode == RESULT_OK) {
+    	    	  alertNonStatic("onActivityResult says result is ok");
     	         try {
     	            JSONObject jo = new JSONObject(purchaseData);
     	            String sku = jo.getString("productId");
@@ -822,28 +856,43 @@ public class GameMainActivity extends BaseGameActivity{
     	             e.printStackTrace();
     	          }
     	      }
+    	      else{
+    	    	  alertNonStatic("onActivityResult says result is Nok");
+    	      }
+    	      
+    		  }else{
+    			  alertNonStatic("onActivityResult says data is null"); 
+    		  }
     	   }
+    	else{
+    		alertNonStatic("onActivityResult says request code is NOT 1001");
+    		setWaitScreen(false);
+    	}
 
     	
-//        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-//        if (mHelper == null) return;
-//
-//        // Pass on the activity result to the helper for handling
-//        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
-//            // not handled, so handle it ourselves (here's where you'd
-//            // perform any handling of activity results not related to in-app
-//            // billing...
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//        else {
-//            Log.d(TAG, "onActivityResult handled by IABUtil.");
-//        }
+        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
+       
+        if (mHelper == null){
+        	setWaitScreen(false);
+        	return;
+        }
+
+        // Pass on the activity result to the helper for handling
+        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
+            // not handled, so handle it ourselves (here's where you'd
+            // perform any handling of activity results not related to in-app
+            // billing...
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        else {
+            Log.d(TAG, "onActivityResult handled by IABUtil.");
+        }
     }
     
 	
-    static void complain(String message) {
+     void complain(String message) {
         Log.e(TAG, "**** Error: " + message);
-        alert("Error: " + message);
+        alertNonStatic("Error: " + message);
     }
 
     
