@@ -39,7 +39,8 @@ public class PurchaseState extends State {
 		 Assets.loadGalleryImage("cartoon-rural-scene-farm-animals-24447502_2");
 		 back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
 		 buyPremiumItem  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)-50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+50, Assets.buyItemUp2 , Assets.buyItemDown2);		
-		 rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
+		 //rect = new Rect(0, 0, GameMainActivity.GAME_WIDTH, 200);
+		 rect = GameMainActivity.upperHalfScreen;
 		 displayAlreadyPurhcace  = new UIButton((GameMainActivity.GAME_WIDTH/2)-50, (GameMainActivity.GAME_HEIGHT/2)+50, (GameMainActivity.GAME_WIDTH/2)+50,  (GameMainActivity.GAME_HEIGHT/2)+150, Assets.premiumBought , Assets.premiumBought);		 	   	     
 		 simulateConsumptionFromGoogle = new UIButton(5, 355, 95, 445, Assets.carouzel_left, Assets. carouzel_left_down);
 	     simulateFetchStatusFromDB = new UIButton(110, 355, 200, 445, Assets. carouzel_right , Assets.carouzel_right_down);		 
@@ -59,7 +60,7 @@ public class PurchaseState extends State {
 	public void render(Painter g) {
 		g.drawImage(Assets.galleryBitmap, 0, 0);
 		
-		back.render(g);
+		
 		
 		if(testMode){
 			simulateFetchStatusFromDB.render(g); 		//display what is writen in database
@@ -71,7 +72,8 @@ public class PurchaseState extends State {
 		
 		if(GameMainActivity.mIsPremium){
 			g.drawRectTextAligned("App is Upgrated",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(0, 255, 0), true,80);
-			displayAlreadyPurhcace.render(g);	
+			displayAlreadyPurhcace.render(g);
+			
 			
 		}
 		if(!pleaseWaitLocal && !GameMainActivity.mIsPremium  && !GameMainActivity.waitForPurhcace ){
@@ -80,11 +82,16 @@ public class PurchaseState extends State {
 					
 		}
 	     if(pleaseWaitLocal || GameMainActivity.waitForPurhcace){
-			g.drawRectTextAligned("Please wait...",rect,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true,80);
+			g.drawRectTextAligned("Please wait...",GameMainActivity.wholeScreenMinus,40,Typeface.SERIF,Align.CENTER,Color.rgb(255, 0, 0), true,80);
 		}
 	     
 	     if(GameMainActivity.mIsPremium && (!pleaseWaitLocal || !GameMainActivity.waitForPurhcace) && testMode){
 	    	 simulateConsumptionFromGoogle.render(g); //consume all purch items
+	    	
+	     }
+	     
+	     if(!pleaseWaitLocal || !GameMainActivity.waitForPurhcace){
+	    	 back.render(g);
 	     }
 
 	}
@@ -147,9 +154,11 @@ public class PurchaseState extends State {
 				
 				Thread thread = new Thread(){				    
 					public void run(){									
-						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.instance.retrievePremiumStatus() + ":"+GameMainActivity.mIsPremium);
-						GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.retrievePremiumToken());				   
-				    }
+						//GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.instance.retrievePremiumStatus() + ":"+GameMainActivity.mIsPremium);
+						//GameMainActivity.instance.alertNonStatic("Premium : "+GameMainActivity.retrievePremiumToken());				   
+						GameMainActivity.instance.retrievePremiumStatus();
+						GameMainActivity.instance.retrievePremiumToken();
+					}
 				  };				  
 				  thread.start();		
 		       }

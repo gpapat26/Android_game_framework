@@ -74,6 +74,7 @@ public class GameMainActivity extends BaseGameActivity{
 	public static Rect lowerHalfScreen;
 	public static Rect upperLeftScore;
 	public static Rect upperRightTimer;
+	public static Rect wholeScreenMinus;
     
     //**********************************************************************************//
 	//********************* Activity methods           *********************************//
@@ -88,7 +89,10 @@ public class GameMainActivity extends BaseGameActivity{
 		upperLeftScore=new Rect(0,0,GAME_WIDTH/4,GAME_HEIGHT/12);
 		
 		upperRightTimer=new Rect(4*(GAME_WIDTH/5),0,GAME_WIDTH,GAME_HEIGHT/12);
-        String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNgrpfcgNutjrbjzpYOTGSrPCWwoO34B9+2CwXjfTuaahBV06he8epGoI4LPQnnNjnGyXdsBnKTjb0NRir6J96rNihsOUu2uQP5k57xDMFy6uVmvNKs9eSpeW249JoqgjDhDxATcXSxg+HOjWnEBCwlE5TWk7eMuUdWOCHOKty/m4NQIlK+a1n5YwFFRhF0ynbmvquWAXs1C96RNdr/kBvRvxPGMSqYC3mFzhNWTR/6i2TZuTF9oDvK+lRZ4LK+dIkdIMKolTLnTaE8rHItCn53dn9KP/dH9Ncp1hYr/dRlnf10lLTE/DpQQ/zKnpKa0aEjKlUd0Vm66PLhsxAQNtwIDAQAB";
+		
+		wholeScreenMinus = new Rect(5,5,GAME_WIDTH-5,GAME_HEIGHT-5);
+       
+		String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNgrpfcgNutjrbjzpYOTGSrPCWwoO34B9+2CwXjfTuaahBV06he8epGoI4LPQnnNjnGyXdsBnKTjb0NRir6J96rNihsOUu2uQP5k57xDMFy6uVmvNKs9eSpeW249JoqgjDhDxATcXSxg+HOjWnEBCwlE5TWk7eMuUdWOCHOKty/m4NQIlK+a1n5YwFFRhF0ynbmvquWAXs1C96RNdr/kBvRvxPGMSqYC3mFzhNWTR/6i2TZuTF9oDvK+lRZ4LK+dIkdIMKolTLnTaE8rHItCn53dn9KP/dH9Ncp1hYr/dRlnf10lLTE/DpQQ/zKnpKa0aEjKlUd0Vm66PLhsxAQNtwIDAQAB";
         // Create the helper, passing it our context and the public key to verify signatures with
         Log.d(TAG, "Creating IAB helper.");              
         mHelper = new IabHelper(this, base64EncodedPublicKey);
@@ -339,15 +343,15 @@ public class GameMainActivity extends BaseGameActivity{
 		return false;	
 	}
 	
-	public static String retrievePremiumToken() {
+	public  String retrievePremiumToken() {
 		String  value = null;
 		try{
 			 value =prefs.getString(purchaseTokenKey, "");
 			
 		}catch(Exception e){
-			 alert("something went wrong while accessing data");
+			alertNonStatic("something went wrong while accessing data");
 		}
-		alert("retrieving purchaseTokenKey "+value);
+		alertNonStatic("retrieving purchaseTokenKey "+value);
 		return value;	
 	}
 	
