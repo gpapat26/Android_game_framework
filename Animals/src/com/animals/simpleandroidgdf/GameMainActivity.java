@@ -45,10 +45,6 @@ public class GameMainActivity extends BaseGameActivity{
 	private static final String languageCodeKey = "languageCodeKey";
 	private static final String highScoreKey = "highScoreAnimalKey";
 	private static final String premiumKey = "premiumkey";
-	//Purhcase Data
-//	private static final String itemTypeKey ="itemTypeKey";
-//	private static final String jsonPurchaseInfoKey ="jsonPurchaseInfoKey";
-//	private static final String signatureKey ="signatureKey";
 	private static final String purchaseTokenKey = "purchaseTokenKey";
 	
 	public static Boolean purchaseTestModeOn = false;
@@ -372,11 +368,19 @@ public class GameMainActivity extends BaseGameActivity{
             Log.d(TAG, "Query inventory finished.");
 
             // Have we been disposed of in the meantime? If so, quit.
-            if (mHelper == null) return;
+            if (mHelper == null) {
+                complain("Failed to query google inventory when App started (mHelper is null )");
+            	return;
+            }
 
             // Is it a failure?
             if (result.isFailure()) {
-                complain("Failed to query inventory: " + result);
+                complain("Failed to query google inventory when App started (result failure )");
+                if(result != null){
+                	   complain("Failed to query google inventory when App started (result failure ) with response  : " + result.getResponse());                    
+                       complain("Failed to query google inventory when App started (result failure ) with  message : "+result.getMessage());
+                }
+             
                 return;
             }
 
@@ -400,13 +404,13 @@ public class GameMainActivity extends BaseGameActivity{
             	preparePremiumStatus(premiumPurchase.getmToken(), true);
             }
             else{
-            	complain(TAG+" OnQuery is not premium : " + mIsPremium);
-            	Log.d(TAG,"mIsPremium was found="+mIsPremium);
+            	complain(TAG+" OnQuery from Google says  is not premium ");
+            	Log.d(TAG," mIsPremium was found  "+mIsPremium);
             }
                      
-            Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+            Log.d(TAG, " User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
                        
-            Log.d(TAG, "Initial inventory query finished; enabling main UI.");
+            Log.d(TAG, " Initial inventory query finished; enabling main UI.");
         }
     };
     
@@ -417,16 +421,6 @@ public class GameMainActivity extends BaseGameActivity{
     		waitForPurhcace = set;	  
     }
 
-
-//   public static void alert(String message) {
-//	       
-//        AlertDialog.Builder bld = new AlertDialog.Builder(sGame.getContext());
-//        bld.setMessage(message);
-//        bld.setNeutralButton("OK", null);
-//        Log.d(TAG, "Showing alert dialog: " + message);
-//        bld.create().show();
-//    }
-//   
    
    
    public void alertNonStatic(final String message){
