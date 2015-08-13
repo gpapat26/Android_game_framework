@@ -270,9 +270,9 @@ public class Assets {
 		replay = loadBitmap("replayButton.png", true, false);
 		replayDown = loadBitmap("replayButton_down.png", true, false);
 		
-		special_thanks_up = loadBitmap("special_thaks.png", true, false);
+		special_thanks_up = loadBitmap("special_thanks.png", true, false);
 		
-		special_thanks_down = loadBitmap("special_thaks_down.png", true, false);
+		special_thanks_down = loadBitmap("special_thanks_down.png", true, false);
 		
 		//displayWait =loadBitmap("loading.jpg", true, false);
 		 

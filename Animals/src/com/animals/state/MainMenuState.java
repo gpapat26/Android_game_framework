@@ -51,7 +51,7 @@ public class MainMenuState extends State {
 			back.render(g);
 			balloon.render(g);
 			purhaceButton.render(g);
-			specialThanksButton.render(g);
+			//specialThanksButton.render(g);
 		}
 		
 	}
@@ -107,7 +107,7 @@ public class MainMenuState extends State {
 				purhaceButton.cancel();
 			}
 							
-			if (specialThanksButton.isPressed(scaledX, scaledY)) {
+/*			if (specialThanksButton.isPressed(scaledX, scaledY)) {
 				specialThanksButton.cancel();
 		    		//Assets.loadGalleryImage("crab");
 					GameMainActivity.sGame.setCurrentState(new SpecialThanksState());
@@ -115,7 +115,7 @@ public class MainMenuState extends State {
 		       }
 			else{
 				specialThanksButton.cancel();
-			}
+			}*/
 			
 			
 		}
