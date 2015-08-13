@@ -12,6 +12,8 @@ public class Animal {
 	private ArrayList<String> animalAudioFile;
 	
 	private List<Integer> animalNames;
+		
+	public String[] imageDetails=new String[3]; // contains  1 source, 2 author name, 3 author url, 4 lisence
 	
 	private boolean promo= false;
 	

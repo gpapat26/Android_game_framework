@@ -15,24 +15,23 @@ public class MainMenuState extends State {
 	private UIButton back;
 	private UIButton balloon;
 	private UIButton purhaceButton;
+	private UIButton specialThanksButton;
 
 	public  MainMenuState() {
 		init();
 	}
 	@Override
 	public void init() {
-		//Assets.galleryBitmap = null;	
-		//Assets.onPause();
-		//carouzelButton = new UIButton(316, 227, 484, 286, Assets.carouzel_up1, Assets.carouzel_down1);
+	
 		carouzelButton = new UIButton(250, 200, 350, 300, Assets.carouzel_up1, Assets.carouzel_down1);
-		//back = new UIButton(705, 355, 795, 445, Assets.back , Assets.back_down);	
-		//back = new UIButton(450, 200, 550, 300, Assets.home , Assets.home_down);		
-		
+				
 		balloon = new UIButton(450, 200, 550, 300, Assets.balloons_button , Assets.balloons_button_down);
 		
 		back = new UIButton(705, 355, 795, 445, Assets.home , Assets.home_down);	
 		
 		purhaceButton = new UIButton(5, 355, 105, 445, Assets.buyItemUp, Assets.buyItemDown);
+		
+		specialThanksButton = new UIButton((GameMainActivity.GAME_WIDTH/2)-150, 350, (GameMainActivity.GAME_WIDTH/2), 445, Assets.special_thanks_up, Assets.special_thanks_down);
 		
 		Assets.loadGalleryImage("farm1");
 		Assets.onResume();	
@@ -52,6 +51,7 @@ public class MainMenuState extends State {
 			back.render(g);
 			balloon.render(g);
 			purhaceButton.render(g);
+			specialThanksButton.render(g);
 		}
 		
 	}
@@ -65,6 +65,7 @@ public class MainMenuState extends State {
 			back.onTouchDown(scaledX, scaledY);
 			balloon.onTouchDown(scaledX, scaledY);
 			purhaceButton.onTouchDown(scaledX, scaledY);
+			specialThanksButton.onTouchDown(scaledX, scaledY);
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {
@@ -105,8 +106,16 @@ public class MainMenuState extends State {
 			else{
 				purhaceButton.cancel();
 			}
-			
-			
+							
+			if (specialThanksButton.isPressed(scaledX, scaledY)) {
+				specialThanksButton.cancel();
+		    		//Assets.loadGalleryImage("crab");
+					GameMainActivity.sGame.setCurrentState(new SpecialThanksState());
+					return true;
+		       }
+			else{
+				specialThanksButton.cancel();
+			}
 			
 			
 		}
