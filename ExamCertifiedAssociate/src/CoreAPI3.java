@@ -9,6 +9,8 @@ import java.time.format.FormatStyle;
 
 public class CoreAPI3 {
 	
+	private String doSomething ="test";
+	
 	public static void main(String args[]){
 		workingWithDatesAndTimes();
 	}
