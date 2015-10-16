@@ -51,7 +51,7 @@ public class MainMenuState extends State {
 			back.render(g);
 			balloon.render(g);
 			purhaceButton.render(g);
-			//specialThanksButton.render(g);
+			specialThanksButton.render(g);
 		}
 		
 	}
