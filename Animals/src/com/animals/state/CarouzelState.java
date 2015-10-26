@@ -1,8 +1,6 @@
 package com.animals.state;
 
 
-import java.util.ArrayList;
-
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
@@ -28,6 +26,8 @@ public class CarouzelState extends State {
 	private UIButton animal;
 	private Rect displayNameRect ;
 	private UIButton back;
+	
+	private UIButton creditsButton;
 	
 	
 	private static float x1,x2;
@@ -57,6 +57,7 @@ public class CarouzelState extends State {
 		back = new UIButton(605, 355, 695, 445, Assets.back , Assets.back_down);
 		purhaceButton2 = new UIButton(605, 355, 695, 445, Assets.buyItemUp, Assets.buyItemDown);
 		purhaceButton = new UIButton(110, 355, 200, 445, Assets.buyItemUp, Assets.buyItemDown);
+		creditsButton = new UIButton(5,5,105,105, Assets.credits_up, Assets.credits_down);
 		playAnimalSoundsAndVoice();
 	}
 
@@ -71,7 +72,7 @@ public class CarouzelState extends State {
 		String animalName = null;
 	
 		g.drawImage(Assets.galleryBitmap, 0, 0);
-		
+		creditsButton.render(g);
 		
 		try{
 			 animalName = GameView.context.getResources().getString(Assets.animals.get(carouzelIndex).getAnimalName(GameMainActivity.getLanguageCode()));	
@@ -117,6 +118,7 @@ public class CarouzelState extends State {
 			 x1 = e.getX();  
 			 animal.onTouchDown(scaledX, scaledY);
 			 back.onTouchDown(scaledX, scaledY);
+			 creditsButton.onTouchDown(scaledX, scaledY);
 			 
 			 if(Assets.currentAnimal.isPromo()){
 				 purhaceButton.onTouchDown(scaledX, scaledY);
@@ -213,6 +215,13 @@ public class CarouzelState extends State {
 			
 		
 		}
+		
+		if(creditsButton.isPressed(scaledX, scaledY)){
+			creditsButton.cancel();
+			setCurrentState(new SpecialThanksState());	
+			return true;
+		}
+		
 		Assets.loadGalleryImageResolver(carouzelIndex);
 		
 	

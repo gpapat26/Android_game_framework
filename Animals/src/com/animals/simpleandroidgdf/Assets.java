@@ -161,9 +161,9 @@ public class Assets {
 	public static Bitmap cloud1;
 	public static Bitmap cloud2;
 	
-	public static Bitmap special_thanks_up;
+	public static Bitmap credits_up;
 	
-	public static Bitmap special_thanks_down;
+	public static Bitmap credits_down;
 	
 	public static final String creativeLisenceBy = "https://creativecommons.org/licenses/by/2.0/";
 	
@@ -270,9 +270,9 @@ public class Assets {
 		replay = loadBitmap("replayButton.png", true, false);
 		replayDown = loadBitmap("replayButton_down.png", true, false);
 		
-		special_thanks_up = loadBitmap("special_thanks.png", true, false);
+		credits_up = loadBitmap("credits_up.png", true, false);
 		
-		special_thanks_down = loadBitmap("special_thanks_down.png", true, false);
+		credits_down = loadBitmap("credits_down.png", true, false);
 		
 		//displayWait =loadBitmap("loading.jpg", true, false);
 		 

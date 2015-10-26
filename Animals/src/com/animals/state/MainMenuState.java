@@ -15,7 +15,7 @@ public class MainMenuState extends State {
 	private UIButton back;
 	private UIButton balloon;
 	private UIButton purhaceButton;
-	private UIButton specialThanksButton;
+
 
 	public  MainMenuState() {
 		init();
@@ -31,8 +31,7 @@ public class MainMenuState extends State {
 		
 		purhaceButton = new UIButton(5, 355, 105, 445, Assets.buyItemUp, Assets.buyItemDown);
 		
-		specialThanksButton = new UIButton((GameMainActivity.GAME_WIDTH/2)-150, 350, (GameMainActivity.GAME_WIDTH/2), 445, Assets.special_thanks_up, Assets.special_thanks_down);
-		
+				
 		Assets.loadGalleryImage("farm1");
 		Assets.onResume();	
 	}
@@ -51,7 +50,7 @@ public class MainMenuState extends State {
 			back.render(g);
 			balloon.render(g);
 			purhaceButton.render(g);
-			specialThanksButton.render(g);
+		
 		}
 		
 	}
@@ -65,7 +64,7 @@ public class MainMenuState extends State {
 			back.onTouchDown(scaledX, scaledY);
 			balloon.onTouchDown(scaledX, scaledY);
 			purhaceButton.onTouchDown(scaledX, scaledY);
-			specialThanksButton.onTouchDown(scaledX, scaledY);
+			
 		}
 
 		if (e.getAction() == MotionEvent.ACTION_UP) {

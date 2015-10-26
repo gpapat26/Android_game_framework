@@ -74,6 +74,10 @@ public class GameMainActivity extends BaseGameActivity{
 	public static Rect upperLeftScore;
 	public static Rect upperRightTimer;
 	public static Rect wholeScreenMinus;
+	
+	public static Rect upperThirdScreen;
+	public static Rect midThirdScreen;
+	public static Rect lowerThirdScreen;
     
     //**********************************************************************************//
 	//********************* Activity methods           *********************************//
@@ -95,6 +99,11 @@ public class GameMainActivity extends BaseGameActivity{
 		upperRightTimer=new Rect(4*(GAME_WIDTH/5),0,GAME_WIDTH,GAME_HEIGHT/12);
 		
 		wholeScreenMinus = new Rect(5,5,GAME_WIDTH-5,GAME_HEIGHT-5);
+		
+		upperThirdScreen = new Rect(0,0,GAME_WIDTH,GAME_HEIGHT/3);
+		midThirdScreen = new Rect(0,GAME_HEIGHT/3,GAME_WIDTH,2*GAME_HEIGHT/3);
+		lowerThirdScreen = new Rect(0,2*GAME_HEIGHT/3,GAME_WIDTH,GAME_HEIGHT);
+		
        
 		String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgNgrpfcgNutjrbjzpYOTGSrPCWwoO34B9+2CwXjfTuaahBV06he8epGoI4LPQnnNjnGyXdsBnKTjb0NRir6J96rNihsOUu2uQP5k57xDMFy6uVmvNKs9eSpeW249JoqgjDhDxATcXSxg+HOjWnEBCwlE5TWk7eMuUdWOCHOKty/m4NQIlK+a1n5YwFFRhF0ynbmvquWAXs1C96RNdr/kBvRvxPGMSqYC3mFzhNWTR/6i2TZuTF9oDvK+lRZ4LK+dIkdIMKolTLnTaE8rHItCn53dn9KP/dH9Ncp1hYr/dRlnf10lLTE/DpQQ/zKnpKa0aEjKlUd0Vm66PLhsxAQNtwIDAQAB";
         // Create the helper, passing it our context and the public key to verify signatures with
