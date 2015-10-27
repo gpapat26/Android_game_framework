@@ -22,6 +22,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -942,6 +944,14 @@ public class GameMainActivity extends BaseGameActivity{
 		} else {
 			instance.beginUserInitiatedSignIn();
 		}
+	}
+	
+	
+	public boolean isNetworkAvailable() {
+		
+	    ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(GameMainActivity.sGame.getContext().CONNECTIVITY_SERVICE);	    
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 	
 	

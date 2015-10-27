@@ -811,10 +811,10 @@ public class Assets {
 			bear_grizzly.addAudioFile("bear");
 			
 			
-			baby_dear.imageDetails[0] = "https://www.flickr.com/photos/50838842@N06/6754978699/";
-			baby_dear.imageDetails[1] = "U.S. Fish and Wildlife Service Headquarters";
-			baby_dear.imageDetails[2] = "https://www.flickr.com/photos/usfwshq/";
-			baby_dear.imageDetails[3] = creativeLisenceBy;
+			bear_grizzly.imageDetails[0] = "https://www.flickr.com/photos/50838842@N06/6754978699/";
+			bear_grizzly.imageDetails[1] = "U.S. Fish and Wildlife Service Headquarters";
+			bear_grizzly.imageDetails[2] = "https://www.flickr.com/photos/usfwshq/";
+			bear_grizzly.imageDetails[3] = creativeLisenceBy;
 			
 		
 			animals.put(tempArrayVariable++, bear_grizzly);
